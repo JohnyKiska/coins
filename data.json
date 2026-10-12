@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1791778861409,
+    "country": "Европа",
+    "currency": "Евро",
+    "nominal": 0.01,
+    "type": "Монета",
+    "rate": 0.8,
+    "cost": 0
+  },
+  {
+    "id": 1791778888922,
+    "country": "Европа",
+    "currency": "Евро",
+    "nominal": 1,
+    "type": "Монета",
+    "rate": 80,
+    "cost": 0
+  },
+  {
+    "id": 1791779183425,
+    "country": "Европа",
+    "currency": "Евро",
+    "nominal": 2,
+    "type": "Монета",
+    "rate": 0.8,
+    "cost": 5
+  },
+  {
+    "id": 1791779209281,
+    "country": "Европа",
+    "currency": "Евро",
+    "nominal": 0.05,
+    "type": "Монета",
+    "rate": 0.8,
+    "cost": 0
+  },
+  {
+    "id": 1791779832609,
+    "country": "Европа",
+    "currency": "Евро",
+    "nominal": 5,
+    "type": "Купюра",
+    "rate": 0.8,
+    "cost": 200
+  },
+  {
+    "id": 1791783083849,
+    "country": "США",
+    "currency": "USD",
+    "nominal": 1,
+    "type": "Купюра",
+    "rate": 96.2,
+    "cost": 10
+  },
+  {
+    "id": 1791782982604,
+    "country": "Еврозона (Европа)",
+    "currency": "EUR",
+    "nominal": 0.01,
+    "type": "Монета",
+    "rate": 105.5,
+    "cost": 1
+  },
+  {
+    "id": 1791782991348,
+    "country": "Еврозона (Европа)",
+    "currency": "EUR",
+    "nominal": 0.05,
+    "type": "Монета",
+    "rate": 105.5,
+    "cost": 5
+  },
+  {
+    "id": 1791783001508,
+    "country": "Еврозона (Европа)",
+    "currency": "EUR",
+    "nominal": 0.1,
+    "type": "Монета",
+    "rate": 105.5,
+    "cost": 10
+  },
+  {
+    "id": 1791783013788,
+    "country": "Еврозона (Европа)",
+    "currency": "EUR",
+    "nominal": 0.2,
+    "type": "Монета",
+    "rate": 105.5,
+    "cost": 10
+  },
+  {
+    "id": 1791783040403,
+    "country": "Еврозона (Европа)",
+    "currency": "EUR",
+    "nominal": 0.5,
+    "type": "Монета",
+    "rate": 105.5,
+    "cost": 10
+  },
+  {
+    "id": 1791783050245,
+    "country": "Еврозона (Европа)",
+    "currency": "EUR",
+    "nominal": 1,
+    "type": "Монета",
+    "rate": 105.5,
+    "cost": 10
+  },
+  {
+    "id": 1791783068263,
+    "country": "Еврозона (Европа)",
+    "currency": "EUR",
+    "nominal": 2,
+    "type": "Монета",
+    "rate": 105.5,
+    "cost": 20
+  },
+  {
+    "id": 1791783145380,
+    "country": "Казахстан",
+    "currency": "KZT",
+    "nominal": 200,
+    "type": "Монета",
+    "rate": 0.2,
+    "cost": 100
+  },
+  {
+    "id": 1791786216958,
+    "country": "Россия",
+    "currency": "RUB",
+    "nominal": 0.05,
+    "type": "Монета",
+    "rate": 1,
+    "cost": 10
+  },
+  {
+    "id": 1791786770766,
+    "country": "Белиз",
+    "currency": "BZD",
+    "nominal": 0.01,
+    "type": "Монета",
+    "rate": 42.38,
+    "cost": 20
+  }
+]
