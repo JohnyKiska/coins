@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Мировой Нумизматический Альбом</title>
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --primary: #2563eb;
+            --primary-light: #dbeafe;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding: 12px; padding-bottom: 60px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { margin-bottom: 15px; text-align: center; }
+        header h1 { font-size: 1.4rem; color: var(--primary); }
+        
+        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 15px; }
+        .stat-card { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .stat-card .value { font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-top: 3px; }
+        .stat-card .label { font-size: 0.75rem; color: var(--text-muted); }
+        .charts-container { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 15px; height: 160px; position: relative; }
+
+        .form-section { background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; }
+        .form-section h2 { font-size: 1rem; margin-bottom: 12px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+        .form-group { display: flex; flex-direction: column; gap: 4px; }
+        .form-group label { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); }
+        .form-group input, .form-group select { padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: #f9fafb; width: 100%; }
+        .btn-submit { grid-column: 1 / -1; background: var(--primary); color: white; padding: 14px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: 5px; }
+        .btn-submit:hover { background: #1d4ed8; }
+        .backup-zone { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+        .btn-backup { background: #4b5563; color: white; padding: 10px 14px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; flex: 1; text-align: center; min-width: 120px; }
+
+        .album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        .country-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .card-header h3 { font-size: 1rem; }
+        .currency-badge { font-size: 0.7rem; background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+        
+        .progress-container { margin: 8px 0; }
+        .progress-bar { background: #e5e7eb; height: 6px; border-radius: 3px; overflow: hidden; }
+        .progress-fill { background: var(--success); height: 100%; width: 0%; transition: width 0.3s; }
+        .progress-text { font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px; }
+        
+        .items-list { 
+            margin-top: 10px; background: #f9fafb; border-radius: 8px; padding: 8px; max-height: 280px; overflow-y: auto;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 6px; 
+        }
+        .coin-tile {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 8px 2px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.75rem; font-weight: 700;
+            text-align: center; background: #ffffff; transition: all 0.15s ease; cursor: pointer;
+        }
+        .coin-tile.missing { background: #f3f4f6; border-style: dashed; color: #9ca3af; }
+        .coin-tile.owned { background: #ffffff; border-color: var(--success); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1); color: var(--text-main); }
+        .coin-tile .icon-wrapper { display: flex; align-items: center; justify-content: center; width: 24px; height: 18px; margin-bottom: 3px; }
+        .coin-tile .price-tag { font-size: 0.6rem; font-weight: 500; color: #047857; margin-top: 2px; background: #ecfdf5; padding: 1px 3px; border-radius: 4px; }
+
+        .css-coin { width: 13px; height: 14px; background: #f59e0b; border: 2px solid #d97706; border-radius: 50%; position: relative; }
+        .css-coin::after { content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; border: 1px dashed #b45309; border-radius: 50%; }
+        .css-bill { width: 19px; height: 12px; background: #10b981; border: 1px solid #047857; border-radius: 2px; position: relative; }
+        .css-bill::after { content: '$'; position: absolute; font-size: 7px; color: #047857; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; line-height: 1; }
+        
+        .coin-tile.missing .css-coin { background: #d1d5db; border-color: #9ca3af; }
+        .coin-tile.missing .css-coin::after { border-color: #9ca3af; }
+        .coin-tile.missing .css-bill { background: #d1d5db; border-color: #9ca3af; }
+        .coin-tile.missing .css-bill::after { color: #9ca3af; }
+        .card-stats { border-top: 1px dashed var(--border); padding-top: 10px; margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; }
+        .card-stats div span { display: block; color: var(--text-muted); font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header><h1>🗺️ Интерактивный Атлас Коллекционера</h1></header>
+
+    <div class="dashboard">
+        <div class="stat-card"><div class="label">Всего затрат</div><div class="value" id="total-spent">0 ₽</div></div>
+        <div class="stat-card"><div class="label">Монет/Купюр в наличии</div><div class="value" id="total-qty">0</div></div>
+        <div class="stat-card"><div class="label">Прогресс по миру</div><div class="value" id="total-countries">0 / 33</div></div>
+    </div>
+
+    <div class="charts-container"><canvas id="expenseChart" style="width:100%; height:100%;"></canvas></div>
+
+    <div class="backup-zone">
+        <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-main); width:100%; margin-bottom:5px;">💾 Резервная копия коллекции:</span>
+        <button class="btn-backup" onclick="exportCollection()">Скачать бэкап</button>
+        <button class="btn-backup" style="background:#059669;" onclick="document.getElementById('import-file').click()">Загрузить файл</button>
+        <input type="file" id="import-file" style="display:none;" onchange="importCollection(this)">
+    </div>
+
+    <section class="form-section">
+        <h2>📥 Быстрое добавление в коллекцию</h2>
+        <form id="add-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="country-select">Выберите страну</label>
+                    <select id="country-select" required><option value="">Загрузка каталога...</option></select>
+                </div>
+                <div class="form-group">
+                    <label for="nominal-select">Выберите номинал</label>
+                    <select id="nominal-select" required><option value="">Сначала выберите страну</option></select>
+                </div>
+                <div class="form-group">
+                    <label for="type-select">Тип экспоната</label>
+                    <select id="type-select">
+                        <option value="Монета">Монета</option>
+                        <option value="Купюра">Купюра</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cost-input">Цена покупки (рубли)</label>
+                    <input type="number" id="cost-input" value="0" min="0" required>
+                </div>
+                <button type="submit" class="btn-submit">Отметить как собранную</button>
+                <button type="button" id="btn-delete" style="display:none; grid-column: 1 / -1; background: #ef4444; color: white; padding: 14px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: -5px;">Удалить из коллекции</button>
+            </div>
+        </form>
+    </section>
+
+    <h2 style="font-size:1.1rem; margin-bottom:12px;">🗺️ Состояние мирового альбома</h2>
+    <div class="album-grid" id="album-container"></div>
+</div>
+<script>
+    // ВСТРАИВАЕМ КАТАЛОГ СТРАН МИРА (Полная автономия без интернета и CORS)
+    window.WORLD_CATALOG = [
+      { "country": "Россия", "currency": "RUB", "rate_default": 1.0, "coins": [0.01, 0.05, 0.1, 0.5, 1, 2, 5, 10], "bills": [5, 10, 50, 100, 200, 500, 1000, 2000, 5000] },
+      { "country": "Беларусь", "currency": "BYN", "rate_default": 28.02, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Казахстан", "currency": "KZT", "rate_default": 0.18, "coins": [], "bills": [200, 500, 1000, 2000, 5000, 10000, 20000] },
+      { "country": "Армения", "currency": "AMD", "rate_default": 0.23, "coins": [], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000] },
+      { "country": "Узбекистан", "currency": "UZS", "rate_default": 0.0075, "coins": [], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000] },
+      { "country": "Кыргызстан", "currency": "KGS", "rate_default": 0.97, "coins": [0.1, 0.5, 1, 3, 5, 10], "bills": [20, 50, 100, 200, 500, 1000, 2000, 5000] },
+      { "country": "Таджикистан", "currency": "TJS", "rate_default": 9.26, "coins": [0.1, 0.2, 0.5, 1, 3, 5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Туркменистан", "currency": "TMT", "rate_default": 24.29, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [1, 5, 10, 20, 50, 100] },
+      { "country": "Азербайджан", "currency": "AZN", "rate_default": 50.06, "coins": [0.01, 0.03, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Грузия", "currency": "GEL", "rate_default": 32.86, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200] },
+      { "country": "Молдова", "currency": "MDL", "rate_default": 4.76, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [1, 5, 10, 20, 50, 100, 200, 500, 1000] },
+      { "country": "Еврозона (Европа)", "currency": "EUR", "rate_default": 95.42, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Великобритания", "currency": "GBP", "rate_default": 112.74, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50] },
+      { "country": "Швейцария", "currency": "CHF", "rate_default": 102.55, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 1000] },
+      { "country": "Норвегия", "currency": "NOK", "rate_default": 8.9, "coins": [], "bills": [50, 100, 200, 500, 1000] },
+      { "country": "Швеция", "currency": "SEK", "rate_default": 8.5, "coins": [], "bills": [20, 50, 100, 200, 500, 1000] },
+      { "country": "Дания", "currency": "DKK", "rate_default": 12.76, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [50, 100, 200, 500, 1000] },
+      { "country": "Польша", "currency": "PLN", "rate_default": 21.72, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 500] },
+      { "country": "Чехия", "currency": "CZK", "rate_default": 3.91, "coins": [], "bills": [100, 200, 500, 1000, 2000, 5000] },
+      { "country": "Венгрия", "currency": "HUF", "rate_default": 0.26, "coins": [], "bills": [500, 1000, 2000, 5000, 10000, 20000] },
+      { "country": "Румыния", "currency": "RON", "rate_default": 17.88, "coins": [0.01, 0.05, 0.1, 0.5], "bills": [1, 5, 10, 50, 100, 200, 500] },
+      { "country": "Болгария", "currency": "BGN", "rate_default": 48.85, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
+      { "country": "Сербия", "currency": "RSD", "rate_default": 0.81, "coins": [], "bills": [10, 20, 50, 100, 200, 500, 1000, 2000, 5000] },
+      { "country": "США", "currency": "USD", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 2, 5, 10, 20, 50, 100] },
+      { "country": "Канада", "currency": "CAD", "rate_default": 59.7, "coins": [0.05, 0.1, 0.25, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
+      { "country": "Австралия", "currency": "AUD", "rate_default": 59.43, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
+      { "country": "Китай", "currency": "CNY", "rate_default": 12.71, "coins": [0.01, 0.02, 0.05, 0.1, 0.5, 1], "bills": [0.1, 0.2, 0.5, 1, 5, 10, 20, 50, 100] },
+      { "country": "Япония", "currency": "JPY", "rate_default": 0.53, "coins": [], "bills": [1000, 2000, 5000, 10000] },
+      { "country": "Турция", "currency": "TRY", "rate_default": 1.72, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200] },
+      { "country": "ОАЭ", "currency": "AED", "rate_default": 23.17, "coins": [0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200, 500, 1000] },
+      { "country": "Индия", "currency": "INR", "rate_default": 0.88, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Таиланд", "currency": "THB", "rate_default": 2.53, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 500, 1000] },
+      { "country": "Египет", "currency": "EGP", "rate_default": 1.62, "coins": [0.05, 0.1, 0.25, 0.5, 1], "bills": [0.25, 0.5, 1, 5, 10, 20, 50, 100, 200] },
+      { "country": "ЮАР", "currency": "ZAR", "rate_default": 5.16, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
+      { "country": "Бразилия", "currency": "BRL", "rate_default": 17.05, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100, 200] },
+      { "country": "Мексика", "currency": "MXN", "rate_default": 4.62, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20], "bills": [20, 50, 100, 200, 500, 1000] },
+      { "country": "Белиз", "currency": "BZD", "rate_default": 42.38, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100] },
+      { "country": "Бруней", "currency": "BND", "rate_default": 66.57, "coins": [0.01, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 25, 50, 100, 500, 1000, 10000] },
+      { "country": "Вануату", "currency": "VUV", "rate_default": 0.76, "coins": [], "bills": [200, 500, 1000, 2000, 5000, 10000] },
+      { "country": "Кабо-Верде", "currency": "CVE", "rate_default": 0.86, "coins": [], "bills": [200, 500, 1000, 2000, 2500, 5000] },
+      { "country": "Эквадор", "currency": "ECS", "rate_default": 0.003, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [5, 10, 20, 50, 100, 500, 1000, 5000, 10000, 20000, 50000] }
+    ];
+</script>
+<script>
+    let collection = JSON.parse(localStorage.getItem('numismat_db')) || [];
+    let myChart = null;
+
+    const countrySelect = document.getElementById('country-select');
+    const nominalSelect = document.getElementById('nominal-select');
+    const form = document.getElementById('add-form');
+    const deleteBtn = document.getElementById('btn-delete');
+
+    function initApp() {
+        if (!window.WORLD_CATALOG || window.WORLD_CATALOG.length === 0) {
+            countrySelect.innerHTML = '<option value="">Ошибка! Каталог пуст</option>';
+            return;
+        }
+        window.WORLD_CATALOG.sort((a, b) => a.country.localeCompare(b.country));
+        countrySelect.innerHTML = '<option value="">-- Выберите страну --</option>' + 
+            window.WORLD_CATALOG.map((c, idx) => `<option value="${idx}">${c.country} (${c.currency})</option>`).join('');
+        renderApp();
+    }
+
+    countrySelect.addEventListener('change', function() {
+        const countryIdx = this.value;
+        if (!countryIdx) { nominalSelect.innerHTML = '<option value="">Сначала выберите страну</option>'; return; }
+        const countryData = window.WORLD_CATALOG[countryIdx];
+        let nominalsHtml = '';
+        if(countryData.coins) nominalsHtml += countryData.coins.map(n => `<option value="${n}">${n} ${countryData.currency} (Монета)</option>`).join('');
+        if(countryData.bills) nominalsHtml += countryData.bills.map(n => `<option value="${n}">${n} ${countryData.currency} (Купюра)</option>`).join('');
+        nominalSelect.innerHTML = nominalsHtml;
+    });
+
+        // СКАЧИВАНИЕ БЭКАПА СРАЗУ В ТЕКСТОВОМ ФОРМАТЕ (.TXT) ДЛЯ ANDROID
+    window.exportCollection = function() {
+        if(collection.length === 0) { alert("Ваша коллекция пока пуста. Нечего скачивать!"); return; }
+        const dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(collection, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        // МЕНЯЕМ РАСШИРЕНИЕ НА .TXT, ЧТОБЫ ANDROID СВОБОДНО ЕГО ЧИТАЛ
+        downloadAnchor.setAttribute("download", "my_coins_backup.txt");
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+    };
+
+
+    window.importCollection = function(input) {
+        const file = input.files; if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const importedData = JSON.parse(e.target.result);
+                if (Array.isArray(importedData)) {
+                    collection = importedData; localStorage.setItem('numismat_db', JSON.stringify(collection));
+                    alert("Успешно восстановлено!"); renderApp();
+                }
+            } catch (err) { alert("Ошибка файла."); }
+        };
+        reader.readAsText(file);
+    };
+
+    window.quickSelectCountry = function(countryName, nominalValue, itemType, currentCost, isOwned) {
+        const searchName = countryName.trim().toLowerCase();
+        const options = Array.from(countrySelect.options);
+        const targetOption = options.find(opt => opt.text.toLowerCase().includes(searchName));
+        
+        if (targetOption) {
+            countrySelect.value = targetOption.value;
+            countrySelect.dispatchEvent(new Event('change'));
+            
+            setTimeout(() => {
+                nominalSelect.value = nominalValue;
+                document.getElementById('type-select').value = itemType;
+                const costInput = document.getElementById('cost-input'); costInput.value = currentCost;
+                
+                if (isOwned) {
+                    deleteBtn.style.display = 'block';
+                    deleteBtn.onclick = function() {
+                        if(confirm("Удалить этот элемент?")) {
+                            collection = collection.filter(item => !(item.country === countryName && item.nominal === parseFloat(nominalValue) && item.type === itemType));
+                            localStorage.setItem('numismat_db', JSON.stringify(collection));
+                            form.reset(); deleteBtn.style.display = 'none';
+                            nominalSelect.innerHTML = '<option value="">Сначала выберите страну</option>';
+                            renderApp();
+                        }
+                    };
+                } else { deleteBtn.style.display = 'none'; }
+                
+                document.getElementById('add-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                costInput.focus(); costInput.select();
+            }, 50);
+        }
+    };
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); const countryIdx = countrySelect.value; if(!countryIdx) return;
+        const countryData = window.WORLD_CATALOG[countryIdx]; const chosenNominal = parseFloat(nominalSelect.value);
+        const chosenType = document.getElementById('type-select').value;
+        const existingIdx = collection.findIndex(item => item.country === countryData.country && item.nominal === chosenNominal && item.type === chosenType);
+        
+        const record = {
+            id: Date.now(), country: countryData.country, currency: countryData.currency,
+            nominal: chosenNominal, type: chosenType, rate: countryData.rate_default, cost: parseFloat(document.getElementById('cost-input').value)
+        };
+
+        if (existingIdx > -1) { collection[existingIdx] = record; } else { collection.push(record); }
+        localStorage.setItem('numismat_db', JSON.stringify(collection));
+        deleteBtn.style.display = 'none'; form.reset();
+        nominalSelect.innerHTML = '<option value="">Сначала выберите страну</option>';
+        renderApp();
+    });
+
+    function renderApp() {
+        const albumContainer = document.getElementById('album-container'); albumContainer.innerHTML = '';
+        if(!window.WORLD_CATALOG || window.WORLD_CATALOG.length === 0) return;
+        let totalSpent = 0; let countriesWithCoins = 0;
+
+        window.WORLD_CATALOG.forEach(catalogCountry => {
+            const userOwned = collection.filter(item => item.country === catalogCountry.country);
+            if(userOwned.length > 0) countriesWithCoins++;
+            const ownedMap = {};
+            userOwned.forEach(item => { totalSpent += item.cost; ownedMap[`${item.nominal}_${item.type}`] = item; });
+
+            let itemsHtml = ''; let matchesCount = 0; let totalFaceValue = 0; let countrySpent = 0;
+
+            if(catalogCountry.coins) {
+                catalogCountry.coins.forEach(nominal => {
+                    const key = `${nominal}_Монета`;
+                    if (ownedMap[key]) {
+                        const item = ownedMap[key]; matchesCount++; totalFaceValue += nominal; countrySpent += item.cost;
+                        itemsHtml += `<div class="coin-tile owned" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Монета', ${item.cost}, true)"><div class="icon-wrapper"><div class="css-coin"></div></div><span>${nominal}</span><span class="price-tag">${item.cost}₽</span></div>`;
+                    } else {
+                        itemsHtml += `<div class="coin-tile missing" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Монета', 0, false)"><div class="icon-wrapper"><div class="css-coin"></div></div><span>${nominal}</span></div>`;
+                    }
+                });
+            }
+
+            if(catalogCountry.bills) {
+                catalogCountry.bills.forEach(nominal => {
+                    const key = `${nominal}_Купюра`;
+                    if (ownedMap[key]) {
+                        const item = ownedMap[key]; matchesCount++; totalFaceValue += nominal; countrySpent += item.cost;
+                        itemsHtml += `<div class="coin-tile owned" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Купюра', ${item.cost}, true)"><div class="icon-wrapper"><div class="css-bill"></div></div><span>${nominal}</span><span class="price-tag">${item.cost}₽</span></div>`;
+                    } else {
+                        itemsHtml += `<div class="coin-tile missing" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Купюра', 0, false)"><div class="icon-wrapper"><div class="css-bill"></div></div><span>${nominal}</span></div>`;
+                    }
+                });
+            }
+
+            const totalNominalsCount = (catalogCountry.coins ? catalogCountry.coins.length : 0) + (catalogCountry.bills ? catalogCountry.bills.length : 0);
+            const progressPercent = Math.round((matchesCount / totalNominalsCount) * 100) || 0;
+            const valueInRub = (totalFaceValue * catalogCountry.rate_default).toFixed(2);
+
+            const card = document.createElement('div'); card.className = 'country-card';
+            if(matchesCount === 0) card.style.opacity = '0.55'; 
+
+            card.innerHTML = `
+                <div>
+                    <div class="card-header"><h3>${catalogCountry.country}</h3><span class="currency-badge">${catalogCountry.currency}</span></div>
+                    <div class="progress-container">
+                        <div class="progress-bar"><div class="progress-fill" style="width: ${progressPercent}%; background:${progressPercent===100?'#10b981':''}"></div></div>
+                        <div class="progress-text"><span>Прогресс</span><span>${matchesCount} из ${totalNominalsCount}</span></div>
+                    </div>
+                    <div class="items-list">${itemsHtml}</div>
+                </div>
+                <div class="card-stats">
+                    <div><span>Сумма номиналов</span><strong>${totalFaceValue.toFixed(2)} (${valueInRub} ₽)</strong></div>
+                    <div><span>Всего затрат</span><strong style="color:var(--primary);">${countrySpent} ₽</strong></div>
+                </div>
+            `;
+            albumContainer.appendChild(card);
+        });
+
+        document.getElementById('total-spent').innerText = totalSpent + ' ₽';
+        document.getElementById('total-qty').innerText = collection.length;
+        document.getElementById('total-countries').innerText = `${countriesWithCoins} / ${window.WORLD_CATALOG.length}`;
+        updateChart();
+    }
+
+    function updateChart() {
+        const chartContainer = document.querySelector('.charts-container'); 
+        if (!chartContainer) return;
+        
+        const chartData = {}; 
+        collection.forEach(i => { 
+            if (i.cost > 0) chartData[i.country] = (chartData[i.country] || 0) + i.cost; 
+        });
+        
+        const labels = Object.keys(chartData);
+        if (labels.length === 0) { 
+            chartContainer.style.display = 'none'; 
+            return; 
+        } else { 
+            chartContainer.style.display = 'block'; 
+        }
+        
+        chartContainer.innerHTML = '<canvas id="expenseChart" style="width:100%; height:100%;"></canvas>';
+        const ctx = document.getElementById('expenseChart').getContext('2d');
+        
+        myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{ 
+                    label: 'Затраты по странам (₽)', 
+                    data: Object.values(chartData), 
+                    backgroundColor: '#2563eb', 
+                    borderRadius: 4 
+                }]
+            },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false, 
+                plugins: { legend: { display: false } } 
+            }
+        });
+    }
+
+    initApp();
+</script>
+</body>
+</html>
+
