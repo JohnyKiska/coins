@@ -40,7 +40,12 @@
         .btn-backup { background: #4b5563; color: white; padding: 10px 14px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; flex: 1; text-align: center; min-width: 120px; }
 
         .album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .country-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; }
+        .country-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;
+            /* Включаем магию флагов: выравниваем фоновый рисунок по правому нижнему краю */
+            background-repeat: no-repeat; background-position: right -10px bottom -10px; background-size: 110px auto; 
+            /* Размер флага, чтобы он аккуратно заходил под карточку */ position: relative; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
         .card-header h3 { font-size: 1rem; }
         .currency-badge { font-size: 0.7rem; background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-weight: 600; }
@@ -336,8 +341,30 @@ function initApp() {
             const progressPercent = Math.round((matchesCount / totalNominalsCount) * 100) || 0;
             const valueInRub = (totalFaceValue * catalogCountry.rate_default).toFixed(2);
 
-            const card = document.createElement('div'); card.className = 'country-card';
+         // const card = document.createElement('div'); card.className = 'country-card';
+         // if(matchesCount === 0) card.style.opacity = '0.55';
+                            // УМНЫЙ ТРАНСЛЯТОР: Переводим код валюты в код флага для базы Flagpack
+            const currencyToFlag = {
+                "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
+                "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
+                "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
+                "SEK": "se", "DKK": "dk", "PLN": "pl", "CZK": "cz", "HUF": "hu",
+                "RON": "ro", "BGN": "bg", "RSD": "rs", "USD": "us", "CAD": "ca",
+                "AUD": "au", "CNY": "cn", "JPY": "jp", "TRY": "tr", "AED": "ae",
+                "INR": "in", "THB": "th", "EGP": "eg", "ZAR": "za", "BRL": "br",
+                "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", "ECS": "ec"
+            };
+            
+            const flagCode = currencyToFlag[catalogCountry.currency] || "un";
+            
+            const card = document.createElement('div');
+            card.className = 'country-card';
+            
+            // Задаем красивый размытый и полупрозрачный флаг на задний фон карточки
+            card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,1) 70%), url('https://flagpack.xyz{flagCode}.svg')`;
+
             if(matchesCount === 0) card.style.opacity = '0.55'; 
+
 
             card.innerHTML = `
                 <div>
