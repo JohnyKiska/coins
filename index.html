@@ -218,20 +218,31 @@
     };
 
 
+        // ФИНАЛЬНЫЙ НЕУБИВАЕМЫЙ ИМПОРТ ДЛЯ ЛЮБЫХ СМАРТФОНОВ ANDROID
     window.importCollection = function(input) {
-        const file = input.files; if (!file) return;
+        if (!input.files || input.files.length === 0) return;
+        
+        const file = input.files[0]; // Четко указываем Android взять первый выбранный файл
         const reader = new FileReader();
+        
         reader.onload = function(e) {
             try {
                 const importedData = JSON.parse(e.target.result);
                 if (Array.isArray(importedData)) {
-                    collection = importedData; localStorage.setItem('numismat_db', JSON.stringify(collection));
-                    alert("Успешно восстановлено!"); renderApp();
+                    collection = importedData;
+                    localStorage.setItem('numismat_db', JSON.stringify(collection));
+                    alert("Успешно! Все монеты и купюры перенесены в мобильный альбом.");
+                    renderApp(); // Мгновенно перерисовываем все плитки на экране смартфона
+                } else {
+                    alert("Ошибка: Структура файла не совпадает с форматом коллекции.");
                 }
-            } catch (err) { alert("Ошибка файла."); }
+            } catch (err) {
+                alert("Ошибка чтения: Убедитесь, что выбираете чистый файл бэкапа, скачанный из приложения.");
+            }
         };
         reader.readAsText(file);
     };
+
 
     window.quickSelectCountry = function(countryName, nominalValue, itemType, currentCost, isOwned) {
         const searchName = countryName.trim().toLowerCase();
