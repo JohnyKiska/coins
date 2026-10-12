@@ -183,9 +183,9 @@
     const form = document.getElementById('add-form');
     const deleteBtn = document.getElementById('btn-delete');
 
-    function initApp() {
+function initApp() {
         if (!window.WORLD_CATALOG || window.WORLD_CATALOG.length === 0) {
-            countrySelect.innerHTML = '<option value="">Ошибка! Каталог пуст</option>';
+            countrySelect.innerHTML = '<option value="">Ошибка! Проверьте catalog.js</option>';
             return;
         }
         window.WORLD_CATALOG.sort((a, b) => a.country.localeCompare(b.country));
@@ -362,26 +362,36 @@
         updateChart();
     }
 
+// ИСПРАВЛЕННАЯ ФУНКЦИЯ: Сама ждет загрузку библиотеки Chart.js
     function updateChart() {
-        const chartContainer = document.querySelector('.charts-container'); 
+        const chartContainer = document.querySelector('.charts-container');
         if (!chartContainer) return;
-        
-        const chartData = {}; 
+
+        const chartData = {};
         collection.forEach(i => { 
             if (i.cost > 0) chartData[i.country] = (chartData[i.country] || 0) + i.cost; 
         });
-        
+
         const labels = Object.keys(chartData);
-        if (labels.length === 0) { 
-            chartContainer.style.display = 'none'; 
-            return; 
-        } else { 
-            chartContainer.style.display = 'block'; 
-        }
         
+        // Если покупок с ценой больше 0 рублей нет — скрываем белый прямоугольник
+        if (labels.length === 0) {
+            chartContainer.style.display = 'none';
+            return;
+        } else {
+            chartContainer.style.display = 'block';
+        }
+
+        // ПРОВЕРКА: Если библиотека Chart.js еще качается из интернета, ждем 200 миллисекунд и пробуем снова
+        if (typeof Chart === 'undefined') {
+            setTimeout(updateChart, 200);
+            return;
+        }
+
+        // Пересоздаем холст для рисования
         chartContainer.innerHTML = '<canvas id="expenseChart" style="width:100%; height:100%;"></canvas>';
         const ctx = document.getElementById('expenseChart').getContext('2d');
-        
+
         myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -396,7 +406,10 @@
             options: { 
                 responsive: true, 
                 maintainAspectRatio: false, 
-                plugins: { legend: { display: false } } 
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true }
+                }
             }
         });
     }
