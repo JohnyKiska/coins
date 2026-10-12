@@ -401,7 +401,32 @@
         });
     }
 
-    initApp();
+//  initApp();
+         // АВТОМАТИЧЕСКАЯ ПОДГРУЗКА БАЗЫ ДАННЫХ ИЗ РЕПОЗИТОРИЯ GITHUB
+    async function loadCloudCollection() {
+        try {
+            // Браузер сам обращается к файлу data.json в вашем репозитории
+            const response = await fetch('data.json');
+            if (response.ok) {
+                const cloudData = await response.json();
+                if (Array.isArray(cloudData) && cloudData.length > 0) {
+                    collection = cloudData;
+                    // Синхронизируем с памятью устройства на всякий случай
+                    localStorage.setItem('numismat_db', JSON.stringify(collection));
+                    console.log("Коллекция успешно загружена из облака GitHub!");
+                }
+            }
+        } catch (error) {
+            console.log("Не удалось загрузить облачный бэкап, работаем на локальной памяти.");
+        }
+        
+        // После попытки загрузки запускаем само приложение
+        initApp();
+    }
+
+    // Запускаем приложение через облачную функцию
+    loadCloudCollection();
+
 </script>
 </body>
 </html>
