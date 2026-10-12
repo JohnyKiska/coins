@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Мировой Нумизматический Альбом</title>
-    <script src="chart.js"></script>
-    <!-- ПОДКЛЮЧАЕМ СТАБИЛЬНЫЙ CDN ФЛАГОВ LIPIS -->
-    <link rel="stylesheet" href="https://jsdelivr.net" />
+<script src="chart.js"></script>
+<!-- ИСПРАВЛЕННЫЙ ВСЕЯДНЫЙ CDN ДЛЯ СТАБИЛЬНЫХ ФЛАГОВ МИРА -->
+<link rel="stylesheet" href="https://cloudflare.com" />
+
     <style>
         :root {
             --bg-color: #f4f6f9;
@@ -392,8 +393,8 @@ function initApp() {
 
                        card.innerHTML = `
                 <!-- Красивый фоновый флаг Lipis с использованием класса fib -->
-                <div class="card-bg-flag fib fi-${flagCode}"></div>
-                
+            <div class="card-bg-flag flag-icon-background fi-${flagCode}"></div>
+               
                 <div>
                     <div class="card-header"><h3>${catalogCountry.country}</h3><span class="currency-badge">${catalogCountry.currency}</span></div>
                     <div class="progress-container">
