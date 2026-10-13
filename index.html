@@ -67,7 +67,24 @@
             background-position: right bottom;
             z-index: 1;
         }
-
+/* Стиль для маленького флага перед названием страны */
+        .card-title-flag {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            margin-right: 6px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        
+        /* Выравниваем сам заголовок, чтобы флаг и текст были строго на одной линии */
+        .card-header h3 {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+        }
 
 
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
@@ -400,7 +417,14 @@ function initApp() {
             <div class="card-bg-flag flag-icon-background fi-${flagCode}"></div>
                
                 <div>
-                    <div class="card-header"><h3>${catalogCountry.country}</h3><span class="currency-badge">${catalogCountry.currency}</span></div>
+                    <div class="card-header">
+    <h3>
+        <img class="card-title-flag" src="flags/${flagCode}.svg" alt="">
+        ${catalogCountry.country}
+    </h3>
+    <span class="currency-badge">${catalogCountry.currency}</span>
+</div>
+
                     <div class="progress-container">
                         <div class="progress-bar"><div class="progress-fill" style="width: ${progressPercent}%; background:${progressPercent===100?'#10b981':''}"></div></div>
                         <div class="progress-text"><span>Прогресс</span><span>${matchesCount} из ${totalNominalsCount}</span></div>
