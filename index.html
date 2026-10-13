@@ -52,19 +52,22 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
         }
 
-        /* Стиль для нового фонового флага */
+        /* Стиль для фонового флага из вашего репозитория */
         .card-bg-flag {
             position: absolute;
-            right: -10px;
-            bottom: -15px;
-            width: 120px;
-            height: 90px;
-            opacity: 0.12; /* Делаем флаг полупрозрачным, чтобы текст читался идеально */
+            right: 5px;          /* Чуть ближе к правому краю */
+            bottom: 5px;         /* Чуть ближе к нижнему краю */
+            width: 75px;         /* Уменьшаем ширину со 120px до 75px */
+            height: 55px;        /* Пропорциональная высота для флага 4x3 */
+            opacity: 0.10;       /* Делаем еще чуть-чуть прозрачнее (10%), чтобы не отвлекал */
             pointer-events: none;
             user-select: none;
-            background-size: cover;
-            background-position: center;
+            background-size: contain;     /* Заставляем флаг помещаться целиком без обрезки */
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            z-index: 1;
         }
+
 
 
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
