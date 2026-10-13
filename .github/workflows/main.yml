@@ -1,0 +1,21 @@
+name: Download Flags
+on: workflow_dispatch
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download flag assets
+        run: |
+          mkdir -p flags
+          cd flags
+          for code in ru by kz am uz kg tj tm az ge md eu gb ch no se dk pl cz hu ro bg rs us ca au cn jp tr ae in th eg za br mx bz bn vu cv ec; do
+            curl -sL "https://githubusercontent.com{code}.svg" -o "${code}.svg"
+          done
+      - name: Commit flags
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add flags/*.svg
+          git commit -m "Download local flag assets" || exit 0
+          git push
