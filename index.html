@@ -26,8 +26,7 @@
         .stat-card { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
         .stat-card .value { font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-top: 3px; }
         .stat-card .label { font-size: 0.75rem; color: var(--text-muted); }
-        .charts-container { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 15px; height: 160px; position: relative; }
-
+        
         .form-section { background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; }
         .form-section h2 { font-size: 1rem; margin-bottom: 12px; }
         .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
@@ -113,8 +112,6 @@
         <div class="stat-card"><div class="label">Монет/Купюр в наличии</div><div class="value" id="total-qty">0</div></div>
         <div class="stat-card"><div class="label">Прогресс по миру</div><div class="value" id="total-countries">0 / 33</div></div>
     </div>
-
-    <div class="charts-container"><canvas id="expenseChart" style="width:100%; height:100%;"></canvas></div>
 
     <div class="backup-zone">
         <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-main); width:100%; margin-bottom:5px;">💾 Резервная копия коллекции:</span>
@@ -419,60 +416,7 @@ function initApp() {
         document.getElementById('total-spent').innerText = totalSpent + ' ₽';
         document.getElementById('total-qty').innerText = collection.length;
         document.getElementById('total-countries').innerText = `${countriesWithCoins} / ${window.WORLD_CATALOG.length}`;
-        updateChart();
-    }
-
-// ИСПРАВЛЕННАЯ ФУНКЦИЯ: Сама ждет загрузку библиотеки Chart.js
-    function updateChart() {
-        const chartContainer = document.querySelector('.charts-container');
-        if (!chartContainer) return;
-
-        const chartData = {};
-        collection.forEach(i => { 
-            if (i.cost > 0) chartData[i.country] = (chartData[i.country] || 0) + i.cost; 
-        });
-
-        const labels = Object.keys(chartData);
-        
-        // Если покупок с ценой больше 0 рублей нет — скрываем белый прямоугольник
-        if (labels.length === 0) {
-            chartContainer.style.display = 'none';
-            return;
-        } else {
-            chartContainer.style.display = 'block';
-        }
-
-        // ПРОВЕРКА: Если библиотека Chart.js еще качается из интернета, ждем 200 миллисекунд и пробуем снова
-        if (typeof Chart === 'undefined') {
-            setTimeout(updateChart, 200);
-            return;
-        }
-
-        // Пересоздаем холст для рисования
-        chartContainer.innerHTML = '<canvas id="expenseChart" style="width:100%; height:100%;"></canvas>';
-        const ctx = document.getElementById('expenseChart').getContext('2d');
-
-        myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{ 
-                    label: 'Затраты по странам (₽)', 
-                    data: Object.values(chartData), 
-                    backgroundColor: '#2563eb', 
-                    borderRadius: 4 
-                }]
-            },
-            options: { 
-                responsive: true, 
-                maintainAspectRatio: false, 
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
-        });
-    }
+         }
 
 //  initApp();
          // АВТОМАТИЧЕСКАЯ ПОДГРУЗКА БАЗЫ ДАННЫХ ИЗ РЕПОЗИТОРИЯ GITHUB
