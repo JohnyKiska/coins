@@ -366,6 +366,7 @@ function initApp() {
          // const card = document.createElement('div'); card.className = 'country-card';
          // if(matchesCount === 0) card.style.opacity = '0.55';
                             // УМНЫЙ ТРАНСЛЯТОР: Переводим код валюты в код флага для базы Flagpack
+            // Локальный транслятор кодов валют в ваши файлы флагов
             const currencyToFlag = {
                 "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
                 "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
@@ -377,31 +378,15 @@ function initApp() {
                 "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", "ECS": "ec"
             };
             
-            let flagSvgBase64 = "";
-            const curr = catalogCountry.currency;
-
-            // ВСТРОЕННАЯ ГРАФИКА: Код весит мало, не блокируется и не требует скачивания файлов
-            if (curr === "RUB") {
-                // Флаг России
-                flagSvgBase64 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5IDYiPjxyZWN0IHdpZHRoPSI5IiBoPSI2IiBmaWxsPSIjZDUyYjFlIi8+PHJlY3Qgd2lkdGg9IjkiIGg9IjQiIGZpbGw9IiMwMDM5YTYiLz48cmVjdCB3aWR0aD0iOSIgaD0iMiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==";
-            } else if (curr === "EUR") {
-                // Флаг Евросоюза
-                flagSvgBase64 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzIDIiPjxyZWN0IHdpZHRoPSIzIiBoPSIyIiBmaWxsPSIjMDAzMzk5Ii8+PHBhdGggZD0iTTEuNSwwLjRsMC4wNSwwLjFsMC4wNS0wLjFsLTAuMDMsMC4xbDAuMDMsMC4xbC0wLjA1LTAuMWwtMC4wNSwwLjFsMC4wMy0wLjF6IiBmaWxsPSIjZmNjMDAwIi8+PC9zdmc+";
-            } else if (curr === "USD") {
-                // Флаг США (упрощенный для подложки)
-                flagSvgBase64 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzIDIiPjxyZWN0IHdpZHRoPSIzIiBoPSIyIiBmaWxsPSIjYjIyMjIyIi8+PHBhdGggZD0iTTAgMGgxLjV2MWgtMS41eiIgZmlsbD0iIzNjM2M5YyIvPjwvc3ZnPg==";
-            } else {
-                // Универсальный глобус для остальных стран, чтобы карточки не были пустыми
-                flagSvgBase64 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGI1NTYzIiBzdHJva2Utd2lkdGg9IjEiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PHBhdGggZD0iTTEyIDJjNS41MjMgMCAxMCA0LjQ3NyAxMCAxMVMxNy41MjMgMjIgMTIgMjIgMiAxNy41MjMgMiAxMiA2LjQ3NyAyIDEyIDJaIi8+PHBhdGggZD0iTTIgMTJoMjBNMTIgMnYyME0xMiAyYzIuNSAwIDQuNSA0LjUgNC41IDEwUzE0LjUgMjIgMTIgMjIgNy41IDIyIDcuNSAxMiA3LjUgMiAxMiAyWiIvPjwvc3ZnPg==";
-            }
+            const flagCode = currencyToFlag[catalogCountry.currency] || "un";
             
             const card = document.createElement('div');
             card.className = 'country-card';
             
-            // Применяем расшифрованный код как фоновую картинку
-            card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.8), rgba(255,255,255,1) 75%), url('${flagSvgBase64}')`;
+            // Направляем путь к файлам флагов, которые теперь лежат прямо в вашем репозитории!
+            card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,1) 70%), url('${flagCode}.svg')`;
 
-            if(matchesCount === 0) card.style.opacity = '0.55';
+            if(matchesCount === 0) card.style.opacity = '0.55'; 
 
             
             // Задаем красивый размытый и полупрозрачный флаг на задний фон карточки
