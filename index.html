@@ -464,6 +464,34 @@ window.WORLD_CATALOG = [
         renderApp();
     });
 
+        // УМНАЯ АВТОЗАГРУЗКА ИЗ OБЛАКА С ИСПРАВЛЕНИЕМ СТАРЫХ ЗАПИСЕЙ БЭКАПА
+    async function loadCloudCollection() {
+        try {
+            const response = await fetch('data.json');
+            if (response.ok) {
+                let cloudData = await response.json();
+                if (Array.isArray(cloudData) && cloudData.length > 0) {
+                    // Конвертируем старые названия категорий бэкапа в реальные страны на лету
+                    collection = cloudData.map(item => {
+                        if (item.country === "Европа" || item.country === "Еврозона") {
+                            item.country = "Еврозона"; // Перенаправляем на карточку Еврозоны
+                        }
+                        return item;
+                    });
+                    localStorage.setItem('numismat_db', JSON.stringify(collection));
+                    console.log("Коллекция успешно синхронизирована с GitHub!");
+                }
+            }
+        } catch (error) {
+            console.log("Загрузка из облака недоступна, работаем на локальной памяти устройства.");
+        }
+        initApp();
+    }
+
+    // Запуск приложения через облачный фильтр
+    loadCloudCollection();
+
+
  function renderApp() {
         const albumContainer = document.getElementById('album-container'); albumContainer.innerHTML = '';
         if(!window.WORLD_CATALOG || window.WORLD_CATALOG.length === 0) return;
