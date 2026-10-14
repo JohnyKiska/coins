@@ -46,7 +46,17 @@
         .country-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; z-index: 2; position: relative; }
         .card-header h3 { font-size: 1rem; display: flex; align-items: center; gap: 6px; }
-        .card-title-flag { width: 20px; height: 15px; object-fit: cover; border-radius: 2px; border: 1px solid rgba(0, 0, 0, 0.08); display: inline-block; }
+        /* Стиль для маленького флага перед названием страны */
+        .card-title-flag {
+            width: 20px !important;
+            height: 15px !important;
+            object-fit: contain !important; /* Принудительно вписывает SVG в рамки 20х15 */
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            margin-right: 6px;
+            vertical-align: middle;
+            display: inline-block;
+        }
         .currency-info { display: flex; flex-direction: column; align-items: flex-end; }
         .currency-badge { font-size: 0.7rem; background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-weight: 600; }
         .currency-name-label { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; font-weight: 500; text-align: right; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -63,8 +73,27 @@
         .coin-tile .icon-wrapper { display: flex; align-items: center; justify-content: center; width: 24px; height: 18px; margin-bottom: 3px; }
         .coin-tile .price-tag { font-size: 0.6rem; font-weight: 500; color: #047857; margin-top: 2px; background: #ecfdf5; padding: 1px 3px; border-radius: 4px; }
 
-        .card-bg-flag { position: absolute; right: 5px; bottom: 5px; width: 75px; height: 55px; opacity: 0.10; pointer-events: none; user-select: none; background-size: contain; background-repeat: no-repeat; background-position: right bottom; z-index: 1; }
-        .css-coin { width: 13px; height: 14px; background: #f59e0b; border: 2px solid #d97706; border-radius: 50%; position: relative; }
+        .card-bg-flag { 
+            position: absolute; 
+            right: 5px; 
+            bottom: 5px; 
+            width: 75px !important;
+            height: 55px !important; 
+            opacity: 0.10; 
+            pointer-events:none; 
+            user-select: none; 
+            background-size: contain !important; 
+            background-repeat: no-repeat; 
+            background-position: right bottom; 
+            z-index: 1; 
+        }
+        .css-coin { 
+            width: 13px; 
+            height: 14px; 
+            background: #f59e0b; 
+            border: 2px solid #d97706; 
+            border-radius: 50%; 
+            position: relative; }
         .css-coin::after { content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; border: 1px dashed #b45309; border-radius: 50%; }
         .css-bill { width: 19px; height: 12px; background: #10b981; border: 1px solid #047857; border-radius: 2px; position: relative; }
         .css-bill::after { content: '$'; position: absolute; font-size: 7px; color: #047857; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; line-height: 1; }
