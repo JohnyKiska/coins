@@ -160,48 +160,55 @@
 <script>
     // ВСТРАИВАЕМ ПОЛНЫЙ КАТАЛОГ СТРАН С НАЗВАНИЯМИ ВАЛЮТ
     window.WORLD_CATALOG = [
-      { "country": "Россия", "currency": "RUB", "currency_name": "Российский рубль", "rate_default": 1.0, "coins": [0.01, 0.05, 0.1, 0.5, 1, 2, 5, 10], "bills": [5, 10, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "country": "Беларусь", "currency": "BYN", "currency_name": "Белорусский рубль", "rate_default": 28.02, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Казахстан", "currency": "KZT", "currency_name": "Казахстанский тенге", "rate_default": 0.18, "coins":[], "bills": [200, 500, 1000, 2000, 5000, 10000, 20000] },
-      { "country": "Армения", "currency": "AMD", "currency_name": "Армянский драм", "rate_default": 0.23, "coins":[], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000] },
-      { "country": "Узбекистан", "currency": "UZS", "currency_name": "Узбекский сум", "rate_default": 0.0075, "coins":[], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000] },
-      { "country": "Кыргызстан", "currency": "KGS", "currency_name": "Кыргызский сом", "rate_default": 0.97, "coins": [0.1, 0.5, 1, 3, 5, 10], "bills": [20, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "country": "Таджикистан", "currency": "TJS", "currency_name": "Таджикский сомони", "rate_default": 9.26, "coins": [0.1, 0.2, 0.5, 1, 3, 5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Туркменистан", "currency": "TMT", "currency_name": "Туркменский манат", "rate_default": 24.29, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [1, 5, 10, 20, 50, 100] },
-      { "country": "Азербайджан", "currency": "AZN", "currency_name": "Азербайджанский манат", "rate_default": 50.06, "coins": [0.01, 0.03, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Грузия", "currency": "GEL", "currency_name": "Грузинский лари", "rate_default": 32.86, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200] },
-      { "country": "Молдова", "currency": "MDL", "currency_name": "Молдавский лей", "rate_default": 4.76, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [1, 5, 10, 20, 50, 100, 200, 500, 1000] },
-      { "country": "Еврозона (Европа)", "currency": "EUR", "currency_name": "Евро", "rate_default": 95.42, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Великобритания", "currency": "GBP", "currency_name": "Фунт стерлингов", "rate_default": 112.74, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50] },
-      { "country": "Швейцария", "currency": "CHF", "currency_name": "Швейцарский франк", "rate_default": 102.55, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 1000] },
-      { "country": "Норвегия", "currency": "NOK", "currency_name": "Норвежская крона", "rate_default": 8.9, "coins":[], "bills": [50, 100, 200, 500, 1000] },
-      { "country": "Швеция", "currency": "SEK", "currency_name": "Шведская крона", "rate_default": 8.5, "coins":[], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "country": "Дания", "currency": "DKK", "currency_name": "Датская крона", "rate_default": 12.76, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [50, 100, 200, 500, 1000] },
-      { "country": "Польша", "currency": "PLN", "currency_name": "Польский злотый", "rate_default": 21.72, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 500] },
-      { "country": "Чехия", "currency": "CZK", "currency_name": "Чешская крона", "rate_default": 3.91, "coins":[], "bills": [100, 200, 500, 1000, 2000, 5000] },
-      { "country": "Венгрия", "currency": "HUF", "currency_name": "Венгерский форинт", "rate_default": 0.26, "coins":[], "bills": [500, 1000, 2000, 5000, 10000, 20000] },
-      { "country": "Румыния", "currency": "RON", "currency_name": "Румынский лей", "rate_default": 17.88, "coins": [0.01, 0.05, 0.1, 0.5], "bills": [1, 5, 10, 50, 100, 200, 500] },
-      { "country": "Болгария", "currency": "BGN", "currency_name": "Болгарский лев", "rate_default": 48.85, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "country": "Сербия", "currency": "RSD", "currency_name": "Сербский динар", "rate_default": 0.81, "coins":[], "bills": [10, 20, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "country": "США", "currency": "USD", "currency_name": "Доллар США", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 2, 5, 10, 20, 50, 100] },
-      { "country": "Канада", "currency": "CAD", "currency_name": "Канадский доллар", "rate_default": 59.7, "coins": [0.05, 0.1, 0.25, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "country": "Австралия", "currency": "AUD", "currency_name": "Австралийский доллар", "rate_default": 59.43, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "country": "Китай", "currency": "CNY", "currency_name": "Китайский юань", "rate_default": 12.71, "coins": [0.01, 0.02, 0.05, 0.1, 0.5, 1], "bills": [0.1, 0.2, 0.5, 1, 5, 10, 20, 50, 100] },
-      { "country": "Япония", "currency": "JPY", "currency_name": "Японская иена", "rate_default": 0.53, "coins":[], "bills": [1000, 2000, 5000, 10000] },
-      { "country": "Турция", "currency": "TRY", "currency_name": "Турецкая лира", "rate_default": 1.72, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200] },
-      { "country": "ОАЭ", "currency": "AED", "currency_name": "Дирхам ОАЭ", "rate_default": 23.17, "coins":[], "bills": [5, 10, 20, 50, 100, 200, 500, 1000] },
-      { "country": "Индия", "currency": "INR", "currency_name": "Индийская рупия", "rate_default": 0.88, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Таиланд", "currency": "THB", "currency_name": "Таиландский бат", "rate_default": 2.53, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 500, 1000] },
-      { "country": "Египет", "currency": "EGP", "currency_name": "Египетский фунт", "rate_default": 1.62, "coins": [0.05, 0.1, 0.25, 0.5, 1], "bills": [0.25, 0.5, 1, 5, 10, 20, 50, 100, 200] },
-      { "country": "ЮАР", "currency": "ZAR", "currency_name": "Южноафриканский рэнд", "rate_default": 5.16, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
-      { "country": "Бразилия", "currency": "BRL", "currency_name": "Бразильский реал", "rate_default": 17.05, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100, 200] },
-      { "country": "Мексика", "currency": "MXN", "currency_name": "Мексиканское песо", "rate_default": 4.62, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "country": "Белиз", "currency": "BZD", "currency_name": "Белизский доллар", "rate_default": 42.38, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100] },
-      { "country": "Бруней", "currency": "BND", "currency_name": "Брунейский доллар", "rate_default": 66.57, "coins": [0.01, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 25, 50, 100, 500, 1000, 10000] },
-      { "country": "Вануату", "currency": "VUV", "currency_name": "Вату Вануату", "rate_default": 0.76, "coins":[], "bills": [200, 500, 1000, 2000, 5000, 10000] },
-      { "country": "Кабо-Верде", "currency": "CVE", "currency_name": "Эскудо Кабо-Верде", "rate_default": 0.86, "coins":[], "bills": [200, 500, 1000, 2000, 2500, 5000] },
-      { "country": "Эквадор", "currency": "ECS", "currency_name": "Эквадорский сукре", "rate_default": 0.003, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [5, 10, 20, 50, 100, 500, 1000, 5000, 10000, 20000, 50000] }
+      { "region": "Европа", "country": "Россия", "currency": "RUB", "currency_name": "Российский рубль", "rate_default": 1.0, "coins": [0.01, 0.05, 0.1, 0.5, 1, 2, 5, 10], "bills": [10, 50, 100, 200, 500, 1000, 2000, 5000] },
+      { "region": "Европа", "country": "Беларусь", "currency": "BYN", "currency_name": "Белорусский рубль", "rate_default": 28.02, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
+      { "region": "Европа", "country": "Молдова", "currency": "MDL", "currency_name": "Молдавский лей", "rate_default": 4.76, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [1, 5, 10, 20, 50, 100, 200, 500, 1000] },
+      { "region": "Европа", "country": "Еврозона", "currency": "EUR", "currency_name": "Евро", "rate_default": 95.42, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
+      { "region": "Европа", "country": "Великобритания", "currency": "GBP", "currency_name": "Фунт стерлингов", "rate_default": 112.74, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50] },
+      { "region": "Европа", "country": "Швейцария", "currency": "CHF", "currency_name": "Швейцарский франк", "rate_default": 102.55, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 1000] },
+      { "region": "Европа", "country": "Норвегия", "currency": "NOK", "currency_name": "Норвежская крона", "rate_default": 8.9, "coins": [], "bills": [50, 100, 200, 500, 1000] },
+      { "region": "Европа", "country": "Швеция", "currency": "SEK", "currency_name": "Шведская крона", "rate_default": 8.5, "coins": [], "bills": [20, 50, 100, 200, 500, 1000] },
+      { "region": "Европа", "country": "Дания", "currency": "DKK", "currency_name": "Датская крона", "rate_default": 12.76, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [50, 100, 200, 500, 1000] },
+      { "region": "Европа", "country": "Польша", "currency": "PLN", "currency_name": "Польский злотый", "rate_default": 21.72, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 500] },
+      { "region": "Европа", "country": "Чехия", "currency": "CZK", "currency_name": "Чешская крона", "rate_default": 3.91, "coins": [], "bills": [100, 200, 500, 1000, 2000, 5000] },
+      { "region": "Европа", "country": "Венгрия", "currency": "HUF", "currency_name": "Венгерский форинт", "rate_default": 0.26, "coins": [], "bills": [500, 1000, 2000, 5000, 10000, 20000] },
+      { "region": "Европа", "country": "Румыния", "currency": "RON", "currency_name": "Румынский лей", "rate_default": 17.88, "coins": [0.01, 0.05, 0.1, 0.5], "bills": [1, 5, 10, 50, 100, 200, 500] },
+      { "region": "Европа", "country": "Болгария", "currency": "BGN", "currency_name": "Болгарский лев", "rate_default": 48.85, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
+      { "region": "Европа", "country": "Сербия", "currency": "RSD", "currency_name": "Сербский динар", "rate_default": 0.81, "coins": [], "bills": [10, 20, 50, 100, 200, 500, 1000, 2000, 5000] }
+
+      { "region": "Азия", "country": "Казахстан", "currency": "KZT", "currency_name": "Казахстанский тенге", "rate_default": 0.18, "coins": [], "bills": [200, 500, 1000, 2000, 5000, 10000, 20000] },
+      { "region": "Азия", "country": "Армения", "currency": "AMD", "currency_name": "Армянский драм", "rate_default": 0.23, "coins": [], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000] },
+      { "region": "Азия", "country": "Узбекистан", "currency": "UZS", "currency_name": "Узбекский сум", "rate_default": 0.0075, "coins": [], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000] },
+      { "region": "Азия", "country": "Кыргызстан", "currency": "KGS", "currency_name": "Кыргызский сом", "rate_default": 0.97, "coins": [0.1, 0.5, 1, 3, 5, 10], "bills": [20, 50, 100, 200, 500, 1000, 2000, 5000] },
+      { "region": "Азия", "country": "Таджикистан", "currency": "TJS", "currency_name": "Таджикский сомони", "rate_default": 9.26, "coins": [0.1, 0.2, 0.5, 1, 3, 5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
+      { "region": "Азия", "country": "Туркменистан", "currency": "TMT", "currency_name": "Туркменский манат", "rate_default": 24.29, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [1, 5, 10, 20, 50, 100] },
+      { "region": "Азия", "country": "Азербайджан", "currency": "AZN", "currency_name": "Азербайджанский манат", "rate_default": 50.06, "coins": [0.01, 0.03, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
+      { "region": "Азия", "country": "Грузия", "currency": "GEL", "currency_name": "Грузинский лари", "rate_default": 32.86, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200] },
+      { "region": "Азия", "country": "Китай", "currency": "CNY", "currency_name": "Китайский юань", "rate_default": 12.71, "coins": [0.01, 0.02, 0.05, 0.1, 0.5, 1], "bills": [0.1, 0.2, 0.5, 1, 5, 10, 20, 50, 100] },
+      { "region": "Азия", "country": "Япония", "currency": "JPY", "currency_name": "Японская иена", "rate_default": 0.53, "coins": [], "bills": [1000, 2000, 5000, 10000] },
+      { "region": "Азия", "country": "Турция", "currency": "TRY", "currency_name": "Турецкая лира", "rate_default": 1.72, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 5], "bills": [5, 10, 20, 50, 100, 200] },
+      { "region": "Азия", "country": "ОАЭ", "currency": "AED", "currency_name": "Дирхам ОАЭ", "rate_default": 23.17, "coins": [0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200, 500, 1000] },
+      { "region": "Азия", "country": "Индия", "currency": "INR", "currency_name": "Индийская рупия", "rate_default": 0.88, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [5, 10, 20, 50, 100, 200, 500] },
+      { "region": "Азия", "country": "Таиланд", "currency": "THB", "currency_name": "Таиландский бат", "rate_default": 2.53, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 500, 1000] },
+      { "region": "Азия", "country": "Гонконг", "currency": "HKD", "currency_name": "Гонконгский доллар", "rate_default": 10.84, "coins": [0.1, 0.2, 0.5, 1, 2, 5, 10], "bills": [10, 20, 50, 100, 150, 500, 1000] },
+      { "region": "Азия", "country": "Бруней", "currency": "BND", "currency_name": "Брунейский доллар", "rate_default": 66.57, "coins": [0.01, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 25, 50, 100, 500, 1000, 10000] },
+     
+      { "region": "Африка", "country": "Египет", "currency": "EGP", "currency_name": "Египетский фунт", "rate_default": 1.62, "coins": [0.05, 0.1, 0.25, 0.5, 1], "bills": [0.25, 0.5, 1, 5, 10, 20, 50, 100, 200] },
+      { "region": "Африка", "country": "ЮАР", "currency": "ZAR", "currency_name": "Южноафриканский рэнд", "rate_default": 5.16, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
+      { "region": "Африка", "country": "Кабо-Верде", "currency": "CVE", "currency_name": "Эскудо Кабо-Верде", "rate_default": 0.86, "coins":, "bills": [200, 500, 1000, 2000, 2500, 5000] },
+
+      { "region": "Америка", "country": "США", "currency": "USD", "currency_name": "Доллар США", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 2, 5, 10, 20, 50, 100] },
+      { "region": "Америка", "country": "Канада", "currency": "CAD", "currency_name": "Канадский доллар", "rate_default": 59.7, "coins": [0.05, 0.1, 0.25, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
+      { "region": "Америка", "country": "Бразилия", "currency": "BRL", "currency_name": "Бразильский реал", "rate_default": 17.05, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100, 200] },
+      { "region": "Америка", "country": "Мексика", "currency": "MXN", "rate_default": 4.62, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20], "bills": [20, 50, 100, 200, 500, 1000] },
+      { "region": "Америка", "country": "Белиз", "currency": "BZD", "currency_name": "Белизский доллар", "rate_default": 42.38, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100] },
+      { "region": "Америка", "country": "Эквадор", "currency": "ECS", "currency_name": "Эквадорский сукре", "rate_default": 0.003, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [5, 10, 20, 50, 100, 500, 1000, 5000, 10000, 20000, 50000] },
+
+      { "region": "Австралия и Океания", "country": "Австралия", "currency": "AUD", "currency_name": "Австралийский доллар", "rate_default": 59.43, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
+      { "region": "Австралия и Океания", "country": "Вануату", "currency": "VUV", "currency_name": "Вату Вануату", "rate_default": 0.76, "coins":, "bills": [200, 500, 1000, 2000, 5000, 10000] }
     ];
+
+
 
     let collection = JSON.parse(localStorage.getItem('numismat_db')) || [];
     let myChart = null;
@@ -317,89 +324,108 @@
         let countriesWithCoins = 0;
         let fullyCompletedCount = 0;
 
-        window.WORLD_CATALOG.forEach(catalogCountry => {
-            const userOwned = collection.filter(item => item.country === catalogCountry.country);
-            if(userOwned.length > 0) countriesWithCoins++;
-            const ownedMap = {};
-            userOwned.forEach(item => { totalSpent += item.cost; ownedMap[`${item.nominal}_${item.type}`] = item; });
+        // Группируем страны по географическим регионам
+        const regions = {
+            "Европа": [], "Азия": [], "Африка": [], "Америка": [], "Австралия и Океания": []
+        };
 
-            let itemsHtml = ''; let matchesCount = 0; let totalFaceValue = 0; let countrySpent = 0;
+        window.WORLD_CATALOG.forEach(c => {
+            const r = c.region || "Европа";
+            if (regions[r]) regions[r].push(c);
+        });
 
-            if(catalogCountry.coins) {
-                catalogCountry.coins.forEach(nominal => {
-                    const key = `${nominal}_Монета`;
-                    if (ownedMap[key]) {
-                        const item = ownedMap[key]; matchesCount++; totalFaceValue += nominal; countrySpent += item.cost;
-                        itemsHtml += `<div class="coin-tile owned" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Монета', ${item.cost}, true)"><div class="icon-wrapper"><div class="css-coin"></div></div><span>${nominal}</span><span class="price-tag">${item.cost}₽</span></div>`;
-                    } else {
-                        itemsHtml += `<div class="coin-tile missing" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Монета', 0, false)"><div class="icon-wrapper"><div class="css-coin"></div></div><span>${nominal}</span></div>`;
-                    }
-                });
-            }
+        // Перебираем регионы и отрисовываем их на экране
+        Object.keys(regions).forEach(regionName => {
+            const countriesInRegion = regions[regionName];
+            if (countriesInRegion.length === 0) return; // Пропускаем пустые регионы
 
-            if(catalogCountry.bills) {
-                catalogCountry.bills.forEach(nominal => {
-                    const key = `${nominal}_Купюра`;
-                    if (ownedMap[key]) {
-                        const item = ownedMap[key]; matchesCount++; totalFaceValue += nominal; countrySpent += item.cost;
-                        itemsHtml += `<div class="coin-tile owned" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Купюра', ${item.cost}, true)"><div class="icon-wrapper"><div class="css-bill"></div></div><span>${nominal}</span><span class="price-tag">${item.cost}₽</span></div>`;
-                    } else {
-                        itemsHtml += `<div class="coin-tile missing" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Купюра', 0, false)"><div class="icon-wrapper"><div class="css-bill"></div></div><span>${nominal}</span></div>`;
-                    }
-                });
-            }
+            // Создаем красивый большой заголовок для региона на всю ширину сетки
+            const regionHeader = document.createElement('div');
+            regionHeader.style.cssText = "grid-column: 1 / -1; margin-top: 25px; margin-bottom: 5px; font-size: 1.2rem; font-weight: bold; color: var(--primary); border-bottom: 2px solid var(--primary-light); padding-bottom: 5px;";
+            regionHeader.innerText = regionName;
+            albumContainer.appendChild(regionHeader);
 
-            const totalNominalsCount = (catalogCountry.coins ? catalogCountry.coins.length : 0) + (catalogCountry.bills ? catalogCountry.bills.length : 0);
-            const progressPercent = Math.round((matchesCount / totalNominalsCount) * 100) || 0;
-            if (progressPercent === 100 && totalNominalsCount > 0) fullyCompletedCount++;
-            
-            const valueInRub = (totalFaceValue * catalogCountry.rate_default).toFixed(2);
-            
-            // УМНЫЙ ТРАНСЛЯТОР: Переводим код валюты в имя вашего SVG-файла флага
-            const currencyToFlag = {
-                "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
-                "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
-                "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
-                "SEK": "se", "DKK": "dk", "PLN": "pl", "CZK": "cz", "HUF": "hu",
-                "RON": "ro", "BGN": "bg", "RSD": "rs", "USD": "us", "CAD": "ca",
-                "AUD": "au", "CNY": "cn", "JPY": "jp", "TRY": "tr", "AED": "ae",
-                "INR": "in", "THB": "th", "EGP": "eg", "ZAR": "za", "BRL": "br",
-                "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", "ECS": "ec"
-            };
-            
-            const flagCode = currencyToFlag[catalogCountry.currency] || "un";
+            countriesInRegion.forEach(catalogCountry => {
+                const userOwned = collection.filter(item => item.country === catalogCountry.country);
+                if(userOwned.length > 0) countriesWithCoins++;
+                const ownedMap = {};
+                userOwned.forEach(item => { totalSpent += item.cost; ownedMap[`${item.nominal}_${item.type}`] = item; });
 
-            const card = document.createElement('div'); card.className = 'country-card';
+                let itemsHtml = ''; let matchesCount = 0; let totalFaceValue = 0; let countrySpent = 0;
 
-            if(matchesCount === 0) card.style.opacity = '0.55'; 
+                if(catalogCountry.coins) {
+                    catalogCountry.coins.forEach(nominal => {
+                        const key = `${nominal}_Монета`;
+                        if (ownedMap[key]) {
+                            const item = ownedMap[key]; matchesCount++; totalFaceValue += nominal; countrySpent += item.cost;
+                            itemsHtml += `<div class="coin-tile owned" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Монета', ${item.cost}, true)"><div class="icon-wrapper"><div class="css-coin"></div></div><span>${nominal}</span><span class="price-tag">${item.cost}₽</span></div>`;
+                        } else {
+                            itemsHtml += `<div class="coin-tile missing" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Монета', 0, false)"><div class="icon-wrapper"><div class="css-coin"></div></div><span>${nominal}</span></div>`;
+                        }
+                    });
+                }
 
-            // Добавляем фоновый флаг и вывод названия валюты на русском языке
-            card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,1) 70%), url('flags/${flagCode}.svg')`;
+                if(catalogCountry.bills) {
+                    catalogCountry.bills.forEach(nominal => {
+                        const key = `${nominal}_Купюра`;
+                        if (ownedMap[key]) {
+                            const item = ownedMap[key]; matchesCount++; totalFaceValue += nominal; countrySpent += item.cost;
+                            itemsHtml += `<div class="coin-tile owned" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Купюра', ${item.cost}, true)"><div class="icon-wrapper"><div class="css-bill"></div></div><span>${nominal}</span><span class="price-tag">${item.cost}₽</span></div>`;
+                        } else {
+                            itemsHtml += `<div class="coin-tile missing" onclick="quickSelectCountry('${catalogCountry.country}', '${nominal}', 'Купюра', 0, false)"><div class="icon-wrapper"><div class="css-bill"></div></div><span>${nominal}</span></div>`;
+                        }
+                    });
+                }
 
-            card.innerHTML = `
-                <div>
-                    <div class="card-header">
-                        <h3>
-                            <img class="card-title-flag" src="flags/${flagCode}.svg" alt="">
-                            ${catalogCountry.country}
-                        </h3>
-                        <div class="currency-info">
-                            <span class="currency-badge">${catalogCountry.currency}</span>
-                            <span class="currency-name-label" title="${catalogCountry.currency_name || ''}">${catalogCountry.currency_name || ''}</span>
+                const totalNominalsCount = (catalogCountry.coins ? catalogCountry.coins.length : 0) + (catalogCountry.bills ? catalogCountry.bills.length : 0);
+                const progressPercent = Math.round((matchesCount / totalNominalsCount) * 100) || 0;
+                if (progressPercent === 100 && totalNominalsCount > 0) fullyCompletedCount++;
+                
+                const valueInRub = (totalFaceValue * catalogCountry.rate_default).toFixed(2);
+                
+                // Умный транслятор для флагов (теперь он ищет картинку по коду валюты)
+                const currencyToFlag = {
+                    "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
+                    "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
+                    "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
+                    "SEK": "se", "DKK": "dk", "PLN": "pl", "CZK": "cz", "HUF": "hu",
+                    "RON": "ro", "BGN": "bg", "RSD": "rs", "USD": "us", "CAD": "ca",
+                    "AUD": "au", "CNY": "cn", "JPY": "jp", "TRY": "tr", "AED": "ae",
+                    "INR": "in", "THB": "th", "EGP": "eg", "ZAR": "za", "BRL": "br",
+                    "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", "ECS": "ec"
+                };
+                const flagCode = currencyToFlag[catalogCountry.currency] || "un";
+
+                const card = document.createElement('div'); card.className = 'country-card';
+                if(matchesCount === 0) card.style.opacity = '0.55'; 
+
+                card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,1) 70%), url('flags/${flagCode}.svg')`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="card-header">
+                            <h3>
+                                <img class="card-title-flag" src="flags/${flagCode}.svg" alt="">
+                                ${catalogCountry.country}
+                            </h3>
+                            <div class="currency-info">
+                                <span class="currency-badge">${catalogCountry.currency}</span>
+                                <span class="currency-name-label" title="${catalogCountry.currency_name || ''}">${catalogCountry.currency_name || ''}</span>
+                            </div>
                         </div>
+                        <div class="progress-container">
+                            <div class="progress-bar"><div class="progress-fill" style="width: ${progressPercent}%; background:${progressPercent===100?'#10b981':''}"></div></div>
+                            <div class="progress-text"><span>Прогресс</span><span>${matchesCount} из ${totalNominalsCount}</span></div>
+                        </div>
+                        <div class="items-list">${itemsHtml}</div>
                     </div>
-                    <div class="progress-container">
-                        <div class="progress-bar"><div class="progress-fill" style="width: ${progressPercent}%; background:${progressPercent===100?'#10b981':''}"></div></div>
-                        <div class="progress-text"><span>Прогресс</span><span>${matchesCount} из ${totalNominalsCount}</span></div>
+                    <div class="card-stats">
+                        <div><span>Сумма номиналов</span><strong>${totalFaceValue.toFixed(2)} (${valueInRub} ₽)</strong></div>
+                        <div><span>Всего затрат</span><strong style="color:var(--primary);">${countrySpent} ₽</strong></div>
                     </div>
-                    <div class="items-list">${itemsHtml}</div>
-                </div>
-                <div class="card-stats">
-                    <div><span>Сумма номиналов</span><strong>${totalFaceValue.toFixed(2)} (${valueInRub} ₽)</strong></div>
-                    <div><span>Всего затрат</span><strong style="color:var(--primary);">${countrySpent} ₽</strong></div>
-                </div>
-            `;
-            albumContainer.appendChild(card);
+                `;
+                albumContainer.appendChild(card);
+            });
         });
 
         document.getElementById('total-spent').innerText = totalSpent + ' ₽';
