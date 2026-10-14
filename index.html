@@ -104,6 +104,30 @@
         .coin-tile.missing .css-bill::after { color: #9ca3af; }
         .card-stats { border-top: 1px dashed var(--border); padding-top: 10px; margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; z-index: 2; position: relative; }
         .card-stats div span { display: block; color: var(--text-muted); font-size: 0.75rem; }
+                /* СТИЛИ ДЛЯ ВЫДЕЛЕНИЯ СТРАН, СОБРАННЫХ НА 100% */
+        .country-card.perfect-match {
+            border-color: var(--success) !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12) !important;
+            background-color: #f0fdf4 !important; /* Легкий мятный оттенок фона */
+            opacity: 1 !important; /* Убираем полупрозрачность, если страна закрыта */
+        }
+        
+        .country-card.perfect-match h3 {
+            color: #14532d !important; /* Темно-зеленый текст заголовка */
+            font-weight: 800;
+        }
+
+        .country-card.perfect-match .currency-badge {
+            background: #d1fae5 !important;
+            color: #065f46 !important;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        /* Плавное скрытие карточек, не подошедших под условия поиска */
+        .country-card.search-hidden {
+            display: none !important;
+        }
+
     </style>
 </head>
 <body>
@@ -124,7 +148,14 @@
         <input type="file" id="import-file" style="display:none;" onchange="importCollection(this)">
     </div>
 
+    <!-- НОВАЯ УДОБНАЯ СТРОКА ПОИСКА СТРАН -->
+    <div style="background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 1.2rem;">🔍</span>
+        <input type="text" id="search-input" placeholder="Быстрый поиск страны или валюты (например: Казахстан или USD)..." style="flex: 1; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: #f9fafb; outline: none;" oninput="filterCountries()">
+    </div>
+
     <section class="form-section">
+
         <h2>📥 Быстрое добавление в коллекцию</h2>
         <form id="add-form">
             <div class="form-grid">
@@ -416,7 +447,7 @@
         renderApp();
     });
 
-    function renderApp() {
+ function renderApp() {
         const albumContainer = document.getElementById('album-container'); albumContainer.innerHTML = '';
         if(!window.WORLD_CATALOG || window.WORLD_CATALOG.length === 0) return;
         
@@ -437,10 +468,11 @@
         // Перебираем регионы и отрисовываем их на экране
         Object.keys(regions).forEach(regionName => {
             const countriesInRegion = regions[regionName];
-            if (countriesInRegion.length === 0) return; // Пропускаем пустые регионы
+            if (countriesInRegion.length === 0) return;
 
             // Создаем красивый большой заголовок для региона на всю ширину сетки
             const regionHeader = document.createElement('div');
+            regionHeader.className = 'region-header-title';
             regionHeader.style.cssText = "grid-column: 1 / -1; margin-top: 25px; margin-bottom: 5px; font-size: 1.2rem; font-weight: bold; color: var(--primary); border-bottom: 2px solid var(--primary-light); padding-bottom: 5px;";
             regionHeader.innerText = regionName;
             albumContainer.appendChild(regionHeader);
@@ -479,11 +511,13 @@
 
                 const totalNominalsCount = (catalogCountry.coins ? catalogCountry.coins.length : 0) + (catalogCountry.bills ? catalogCountry.bills.length : 0);
                 const progressPercent = Math.round((matchesCount / totalNominalsCount) * 100) || 0;
-                if (progressPercent === 100 && totalNominalsCount > 0) fullyCompletedCount++;
+                
+                const isPerfect = progressPercent === 100 && totalNominalsCount > 0;
+                if (isPerfect) fullyCompletedCount++;
                 
                 const valueInRub = (totalFaceValue * catalogCountry.rate_default).toFixed(2);
                 
-                // Умный транслятор для флагов (теперь он ищет картинку по коду валюты)
+                // Умный транслятор для флагов
                 const currencyToFlag = {
                  // ПОЛНЫЙ ТРАНСЛЯТОР ДЛЯ ВСЕХ МИРОВЫХ ВАЛЮТ
                 "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
@@ -508,7 +542,7 @@
                 "MWK": "mw", "MRO": "mr", "MUR": "mu", "MAD": "ma", "MZN": "mz",
                 "NAD": "na", "NGN": "ng", "RWF": "rw", "SCR": "sc", "SLL": "sl",
                 "SOS": "so", "SDG": "sd", "SZL": "sz", "TZS": "tz", "UGX": "ug",
-                "XAF": "cf", "XOF": "sn", "STN": "st", "SSP": "ss",
+                "XAF": "cf", "XOF": "sn", "STN": "st", "SSP": "ss", "VEF": "ve",
                 "ARS": "ar", "AWG": "aw", "BSD": "bs", "BBD": "bb", "BOB": "bo",
                 "CLP": "cl", "COP": "co", "CRC": "cr", "CUP": "cu", "DOP": "do",
                 "GTQ": "gt", "GYD": "gy", "HTG": "ht", "HNL": "hn", "JMD": "jm",
@@ -519,8 +553,15 @@
                 };
                 const flagCode = currencyToFlag[catalogCountry.currency] || "un";
 
-                const card = document.createElement('div'); card.className = 'country-card';
-                if(matchesCount === 0) card.style.opacity = '0.55'; 
+                const card = document.createElement('div'); 
+                // ЕСЛИ СТРАНА ЗАКРЫТА НА 100%, АВТОМАТИЧЕСКИ ДОБАВЛЯЕМ КЛАСС perfect-match
+                card.className = `country-card ${isPerfect ? 'perfect-match' : ''}`;
+                
+                // Добавляем специальные скрытые атрибуты для мгновенного поиска
+                card.setAttribute('data-search-country', catalogCountry.country.toLowerCase());
+                card.setAttribute('data-search-currency', catalogCountry.currency.toLowerCase());
+
+                if(matchesCount === 0 && !isPerfect) card.style.opacity = '0.55'; 
 
                 card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,1) 70%), url('flags/${flagCode}.svg')`;
 
@@ -555,7 +596,48 @@
         document.getElementById('total-qty').innerText = collection.length;
         document.getElementById('total-countries').innerText = `${countriesWithCoins} / ${window.WORLD_CATALOG.length}`;
         document.getElementById('fully-completed').innerText = `${fullyCompletedCount} / ${window.WORLD_CATALOG.length}`;
+        
+        // Перезапускаем фильтр, чтобы при обновлении страницы результаты поиска не сбрасывались
+        filterCountries();
     }
+
+    // НАДЁЖНАЯ ФУНКЦИЯ МГНОВЕННОЙ ФИЛЬТРАЦИИ СТРАН НА ХОДУ
+    window.filterCountries = function() {
+        const query = document.getElementById('search-input').value.trim().toLowerCase();
+        const cards = document.querySelectorAll('.country-card');
+        const headers = document.querySelectorAll('.region-header-title');
+
+        cards.forEach(card => {
+            const countryData = card.getAttribute('data-search-country') || '';
+            const currencyData = card.getAttribute('data-search-currency') || '';
+
+            if (countryData.includes(query) || currencyData.includes(query)) {
+                card.classList.remove('search-hidden');
+            } else {
+                card.classList.add('search-hidden');
+            }
+        });
+
+        // Скрываем заголовки регионов, если в них не осталось ни одной видимой карточки
+        headers.forEach(header => {
+            let nextEl = header.nextElementSibling;
+            let hasVisibleCards = false;
+
+            while (nextEl && !nextEl.classList.contains('region-header-title')) {
+                if (nextEl.classList.contains('country-card') && !nextEl.classList.contains('search-hidden')) {
+                    hasVisibleCards = true;
+                    break;
+                }
+                nextEl = nextEl.nextElementSibling;
+            }
+
+            if (hasVisibleCards || query === '') {
+                header.style.display = 'block';
+            } else {
+                header.style.display = 'none';
+            }
+        });
+    };
 
     // Запуск приложения
     setTimeout(initApp, 200);
