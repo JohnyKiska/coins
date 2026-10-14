@@ -436,15 +436,28 @@ window.WORLD_CATALOG = [
                 
                 if (isOwned) {
                     deleteBtn.style.display = 'block';
+// НАДЕЖНОЕ УДАЛЕНИЕ С ОЧИСТКОЙ И СИНХРОНИЗАЦИЕЙ ОБЛАКА
                     deleteBtn.onclick = function() {
-                        if(confirm("Удалить этот элемент?")) {
+                        if(confirm("Удалить этот элемент из вашей коллекции?")) {
+                            // 1. Вырезаем старый элемент из базы
                             collection = collection.filter(item => !(item.country === countryName && item.nominal === parseFloat(nominalValue) && item.type === itemType));
+                            
+                            // 2. Сразу сохраняем чистую базу в память устройства
                             localStorage.setItem('numismat_db', JSON.stringify(collection));
-                            form.reset(); deleteBtn.style.display = 'none';
+                            
+                            // 3. ФИКС ДУБЛЕЙ: Полностью сбрасываем форму и прячем кнопку удаления
+                            form.reset();
+                            deleteBtn.style.display = 'none';
+                            
+                            // 4. Очищаем выпадающие списки, чтобы форма не отправила старый дубликат
+                            countrySelect.value = "";
                             nominalSelect.innerHTML = '<option value="">Сначала выберите страну</option>';
+                            
+                            // 5. Перерисовываем альбом
                             renderApp();
                         }
                     };
+
                 } else { deleteBtn.style.display = 'none'; }
                 
                 document.getElementById('add-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
