@@ -325,9 +325,23 @@
             if (progressPercent === 100 && totalNominalsCount > 0) fullyCompletedCount++;
             
             const valueInRub = (totalFaceValue * catalogCountry.rate_default).toFixed(2);
-            const flagCode = (catalogCountry.currency || "un").toLowerCase();
+            
+            // УМНЫЙ ТРАНСЛЯТОР: Переводим код валюты в имя вашего SVG-файла флага
+            const currencyToFlag = {
+                "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
+                "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
+                "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
+                "SEK": "se", "DKK": "dk", "PLN": "pl", "CZK": "cz", "HUF": "hu",
+                "RON": "ro", "BGN": "bg", "RSD": "rs", "USD": "us", "CAD": "ca",
+                "AUD": "au", "CNY": "cn", "JPY": "jp", "TRY": "tr", "AED": "ae",
+                "INR": "in", "THB": "th", "EGP": "eg", "ZAR": "za", "BRL": "br",
+                "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", "ECS": "ec"
+            };
+            
+            const flagCode = currencyToFlag[catalogCountry.currency] || "un";
 
             const card = document.createElement('div'); card.className = 'country-card';
+
             if(matchesCount === 0) card.style.opacity = '0.55'; 
 
             // Добавляем фоновый флаг и вывод названия валюты на русском языке
