@@ -534,8 +534,8 @@
                 const valueInRub = (totalFaceValue * catalogCountry.rate_default).toFixed(2);
                 
                 // Умный транслятор для флагов
-                const currencyToFlag = {
-                 // ПОЛНЫЙ ТРАНСЛЯТОР ДЛЯ ВСЕХ МИРОВЫХ ВАЛЮТ
+             const currencyToFlag = {
+                    // Очищенный и исправленный транслятор валют в флаги
                 "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
                 "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
                 "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
@@ -551,24 +551,24 @@
                 "LBN": "lb", "LKR": "lk", "MMK": "mm", "MNT": "mn", "MOP": "mo",
                 "MVR": "mv", "MYR": "my", "NPR": "np", "OMR": "om", "PHP": "ph",
                 "PKR": "pk", "QAR": "qa", "SAR": "sa", "SGD": "sg", "SYP": "sy",
-                "TWD": "tw", "YER": "ye", "OMR": "om", "KHR": "kh", "LAK": "la",
-                "DZD": "dz", "AOA": "ao", "BIF": "bi", "BWP": "bw", "GMD": "gm",
-                "GNF": "gn", "DJF": "dj", "ERN": "er", "ETB": "et", "KES": "ke",
-                "KMF": "km", "LSL": "ls", "LRD": "lr", "LYD": "ly", "MGA": "mg",
-                "MWK": "mw", "MRO": "mr", "MUR": "mu", "MAD": "ma", "MZN": "mz",
-                "NAD": "na", "NGN": "ng", "RWF": "rw", "SCR": "sc", "SLL": "sl",
-                "SOS": "so", "SDG": "sd", "SZL": "sz", "TZS": "tz", "UGX": "ug",
-                "XAF": "cf", "XOF": "sn", "STN": "st", "SSP": "ss", "VEF": "ve",
-                "ARS": "ar", "AWG": "aw", "BSD": "bs", "BBD": "bb", "BOB": "bo",
-                "CLP": "cl", "COP": "co", "CRC": "cr", "CUP": "cu", "DOP": "do",
-                "GTQ": "gt", "GYD": "gy", "HTG": "ht", "HNL": "hn", "JMD": "jm",
-                "NIO": "ni", "PAB": "pa", "PYG": "py", "PEN": "pe", "SRD": "sr",
-                "TTD": "tt", "UYU": "uy", "VES": "ve", "XCD": "xc", "ALL": "al",
-                "FJD": "fj", "NZD": "nz", "PGK": "pg", "SBD": "sb", "TOP": "to",
-                "WST": "ws", "BMD": "bm", "VND": "vn", "GHS": "gh", "ZMW": "zm", 
-                "ZWL": "zw", "KYD": "ky", "CDF": "cd", "KPW": "kp", "KRW": "kr",
-                "SVC": "sv", "SHP": "sh", "TND": "tn", "FKP": "fk"
-                };
+                "TWD": "tw", "YER": "ye", "KHR": "kh", "LAK": "la", "DZD": "dz", 
+                "AOA": "ao", "BIF": "bi", "BWP": "bw", "GMD": "gm", "GNF": "gn", 
+                "DJF": "dj", "ERN": "er", "ETB": "et", "KES": "ke", "KMF": "km", 
+                "LSL": "ls", "LRD": "lr", "LYD": "ly", "MGA": "mg", "MWK": "mw", 
+                "MRU": "mr", "MUR": "mu", "MAD": "ma", "MZN": "mz", "NAD": "na", 
+                "NGN": "ng", "RWF": "rw", "SCR": "sc", "SLE": "sl", "SOS": "so", 
+                "SDG": "sd", "SZL": "sz", "TZS": "tz", "UGX": "ug", "XAF": "cf", 
+                "XOF": "sn", "STN": "st", "SSP": "ss", "ARS": "ar", "AWG": "aw", 
+                "BSD": "bs", "BBD": "bb", "BOB": "bo", "CLP": "cl", "COP": "co", 
+                "CRC": "cr", "CUP": "cu", "DOP": "do", "GTQ": "gt", "GYD": "gy", 
+                "HTG": "ht", "HNL": "hn", "JMD": "jm", "NIO": "ni", "PAB": "pa", 
+                "PYG": "py", "PEN": "pe", "SRD": "sr", "TTD": "tt", "UYU": "uy", 
+                "VES": "ve", "XCD": "lc", "FJD": "fj", "NZD": "nz", "PGK": "pg", 
+                "SBD": "sb", "TOP": "to", "WST": "ws", "BMD": "bm", "VND": "vn", 
+                "GHS": "gh", "ZMW": "zm", "ZWL": "zw", "KYD": "ky", "CDF": "cd", 
+                "KPW": "kp", "KRW": "kr", "SVC": "sv", "SHP": "sh", "TND": "tn", 
+                "FKP": "fk"
+            };
                 const flagCode = currencyToFlag[catalogCountry.currency] || "un";
 
                 const card = document.createElement('div'); 
