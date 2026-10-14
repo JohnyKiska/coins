@@ -387,15 +387,22 @@ window.WORLD_CATALOG = [
         nominalSelect.innerHTML = nominalsHtml;
     });
 
+    // СКАЧИВАНИЕ КРАСИВО СТРУКТУРИРОВАННОГО БЭКАПА ДЛЯ ГИТХАБА (КАЖДАЯ ЗАПИСЬ С НОВОЙ СТРОКИ)
     window.exportCollection = function() {
         if(collection.length === 0) { alert("Ваша коллекция пуста."); return; }
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(collection));
+        
+        // Магия здесь: параметры null и 2 заставляют JavaScript делать отступы и переносить каждую запись на новую строку
+        const formattedJson = JSON.stringify(collection, null, 2);
+        
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(formattedJson);
         const downloadAnchor = document.createElement('a');
         downloadAnchor.setAttribute("href", dataStr);
-        downloadAnchor.setAttribute("download", "my_coins_backup.json");
-        document.body.appendChild(downloadAnchor);
-        downloadAnchor.click(); downloadAnchor.remove();
+        downloadAnchor.setAttribute("download", "data.json");
+        document.body.appendChild(downloadAnchor); 
+        downloadAnchor.click(); 
+        downloadAnchor.remove();
     };
+
 
     window.importCollection = function(input) {
         if (!input.files || input.files.length === 0) return;
