@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Мировой Нумизматический Альбом</title>
-<script src="chart.js"></script>
+    <script src="chart.js"></script>
     <style>
         :root {
             --bg-color: #f4f6f9;
@@ -15,6 +15,7 @@
             --text-muted: #6b7280;
             --border: #e5e7eb;
             --success: #10b981;
+            --success-light: #e6f4ea;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); padding: 12px; padding-bottom: 60px; }
@@ -24,92 +25,45 @@
         
         .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 15px; }
         .stat-card { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .stat-card.completed { background: var(--success-light); border-color: var(--success); }
+        .stat-card.completed .value { color: #137333; }
         .stat-card .value { font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-top: 3px; }
         .stat-card .label { font-size: 0.75rem; color: var(--text-muted); }
-        
+
         .form-section { background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; }
         .form-section h2 { font-size: 1rem; margin-bottom: 12px; }
         .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
         .form-group { display: flex; flex-direction: column; gap: 4px; }
         .form-group label { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); }
         .form-group input, .form-group select { padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: #f9fafb; width: 100%; }
+        
         .btn-submit { grid-column: 1 / -1; background: var(--primary); color: white; padding: 14px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: 5px; }
         .btn-submit:hover { background: #1d4ed8; }
         .backup-zone { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
         .btn-backup { background: #4b5563; color: white; padding: 10px 14px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; flex: 1; text-align: center; min-width: 120px; }
 
         .album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .country-card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--border); 
-            border-radius: 12px; 
-            padding: 15px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden; /* Чтобы края флага не вылезали за скругленные углы карточки */
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
-        }
-
-        /* Стиль для фонового флага из вашего репозитория */
-        .card-bg-flag {
-            position: absolute;
-            right: 5px;          /* Чуть ближе к правому краю */
-            bottom: 5px;         /* Чуть ближе к нижнему краю */
-            width: 40px;         /* Уменьшаем ширину со 120px до 40px */
-            height: 30px;        /* Пропорциональная высота для флага 4x3 */
-            opacity: 0.50;       /* Делаем еще чуть-чуть прозрачнее (50%), чтобы не отвлекал */
-            pointer-events: none;
-            user-select: none;
-            background-size: contain;     /* Заставляем флаг помещаться целиком без обрезки */
-            background-repeat: no-repeat;
-            background-position: right bottom;
-            z-index: 1;
-        }
-/* Стиль для маленького флага перед названием страны */
-        .card-title-flag {
-            width: 20px;
-            height: 15px;
-            object-fit: cover;
-            border-radius: 2px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            margin-right: 6px;
-            vertical-align: middle;
-            display: inline-block;
-        }
-        
-        /* Выравниваем сам заголовок, чтобы флаг и текст были строго на одной линии */
-        .card-header h3 {
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-        .card-header h3 { font-size: 1rem; }
+        .country-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; z-index: 2; position: relative; }
+        .card-header h3 { font-size: 1rem; display: flex; align-items: center; gap: 6px; }
+        .card-title-flag { width: 20px; height: 15px; object-fit: cover; border-radius: 2px; border: 1px solid rgba(0, 0, 0, 0.08); display: inline-block; }
+        .currency-info { display: flex; flex-direction: column; align-items: flex-end; }
         .currency-badge { font-size: 0.7rem; background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+        .currency-name-label { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; font-weight: 500; text-align: right; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         
-        .progress-container { margin: 8px 0; }
+        .progress-container { margin: 8px 0; z-index: 2; position: relative; }
         .progress-bar { background: #e5e7eb; height: 6px; border-radius: 3px; overflow: hidden; }
         .progress-fill { background: var(--success); height: 100%; width: 0%; transition: width 0.3s; }
         .progress-text { font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px; }
         
-        .items-list { 
-            margin-top: 10px; background: #f9fafb; border-radius: 8px; padding: 8px; max-height: 280px; overflow-y: auto;
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 6px; 
-        }
-        .coin-tile {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 8px 2px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.75rem; font-weight: 700;
-            text-align: center; background: #ffffff; transition: all 0.15s ease; cursor: pointer;
-        }
+        .items-list { margin-top: 10px; background: #f9fafb; border-radius: 8px; padding: 8px; max-height: 280px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 6px; z-index: 2; position: relative; }
+        .coin-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 2px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.75rem; font-weight: 700; text-align: center; background: #ffffff; transition: all 0.15s ease; cursor: pointer; }
         .coin-tile.missing { background: #f3f4f6; border-style: dashed; color: #9ca3af; }
         .coin-tile.owned { background: #ffffff; border-color: var(--success); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1); color: var(--text-main); }
         .coin-tile .icon-wrapper { display: flex; align-items: center; justify-content: center; width: 24px; height: 18px; margin-bottom: 3px; }
         .coin-tile .price-tag { font-size: 0.6rem; font-weight: 500; color: #047857; margin-top: 2px; background: #ecfdf5; padding: 1px 3px; border-radius: 4px; }
 
+        .card-bg-flag { position: absolute; right: 5px; bottom: 5px; width: 75px; height: 55px; opacity: 0.10; pointer-events: none; user-select: none; background-size: contain; background-repeat: no-repeat; background-position: right bottom; z-index: 1; }
         .css-coin { width: 13px; height: 14px; background: #f59e0b; border: 2px solid #d97706; border-radius: 50%; position: relative; }
         .css-coin::after { content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; border: 1px dashed #b45309; border-radius: 50%; }
         .css-bill { width: 19px; height: 12px; background: #10b981; border: 1px solid #047857; border-radius: 2px; position: relative; }
@@ -119,7 +73,7 @@
         .coin-tile.missing .css-coin::after { border-color: #9ca3af; }
         .coin-tile.missing .css-bill { background: #d1d5db; border-color: #9ca3af; }
         .coin-tile.missing .css-bill::after { color: #9ca3af; }
-        .card-stats { border-top: 1px dashed var(--border); padding-top: 10px; margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; }
+        .card-stats { border-top: 1px dashed var(--border); padding-top: 10px; margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; z-index: 2; position: relative; }
         .card-stats div span { display: block; color: var(--text-muted); font-size: 0.75rem; }
     </style>
 </head>
@@ -129,8 +83,9 @@
 
     <div class="dashboard">
         <div class="stat-card"><div class="label">Всего затрат</div><div class="value" id="total-spent">0 ₽</div></div>
-        <div class="stat-card"><div class="label">Монет/Купюр в наличии</div><div class="value" id="total-qty">0</div></div>
-        <div class="stat-card"><div class="label">Прогресс по миру</div><div class="value" id="total-countries">0 / 33</div></div>
+        <div class="stat-card"><div class="label">В наличии (экз.)</div><div class="value" id="total-qty">0</div></div>
+        <div class="stat-card"><div class="label">Прогресс по миру</div><div class="value" id="total-countries">0 / 0</div></div>
+        <div class="stat-card completed"><div class="label">Закрыто на 100%</div><div class="value" id="fully-completed">0 / 0</div></div>
     </div>
 
     <div class="backup-zone">
@@ -172,53 +127,53 @@
     <h2 style="font-size:1.1rem; margin-bottom:12px;">🗺️ Состояние мирового альбома</h2>
     <div class="album-grid" id="album-container"></div>
 </div>
+
 <script>
-    // ВСТРАИВАЕМ КАТАЛОГ СТРАН МИРА (Полная автономия без интернета и CORS)
+    // ВСТРАИВАЕМ ПОЛНЫЙ КАТАЛОГ СТРАН С НАЗВАНИЯМИ ВАЛЮТ
     window.WORLD_CATALOG = [
-      { "country": "Россия", "currency": "RUB", "rate_default": 1.0, "coins": [0.01, 0.05, 0.1, 0.5, 1, 2, 5, 10], "bills": [5, 10, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "country": "Беларусь", "currency": "BYN", "rate_default": 28.02, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Казахстан", "currency": "KZT", "rate_default": 0.18, "coins": [], "bills": [200, 500, 1000, 2000, 5000, 10000, 20000] },
-      { "country": "Армения", "currency": "AMD", "rate_default": 0.23, "coins": [], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000] },
-      { "country": "Узбекистан", "currency": "UZS", "rate_default": 0.0075, "coins": [], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000] },
-      { "country": "Кыргызстан", "currency": "KGS", "rate_default": 0.97, "coins": [0.1, 0.5, 1, 3, 5, 10], "bills": [20, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "country": "Таджикистан", "currency": "TJS", "rate_default": 9.26, "coins": [0.1, 0.2, 0.5, 1, 3, 5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Туркменистан", "currency": "TMT", "rate_default": 24.29, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [1, 5, 10, 20, 50, 100] },
-      { "country": "Азербайджан", "currency": "AZN", "rate_default": 50.06, "coins": [0.01, 0.03, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Грузия", "currency": "GEL", "rate_default": 32.86, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200] },
-      { "country": "Молдова", "currency": "MDL", "rate_default": 4.76, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [1, 5, 10, 20, 50, 100, 200, 500, 1000] },
-      { "country": "Еврозона (Европа)", "currency": "EUR", "rate_default": 95.42, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Великобритания", "currency": "GBP", "rate_default": 112.74, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50] },
-      { "country": "Швейцария", "currency": "CHF", "rate_default": 102.55, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 1000] },
-      { "country": "Норвегия", "currency": "NOK", "rate_default": 8.9, "coins": [], "bills": [50, 100, 200, 500, 1000] },
-      { "country": "Швеция", "currency": "SEK", "rate_default": 8.5, "coins": [], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "country": "Дания", "currency": "DKK", "rate_default": 12.76, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [50, 100, 200, 500, 1000] },
-      { "country": "Польша", "currency": "PLN", "rate_default": 21.72, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 500] },
-      { "country": "Чехия", "currency": "CZK", "rate_default": 3.91, "coins": [], "bills": [100, 200, 500, 1000, 2000, 5000] },
-      { "country": "Венгрия", "currency": "HUF", "rate_default": 0.26, "coins": [], "bills": [500, 1000, 2000, 5000, 10000, 20000] },
-      { "country": "Румыния", "currency": "RON", "rate_default": 17.88, "coins": [0.01, 0.05, 0.1, 0.5], "bills": [1, 5, 10, 50, 100, 200, 500] },
-      { "country": "Болгария", "currency": "BGN", "rate_default": 48.85, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "country": "Сербия", "currency": "RSD", "rate_default": 0.81, "coins": [], "bills": [10, 20, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "country": "США", "currency": "USD", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 2, 5, 10, 20, 50, 100] },
-      { "country": "Канада", "currency": "CAD", "rate_default": 59.7, "coins": [0.05, 0.1, 0.25, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
+      { "country": "Россия", "currency": "RUB", "currency_name": "Российский рубль", "rate_default": 1.0, "coins": [0.01, 0.05, 0.1, 0.5, 1, 2, 5, 10], "bills": [5, 10, 50, 100, 200, 500, 1000, 2000, 5000] },
+      { "country": "Беларусь", "currency": "BYN", "currency_name": "Белорусский рубль", "rate_default": 28.02, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Казахстан", "currency": "KZT", "currency_name": "Казахстанский тенге", "rate_default": 0.18, "coins":[], "bills": [200, 500, 1000, 2000, 5000, 10000, 20000] },
+      { "country": "Армения", "currency": "AMD", "currency_name": "Армянский драм", "rate_default": 0.23, "coins":[], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000] },
+      { "country": "Узбекистан", "currency": "UZS", "currency_name": "Узбекский сум", "rate_default": 0.0075, "coins":[], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000] },
+      { "country": "Кыргызстан", "currency": "KGS", "currency_name": "Кыргызский сом", "rate_default": 0.97, "coins": [0.1, 0.5, 1, 3, 5, 10], "bills": [20, 50, 100, 200, 500, 1000, 2000, 5000] },
+      { "country": "Таджикистан", "currency": "TJS", "currency_name": "Таджикский сомони", "rate_default": 9.26, "coins": [0.1, 0.2, 0.5, 1, 3, 5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Туркменистан", "currency": "TMT", "currency_name": "Туркменский манат", "rate_default": 24.29, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [1, 5, 10, 20, 50, 100] },
+      { "country": "Азербайджан", "currency": "AZN", "currency_name": "Азербайджанский манат", "rate_default": 50.06, "coins": [0.01, 0.03, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Грузия", "currency": "GEL", "currency_name": "Грузинский лари", "rate_default": 32.86, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200] },
+      { "country": "Молдова", "currency": "MDL", "currency_name": "Молдавский лей", "rate_default": 4.76, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [1, 5, 10, 20, 50, 100, 200, 500, 1000] },
+      { "country": "Еврозона (Европа)", "currency": "EUR", "currency_name": "Евро", "rate_default": 95.42, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Великобритания", "currency": "GBP", "currency_name": "Фунт стерлингов", "rate_default": 112.74, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50] },
+      { "country": "Швейцария", "currency": "CHF", "currency_name": "Швейцарский франк", "rate_default": 102.55, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 1000] },
+      { "country": "Норвегия", "currency": "NOK", "currency_name": "Норвежская крона", "rate_default": 8.9, "coins":[], "bills": [50, 100, 200, 500, 1000] },
+      { "country": "Швеция", "currency": "SEK", "currency_name": "Шведская крона", "rate_default": 8.5, "coins":[], "bills": [20, 50, 100, 200, 500, 1000] },
+      { "country": "Дания", "currency": "DKK", "currency_name": "Датская крона", "rate_default": 12.76, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [50, 100, 200, 500, 1000] },
+      { "country": "Польша", "currency": "PLN", "currency_name": "Польский злотый", "rate_default": 21.72, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 500] },
+      { "country": "Чехия", "currency": "CZK", "currency_name": "Чешская крона", "rate_default": 3.91, "coins":[], "bills": [100, 200, 500, 1000, 2000, 5000] },
+      { "country": "Венгрия", "currency": "HUF", "currency_name": "Венгерский форинт", "rate_default": 0.26, "coins":[], "bills": [500, 1000, 2000, 5000, 10000, 20000] },
+      { "country": "Румыния", "currency": "RON", "currency_name": "Румынский лей", "rate_default": 17.88, "coins": [0.01, 0.05, 0.1, 0.5], "bills": [1, 5, 10, 50, 100, 200, 500] },
+      { "country": "Болгария", "currency": "BGN", "currency_name": "Болгарский лев", "rate_default": 48.85, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
+      { "country": "Сербия", "currency": "RSD", "currency_name": "Сербский динар", "rate_default": 0.81, "coins":[], "bills": [10, 20, 50, 100, 200, 500, 1000, 2000, 5000] },
+      { "country": "США", "currency": "USD", "currency_name": "Доллар США", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 2, 5, 10, 20, 50, 100] },
+      { "country": "Канада", "currency": "CAD", "currency_name": "Канадский доллар", "rate_default": 59.7, "coins": [0.05, 0.1, 0.25, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
       { "country": "Австралия", "currency": "AUD", "rate_default": 59.43, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "country": "Китай", "currency": "CNY", "rate_default": 12.71, "coins": [0.01, 0.02, 0.05, 0.1, 0.5, 1], "bills": [0.1, 0.2, 0.5, 1, 5, 10, 20, 50, 100] },
-      { "country": "Япония", "currency": "JPY", "rate_default": 0.53, "coins": [], "bills": [1000, 2000, 5000, 10000] },
-      { "country": "Турция", "currency": "TRY", "rate_default": 1.72, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200] },
-      { "country": "ОАЭ", "currency": "AED", "rate_default": 23.17, "coins": [0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200, 500, 1000] },
-      { "country": "Индия", "currency": "INR", "rate_default": 0.88, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "country": "Таиланд", "currency": "THB", "rate_default": 2.53, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 500, 1000] },
-      { "country": "Египет", "currency": "EGP", "rate_default": 1.62, "coins": [0.05, 0.1, 0.25, 0.5, 1], "bills": [0.25, 0.5, 1, 5, 10, 20, 50, 100, 200] },
-      { "country": "ЮАР", "currency": "ZAR", "rate_default": 5.16, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
-      { "country": "Бразилия", "currency": "BRL", "rate_default": 17.05, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100, 200] },
-      { "country": "Мексика", "currency": "MXN", "rate_default": 4.62, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "country": "Белиз", "currency": "BZD", "rate_default": 42.38, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100] },
-      { "country": "Бруней", "currency": "BND", "rate_default": 66.57, "coins": [0.01, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 25, 50, 100, 500, 1000, 10000] },
-      { "country": "Вануату", "currency": "VUV", "rate_default": 0.76, "coins": [], "bills": [200, 500, 1000, 2000, 5000, 10000] },
-      { "country": "Кабо-Верде", "currency": "CVE", "rate_default": 0.86, "coins": [], "bills": [200, 500, 1000, 2000, 2500, 5000] },
-      { "country": "Эквадор", "currency": "ECS", "rate_default": 0.003, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [5, 10, 20, 50, 100, 500, 1000, 5000, 10000, 20000, 50000] }
+      { "country": "Китай", "currency": "CNY", "currency_name": "Китайский юань", "rate_default": 12.71, "coins": [0.01, 0.02, 0.05, 0.1, 0.5, 1], "bills": [0.1, 0.2, 0.5, 1, 5, 10, 20, 50, 100] },
+      { "country": "Япония", "currency": "JPY", "currency_name": "Японская иена", "rate_default": 0.53, "coins":[], "bills": [1000, 2000, 5000, 10000] },
+      { "country": "Турция", "currency": "TRY", "currency_name": "Турецкая лира", "rate_default": 1.72, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200] },
+      { "country": "ОАЭ", "currency": "AED", "currency_name": "Дирхам ОАЭ", "rate_default": 23.17, "coins":[], "bills": [5, 10, 20, 50, 100, 200, 500, 1000] },
+      { "country": "Индия", "currency": "INR", "currency_name": "Индийская рупия", "rate_default": 0.88, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [5, 10, 20, 50, 100, 200, 500] },
+      { "country": "Таиланд", "currency": "THB", "currency_name": "Таиландский бат", "rate_default": 2.53, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 500, 1000] },
+      { "country": "Египет", "currency": "EGP", "currency_name": "Египетский фунт", "rate_default": 1.62, "coins": [0.05, 0.1, 0.25, 0.5, 1], "bills": [0.25, 0.5, 1, 5, 10, 20, 50, 100, 200] },
+      { "country": "ЮАР", "currency": "ZAR", "currency_name": "Южноафриканский рэнд", "rate_default": 5.16, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
+      { "country": "Бразилия", "currency": "BRL", "currency_name": "Бразильский реал", "rate_default": 17.05, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100, 200] },
+      { "country": "Мексика", "currency": "MXN", "currency_name": "Мексиканское песо", "rate_default": 4.62, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20], "bills": [20, 50, 100, 200, 500, 1000] },
+      { "country": "Белиз", "currency": "BZD", "currency_name": "Белизский доллар", "rate_default": 42.38, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100] },
+      { "country": "Бруней", "currency": "BND", "currency_name": "Брунейский доллар", "rate_default": 66.57, "coins": [0.01, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 25, 50, 100, 500, 1000, 10000] },
+      { "country": "Вануату", "currency": "VUV", "currency_name": "Вату Вануату", "rate_default": 0.76, "coins":[], "bills": [200, 500, 1000, 2000, 5000, 10000] },
+      { "country": "Кабо-Верде", "currency": "CVE", "currency_name": "Эскудо Кабо-Верде", "rate_default": 0.86, "coins":[], "bills": [200, 500, 1000, 2000, 2500, 5000] },
+      { "country": "Эквадор", "currency": "ECS", "currency_name": "Эквадорский сукре", "rate_default": 0.003, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [5, 10, 20, 50, 100, 500, 1000, 5000, 10000, 20000, 50000] }
     ];
-</script>
-<script>
+
     let collection = JSON.parse(localStorage.getItem('numismat_db')) || [];
     let myChart = null;
 
@@ -227,9 +182,9 @@
     const form = document.getElementById('add-form');
     const deleteBtn = document.getElementById('btn-delete');
 
-function initApp() {
+    function initApp() {
         if (!window.WORLD_CATALOG || window.WORLD_CATALOG.length === 0) {
-            countrySelect.innerHTML = '<option value="">Ошибка! Проверьте catalog.js</option>';
+            countrySelect.innerHTML = '<option value="">Ошибка! Каталог пуст</option>';
             return;
         }
         window.WORLD_CATALOG.sort((a, b) => a.country.localeCompare(b.country));
@@ -248,45 +203,31 @@ function initApp() {
         nominalSelect.innerHTML = nominalsHtml;
     });
 
-        // СКАЧИВАНИЕ БЭКАПА СРАЗУ В ТЕКСТОВОМ ФОРМАТЕ (.TXT) ДЛЯ ANDROID
     window.exportCollection = function() {
-        if(collection.length === 0) { alert("Ваша коллекция пока пуста. Нечего скачивать!"); return; }
-        const dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(collection, null, 2));
+        if(collection.length === 0) { alert("Ваша коллекция пуста."); return; }
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(collection));
         const downloadAnchor = document.createElement('a');
         downloadAnchor.setAttribute("href", dataStr);
-        // МЕНЯЕМ РАСШИРЕНИЕ НА .TXT, ЧТОБЫ ANDROID СВОБОДНО ЕГО ЧИТАЛ
-        downloadAnchor.setAttribute("download", "my_coins_backup.txt");
+        downloadAnchor.setAttribute("download", "my_coins_backup.json");
         document.body.appendChild(downloadAnchor);
-        downloadAnchor.click();
-        downloadAnchor.remove();
+        downloadAnchor.click(); downloadAnchor.remove();
     };
 
-
-        // ФИНАЛЬНЫЙ НЕУБИВАЕМЫЙ ИМПОРТ ДЛЯ ЛЮБЫХ СМАРТФОНОВ ANDROID
     window.importCollection = function(input) {
         if (!input.files || input.files.length === 0) return;
-        
-        const file = input.files[0]; // Четко указываем Android взять первый выбранный файл
+        const file = input.files[0];
         const reader = new FileReader();
-        
         reader.onload = function(e) {
             try {
                 const importedData = JSON.parse(e.target.result);
                 if (Array.isArray(importedData)) {
-                    collection = importedData;
-                    localStorage.setItem('numismat_db', JSON.stringify(collection));
-                    alert("Успешно! Все монеты и купюры перенесены в мобильный альбом.");
-                    renderApp(); // Мгновенно перерисовываем все плитки на экране смартфона
-                } else {
-                    alert("Ошибка: Структура файла не совпадает с форматом коллекции.");
+                    collection = importedData; localStorage.setItem('numismat_db', JSON.stringify(collection));
+                    alert("Успешно восстановлено!"); renderApp();
                 }
-            } catch (err) {
-                alert("Ошибка чтения: Убедитесь, что выбираете чистый файл бэкапа, скачанный из приложения.");
-            }
+            } catch (err) { alert("Ошибка файла."); }
         };
         reader.readAsText(file);
     };
-
 
     window.quickSelectCountry = function(countryName, nominalValue, itemType, currentCost, isOwned) {
         const searchName = countryName.trim().toLowerCase();
@@ -342,7 +283,10 @@ function initApp() {
     function renderApp() {
         const albumContainer = document.getElementById('album-container'); albumContainer.innerHTML = '';
         if(!window.WORLD_CATALOG || window.WORLD_CATALOG.length === 0) return;
-        let totalSpent = 0; let countriesWithCoins = 0;
+        
+        let totalSpent = 0; 
+        let countriesWithCoins = 0;
+        let fullyCompletedCount = 0;
 
         window.WORLD_CATALOG.forEach(catalogCountry => {
             const userOwned = collection.filter(item => item.country === catalogCountry.country);
@@ -378,53 +322,29 @@ function initApp() {
 
             const totalNominalsCount = (catalogCountry.coins ? catalogCountry.coins.length : 0) + (catalogCountry.bills ? catalogCountry.bills.length : 0);
             const progressPercent = Math.round((matchesCount / totalNominalsCount) * 100) || 0;
+            if (progressPercent === 100 && totalNominalsCount > 0) fullyCompletedCount++;
+            
             const valueInRub = (totalFaceValue * catalogCountry.rate_default).toFixed(2);
+            const flagCode = (catalogCountry.currency || "un").toLowerCase();
 
-         // const card = document.createElement('div'); card.className = 'country-card';
-         // if(matchesCount === 0) card.style.opacity = '0.55';
-                            // УМНЫЙ ТРАНСЛЯТОР: Переводим код валюты в код флага для базы Flagpack
-            // Локальный транслятор кодов валют в ваши файлы флагов
-            const currencyToFlag = {
-                "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
-                "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
-                "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
-                "SEK": "se", "DKK": "dk", "PLN": "pl", "CZK": "cz", "HUF": "hu",
-                "RON": "ro", "BGN": "bg", "RSD": "rs", "USD": "us", "CAD": "ca",
-                "AUD": "au", "CNY": "cn", "JPY": "jp", "TRY": "tr", "AED": "ae",
-                "INR": "in", "THB": "th", "EGP": "eg", "ZAR": "za", "BRL": "br",
-                "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", "ECS": "ec"
-            };
-            
-            const flagCode = currencyToFlag[catalogCountry.currency] || "un";
-            
-            const card = document.createElement('div');
-            card.className = 'country-card';
-            
-            // Направляем путь к файлам флагов, которые теперь лежат прямо в вашем репозитории!
-           card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,1) 70%), url('flags/${flagCode}.svg')`;
-
+            const card = document.createElement('div'); card.className = 'country-card';
             if(matchesCount === 0) card.style.opacity = '0.55'; 
 
-            
-            // Задаем красивый размытый и полупрозрачный флаг на задний фон карточки
-         //   card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,1) 70%), url('https://github.io{flagCode.toUpperCase()}.svg')`;
+            // Добавляем фоновый флаг и вывод названия валюты на русском языке
+            card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,1) 70%), url('flags/${flagCode}.svg')`;
 
-            if(matchesCount === 0) card.style.opacity = '0.55'; 
-
-
-                       card.innerHTML = `
-                <!-- Красивый фоновый флаг Lipis с использованием класса fib -->
-            <div class="card-bg-flag flag-icon-background fi-${flagCode}"></div>
-               
+            card.innerHTML = `
                 <div>
                     <div class="card-header">
-    <h3>
-        <img class="card-title-flag" src="flags/${flagCode}.svg" alt="">
-        ${catalogCountry.country}
-    </h3>
-    <span class="currency-badge">${catalogCountry.currency}</span>
-</div>
-
+                        <h3>
+                            <img class="card-title-flag" src="flags/${flagCode}.svg" alt="">
+                            ${catalogCountry.country}
+                        </h3>
+                        <div class="currency-info">
+                            <span class="currency-badge">${catalogCountry.currency}</span>
+                            <span class="currency-name-label" title="${catalogCountry.currency_name || ''}">${catalogCountry.currency_name || ''}</span>
+                        </div>
+                    </div>
                     <div class="progress-container">
                         <div class="progress-bar"><div class="progress-fill" style="width: ${progressPercent}%; background:${progressPercent===100?'#10b981':''}"></div></div>
                         <div class="progress-text"><span>Прогресс</span><span>${matchesCount} из ${totalNominalsCount}</span></div>
@@ -436,42 +356,17 @@ function initApp() {
                     <div><span>Всего затрат</span><strong style="color:var(--primary);">${countrySpent} ₽</strong></div>
                 </div>
             `;
-
             albumContainer.appendChild(card);
         });
 
         document.getElementById('total-spent').innerText = totalSpent + ' ₽';
         document.getElementById('total-qty').innerText = collection.length;
         document.getElementById('total-countries').innerText = `${countriesWithCoins} / ${window.WORLD_CATALOG.length}`;
-         }
-
-//  initApp();
-         // АВТОМАТИЧЕСКАЯ ПОДГРУЗКА БАЗЫ ДАННЫХ ИЗ РЕПОЗИТОРИЯ GITHUB
-    async function loadCloudCollection() {
-        try {
-            // Браузер сам обращается к файлу data.json в вашем репозитории
-            const response = await fetch('data.json');
-            if (response.ok) {
-                const cloudData = await response.json();
-                if (Array.isArray(cloudData) && cloudData.length > 0) {
-                    collection = cloudData;
-                    // Синхронизируем с памятью устройства на всякий случай
-                    localStorage.setItem('numismat_db', JSON.stringify(collection));
-                    console.log("Коллекция успешно загружена из облака GitHub!");
-                }
-            }
-        } catch (error) {
-            console.log("Не удалось загрузить облачный бэкап, работаем на локальной памяти.");
-        }
-        
-        // После попытки загрузки запускаем само приложение
-        initApp();
+        document.getElementById('fully-completed').innerText = `${fullyCompletedCount} / ${window.WORLD_CATALOG.length}`;
     }
 
-    // Запускаем приложение через облачную функцию
-    loadCloudCollection();
-
+    // Запуск приложения
+    setTimeout(initApp, 200);
 </script>
 </body>
 </html>
-
