@@ -709,5 +709,32 @@
     "type": "Монета",
     "rate": 0.97,
     "cost": 0
+  },
+  {
+    "id": 1792147182790,
+    "country": "Мадагаскар",
+    "currency": "MGA",
+    "nominal": 100,
+    "type": "Купюра",
+    "rate": 0.019,
+    "cost": 0
+  },
+  {
+    "id": 1792147188759,
+    "country": "Мадагаскар",
+    "currency": "MGA",
+    "nominal": 200,
+    "type": "Купюра",
+    "rate": 0.019,
+    "cost": 0
+  },
+  {
+    "id": 1792147192098,
+    "country": "Мадагаскар",
+    "currency": "MGA",
+    "nominal": 500,
+    "type": "Купюра",
+    "rate": 0.019,
+    "cost": 0
   }
 ]
