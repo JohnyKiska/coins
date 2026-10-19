@@ -647,8 +647,11 @@ window.WORLD_CATALOG = [
             };
                 const flagCode = currencyToFlag[catalogCountry.currency] || "un";
 
-                                // Проверяем, вышла ли валюта из оборота
-                const isHistorical = catalogCountry.is_historical === true;
+                // Умная проверка: если монеты внесены, берем твой статус из базы, иначе - дефолт из каталога
+                const isHistorical = userOwned.length > 0 
+                    ? userOwned[0].is_historical === true 
+                    : catalogCountry.is_historical === true;
+
 
                 const card = document.createElement('div'); 
                 card.className = `country-card ${isPerfect ? 'perfect-match' : ''} ${isHistorical ? 'historical-card' : ''}`;
@@ -734,7 +737,7 @@ window.WORLD_CATALOG = [
 
     // Запуск приложения
     setTimeout(initApp, 200);
-    
+
         // ФУНКЦИЯ ДИНАМИЧЕСКОГО ПЕРЕКЛЮЧЕНИЯ ИСТОРИЧНОСТИ ПО КЛИКУ НА ФЛАГ
     window.toggleHistoricalStatus = function(countryName) {
         // Проверяем, есть ли уже монеты этой страны в коллекции
@@ -745,8 +748,9 @@ window.WORLD_CATALOG = [
             return;
         }
 
-        // Вычисляем текущий статус (смотрим по первому элементу)
-        const currentStatus = userOwned[0].is_historical === true;
+        // Вычисляем текущий статус (смотрим строго по первому элементу массива)
+        const currentStatus = userOwned[0] && userOwned[0].is_historical === true;
+
         
         // Меняем статус на противоположный для ВСЕХ монет этой страны в нашей базе
         collection = collection.map(item => {
