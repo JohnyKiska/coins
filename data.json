@@ -42,7 +42,8 @@
     "nominal": 1,
     "type": "Купюра",
     "rate": 85.11,
-    "cost": 0
+    "cost": 0,
+    "is_historical": false
   },
   {
     "id": 1791782982604,
@@ -609,7 +610,8 @@
     "nominal": 0.5,
     "type": "Монета",
     "rate": 85.11,
-    "cost": 0
+    "cost": 0,
+    "is_historical": true
   },
   {
     "id": 1791965307553,
@@ -645,7 +647,8 @@
     "nominal": 0.02,
     "type": "Монета",
     "rate": 95.42,
-    "cost": 0
+    "cost": 0,
+    "is_historical": true
   },
   {
     "id": 1791970107018,
