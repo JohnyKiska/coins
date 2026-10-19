@@ -677,7 +677,11 @@ window.WORLD_CATALOG = [
                                     ${isHistorical ? '<span class="currency-badge historical" style="font-size:0.6rem; padding: 2px 5px;">Ист.</span>' : ''}
                                     <span class="currency-badge">${catalogCountry.currency}</span>
                                 </div>
-                                <span class="currency-name-label" title="${catalogCountry.currency_name || ''}">${catalogCountry.currency_name || ''}</span>
+                                <span class="currency-name-label" title="${catalogCountry.currency_name || ''}">
+                                    ${catalogCountry.currency_name || ''} 
+                                    ${catalogCountry.coin_name ? ' / ' + catalogCountry.coin_name : ''}
+                                </span>
+
                             </div>
                         </div>
                         <div class="progress-container">
