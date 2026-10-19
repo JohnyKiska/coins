@@ -56,6 +56,7 @@
             margin-right: 6px;
             vertical-align: middle;
             display: inline-block;
+            cursor: pointer;
         }
         .currency-info { display: flex; flex-direction: column; align-items: flex-end; }
         .currency-badge { font-size: 0.7rem; background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-weight: 600; }
@@ -661,7 +662,7 @@ window.WORLD_CATALOG = [
                 card.innerHTML = `
                     <div>
                         <div class="card-header">
-                            <h3><img class="card-title-flag" src="flags/${flagCode}.svg" alt="">${catalogCountry.country}</h3>
+                            <h3><img class="card-title-flag" src="flags/${flagCode}.svg" alt="" title="Переключить статус (действующая/историческая)" onclick="event.stopPropagation(); toggleHistoricalStatus('${catalogCountry.country}')">${catalogCountry.country}</h3>
                             <div class="currency-info">
                                 <div style="display: flex; gap: 4px; align-items: center;">
                                     ${isHistorical ? '<span class="currency-badge historical" style="font-size:0.6rem; padding: 2px 5px;">Ист.</span>' : ''}
@@ -733,6 +734,35 @@ window.WORLD_CATALOG = [
 
     // Запуск приложения
     setTimeout(initApp, 200);
+    
+        // ФУНКЦИЯ ДИНАМИЧЕСКОГО ПЕРЕКЛЮЧЕНИЯ ИСТОРИЧНОСТИ ПО КЛИКУ НА ФЛАГ
+    window.toggleHistoricalStatus = function(countryName) {
+        // Проверяем, есть ли уже монеты этой страны в коллекции
+        const userOwned = collection.filter(item => item.country === countryName);
+        
+        if (userOwned.length === 0) {
+            alert(`Чтобы сменить статус валюты, сначала добавьте хотя бы один номинал для страны: ${countryName}`);
+            return;
+        }
+
+        // Вычисляем текущий статус (смотрим по первому элементу)
+        const currentStatus = userOwned[0].is_historical === true;
+        
+        // Меняем статус на противоположный для ВСЕХ монет этой страны в нашей базе
+        collection = collection.map(item => {
+            if (item.country === countryName) {
+                item.is_historical = !currentStatus;
+            }
+            return item;
+        });
+
+        // Сохраняем обновленную чистую базу в память устройства
+        localStorage.setItem('numismat_db', JSON.stringify(collection));
+        
+        // Мгновенно перерисовываем альбом с новыми стилями флагов и рамок
+        renderApp();
+    };
+
 </script>
 </body>
 </html>
