@@ -661,7 +661,12 @@ window.WORLD_CATALOG = [
                 card.setAttribute('data-search-currency', catalogCountry.currency.toLowerCase());
                 if(matchesCount === 0 && !isPerfect) card.style.opacity = '0.55'; 
 
-                card.style.backgroundImage = `linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,1) 70%), url('flags/${flagCode}.svg')`;
+                // УМНЫЙ ГРАДИЕНТ: серый для исторических стран, белый для действующих
+                const gradientColor = isHistorical ? 'rgba(229,231,235,0.85)' : 'rgba(255,255,255,0.75)';
+                const gradientBase = isHistorical ? 'rgba(243,244,246,1)' : 'rgba(255,255,255,1)';
+                
+                card.style.backgroundImage = `linear-gradient(to left, ${gradientColor}, ${gradientBase} 70%), url('flags/${flagCode}.svg')`;
+
                 
                 card.innerHTML = `
                     <div>
