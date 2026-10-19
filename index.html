@@ -72,16 +72,16 @@
             line-height: 1.1;
         }
         
-        /* НОВЫЙ СТИЛЬ ДЛЯ ВАЛЮТ, ВЫШЕДШИХ ИЗ ОБОРОТА */
-        .currency-badge.historical {
-            background: #e5e7eb !important;
-            color: #4b5563 !important;
-            border: 1px solid #d1d5db;
-        }
         .country-card.historical-card {
-            /* Фикс: меняем цвет подложки, не затирая саму картинку флага */
-            background-color: #f3f4f6 !important; 
-            border-color: #d1d5db !important;
+            /* Эффект выцветшей бумаги для фона карточки */
+            background-color: #f1ebd9 !important; 
+            border-color: #d8cfb4 !important;
+        }
+        
+        /* Эффект старого выцветшего фото для всех иконок и плиток внутри исторической карточки */
+        .historical-card .items-list {
+            filter: sepia(0.6) grayscale(0.2) contrast(0.9);
+            background: #ede6d0 !important; /* Чуть более темная подложка для плиток */
         }
 
         
@@ -661,9 +661,9 @@ window.WORLD_CATALOG = [
                 card.setAttribute('data-search-currency', catalogCountry.currency.toLowerCase());
                 if(matchesCount === 0 && !isPerfect) card.style.opacity = '0.55'; 
 
-                // УМНЫЙ ГРАДИЕНТ: серый для исторических стран, белый для действующих
-                const gradientColor = isHistorical ? 'rgba(229,231,235,0.85)' : 'rgba(255,255,255,0.75)';
-                const gradientBase = isHistorical ? 'rgba(243,244,246,1)' : 'rgba(255,255,255,1)';
+                // РЕТРО-ГРАДИЕНТ: грязно-бежевый для исторических, белый для действующих
+                const gradientColor = isHistorical ? 'rgba(237, 230, 208, 0.85)' : 'rgba(255,255,255,0.75)';
+                const gradientBase = isHistorical ? 'rgba(241, 235, 217, 1)' : 'rgba(255,255,255,1)';
                 
                 card.style.backgroundImage = `linear-gradient(to left, ${gradientColor}, ${gradientBase} 70%), url('flags/${flagCode}.svg')`;
 
