@@ -1,39 +1,43 @@
 [
   {
-    "id": 1791778861409,
+    "id": 1791782982604,
     "country": "Еврозона",
-    "currency": "Евро",
+    "currency": "EUR",
     "nominal": 0.01,
     "type": "Монета",
-    "rate": 0.8,
-    "cost": 0
+    "rate": 105.5,
+    "cost": 0,
+    "is_historical": false
   },
   {
-    "id": 1791778888922,
+    "id": 1791783050245,
     "country": "Еврозона",
-    "currency": "Евро",
+    "currency": "EUR",
     "nominal": 1,
     "type": "Монета",
-    "rate": 80,
-    "cost": 0
+    "rate": 105.5,
+    "cost": 0,
+    "is_historical": false
   },
   {
-    "id": 1791779183425,
+    "id": 1791783068263,
     "country": "Еврозона",
-    "currency": "Евро",
+    "currency": "EUR",
     "nominal": 2,
     "type": "Монета",
-    "rate": 0.8,
-    "cost": 0
+    "rate": 105.5,
+    "cost": 0,
+    "is_historical": false
   },
   {
-    "id": 1791779209281,
+    "id": 1791782991348,
     "country": "Еврозона",
-    "currency": "Евро",
+    "currency": "EUR",
     "nominal": 0.05,
     "type": "Монета",
-    "rate": 0.8,
-    "cost": 0
+    "rate": 105.5,
+    "cost": 0,
+    "is_historical": false
   },
   {
     "id": 1791947225348,
@@ -42,134 +46,37 @@
     "nominal": 1,
     "type": "Купюра",
     "rate": 85.11,
+    "cost": 0
+  },
+  {
+    "id": 1791783001508,
+    "country": "Еврозона",
+    "currency": "EUR",
+    "nominal": 0.1,
+    "type": "Монета",
+    "rate": 105.5,
     "cost": 0,
     "is_historical": false
   },
   {
-    "id": 1791782982604,
-    "country": "Еврозона (Европа)",
-    "currency": "EUR",
-    "nominal": 0.01,
-    "type": "Монета",
-    "rate": 105.5,
-    "cost": 1
-  },
-  {
-    "id": 1791782991348,
-    "country": "Еврозона (Европа)",
-    "currency": "EUR",
-    "nominal": 0.05,
-    "type": "Монета",
-    "rate": 105.5,
-    "cost": 5
-  },
-  {
-    "id": 1791783001508,
-    "country": "Еврозона (Европа)",
-    "currency": "EUR",
-    "nominal": 0.1,
-    "type": "Монета",
-    "rate": 105.5,
-    "cost": 10
-  },
-  {
     "id": 1791783013788,
-    "country": "Еврозона (Европа)",
+    "country": "Еврозона",
     "currency": "EUR",
     "nominal": 0.2,
     "type": "Монета",
     "rate": 105.5,
-    "cost": 10
+    "cost": 0,
+    "is_historical": false
   },
   {
     "id": 1791783040403,
-    "country": "Еврозона (Европа)",
-    "currency": "EUR",
-    "nominal": 0.5,
-    "type": "Монета",
-    "rate": 105.5,
-    "cost": 10
-  },
-  {
-    "id": 1791783050245,
-    "country": "Еврозона (Европа)",
-    "currency": "EUR",
-    "nominal": 1,
-    "type": "Монета",
-    "rate": 105.5,
-    "cost": 10
-  },
-  {
-    "id": 1791783068263,
-    "country": "Еврозона (Европа)",
-    "currency": "EUR",
-    "nominal": 2,
-    "type": "Монета",
-    "rate": 105.5,
-    "cost": 20
-  },
-  {
-    "id": 1791947254787,
-    "country": "Еврозона",
-    "currency": "EUR",
-    "nominal": 0.01,
-    "type": "Монета",
-    "rate": 95.42,
-    "cost": 0
-  },
-  {
-    "id": 1791947264889,
-    "country": "Еврозона",
-    "currency": "EUR",
-    "nominal": 0.05,
-    "type": "Монета",
-    "rate": 95.42,
-    "cost": 0
-  },
-  {
-    "id": 1791947283693,
-    "country": "Еврозона",
-    "currency": "EUR",
-    "nominal": 0.1,
-    "type": "Монета",
-    "rate": 95.42,
-    "cost": 0
-  },
-  {
-    "id": 1791947292947,
-    "country": "Еврозона",
-    "currency": "EUR",
-    "nominal": 0.2,
-    "type": "Монета",
-    "rate": 95.42,
-    "cost": 0
-  },
-  {
-    "id": 1791947298759,
     "country": "Еврозона",
     "currency": "EUR",
     "nominal": 0.5,
     "type": "Монета",
-    "rate": 95.42,
-    "cost": 0
-  },
-  {
-    "id": 1791947316020,
-    "country": "Еврозона",
-    "currency": "EUR",
-    "nominal": 1,
-    "type": "Монета",
-    "rate": 95.42,
-    "cost": 0
-  },
-  {
-    "id": 1791947321681,
-    "country": "Еврозона",
-    "currency": "EUR",
-    "nominal": 2,
-    "type": "Монета",
-    "rate": 95.42,
-    "cost": 0
+    "rate": 105.5,
+    "cost": 0,
+    "is_historical": false
   },
   {
     "id": 1791964156114,
@@ -179,6 +86,16 @@
     "type": "Монета",
     "rate": 42.56,
     "cost": 0
+  },
+  {
+    "id": 1791964167424,
+    "country": "Болгария",
+    "currency": "EUR",
+    "nominal": 0.02,
+    "type": "Монета",
+    "rate": 95.42,
+    "cost": 0,
+    "is_historical": true
   },
   {
     "id": 1791964183006,
@@ -475,7 +392,8 @@
     "nominal": 0.05,
     "type": "Монета",
     "rate": 1,
-    "cost": 0
+    "cost": 0.05,
+    "is_historical": false
   },
   {
     "id": 1791965186349,
@@ -484,7 +402,8 @@
     "nominal": 0.1,
     "type": "Монета",
     "rate": 1,
-    "cost": 0
+    "cost": 0.1,
+    "is_historical": false
   },
   {
     "id": 1791965187631,
@@ -493,7 +412,8 @@
     "nominal": 0.5,
     "type": "Монета",
     "rate": 1,
-    "cost": 0
+    "cost": 0.5,
+    "is_historical": false
   },
   {
     "id": 1791965188905,
@@ -502,7 +422,8 @@
     "nominal": 1,
     "type": "Монета",
     "rate": 1,
-    "cost": 0
+    "cost": 1,
+    "is_historical": false
   },
   {
     "id": 1791965193431,
@@ -511,7 +432,8 @@
     "nominal": 2,
     "type": "Монета",
     "rate": 1,
-    "cost": 0
+    "cost": 2,
+    "is_historical": false
   },
   {
     "id": 1791965195409,
@@ -520,7 +442,8 @@
     "nominal": 5,
     "type": "Монета",
     "rate": 1,
-    "cost": 0
+    "cost": 5,
+    "is_historical": false
   },
   {
     "id": 1791965196547,
@@ -529,7 +452,8 @@
     "nominal": 10,
     "type": "Монета",
     "rate": 1,
-    "cost": 0
+    "cost": 10,
+    "is_historical": false
   },
   {
     "id": 1791965201261,
@@ -538,7 +462,8 @@
     "nominal": 10,
     "type": "Купюра",
     "rate": 1,
-    "cost": 0
+    "cost": 10,
+    "is_historical": false
   },
   {
     "id": 1791965219779,
@@ -638,106 +563,6 @@
     "nominal": 100,
     "type": "Монета",
     "rate": 0.53,
-    "cost": 0
-  },
-  {
-    "id": 1791967690618,
-    "country": "Болгария",
-    "currency": "EUR",
-    "nominal": 0.02,
-    "type": "Монета",
-    "rate": 95.42,
-    "cost": 0,
-    "is_historical": true
-  },
-  {
-    "id": 1791970107018,
-    "country": "Таиланд",
-    "currency": "THB",
-    "nominal": 0.25,
-    "type": "Монета",
-    "rate": 2.53,
-    "cost": 0
-  },
-  {
-    "id": 1791970108466,
-    "country": "Таиланд",
-    "currency": "THB",
-    "nominal": 1,
-    "type": "Монета",
-    "rate": 2.53,
-    "cost": 0
-  },
-  {
-    "id": 1791970118822,
-    "country": "Кыргызстан",
-    "currency": "KGS",
-    "nominal": 0.5,
-    "type": "Монета",
-    "rate": 0.97,
-    "cost": 0
-  },
-  {
-    "id": 1791970120548,
-    "country": "Кыргызстан",
-    "currency": "KGS",
-    "nominal": 1,
-    "type": "Монета",
-    "rate": 0.97,
-    "cost": 0
-  },
-  {
-    "id": 1791970121636,
-    "country": "Кыргызстан",
-    "currency": "KGS",
-    "nominal": 3,
-    "type": "Монета",
-    "rate": 0.97,
-    "cost": 0
-  },
-  {
-    "id": 1791970123138,
-    "country": "Кыргызстан",
-    "currency": "KGS",
-    "nominal": 5,
-    "type": "Монета",
-    "rate": 0.97,
-    "cost": 0
-  },
-  {
-    "id": 1791970124718,
-    "country": "Кыргызстан",
-    "currency": "KGS",
-    "nominal": 10,
-    "type": "Монета",
-    "rate": 0.97,
-    "cost": 0
-  },
-  {
-    "id": 1792147182790,
-    "country": "Мадагаскар",
-    "currency": "MGA",
-    "nominal": 100,
-    "type": "Купюра",
-    "rate": 0.019,
-    "cost": 0
-  },
-  {
-    "id": 1792147188759,
-    "country": "Мадагаскар",
-    "currency": "MGA",
-    "nominal": 200,
-    "type": "Купюра",
-    "rate": 0.019,
-    "cost": 0
-  },
-  {
-    "id": 1792147192098,
-    "country": "Мадагаскар",
-    "currency": "MGA",
-    "nominal": 500,
-    "type": "Купюра",
-    "rate": 0.019,
     "cost": 0
   }
 ]

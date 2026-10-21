@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Мировой Нумизматический Альбом</title>
-    <script src="chart.js"></script>
-    <style>
-        :root {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мировой Нумизматический Альбом</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Скин «Классика» ===== */
+:root{
             --bg-color: #f4f6f9;
             --card-bg: #ffffff;
             --primary: #2563eb;
@@ -17,40 +19,35 @@
             --success: #10b981;
             --success-light: #e6f4ea;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); padding: 12px; padding-bottom: 60px; }
-        .container { max-width: 1000px; margin: 0 auto; }
-        header { margin-bottom: 15px; text-align: center; }
-        header h1 { font-size: 1.4rem; color: var(--primary); }
-        
-        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 15px; }
-        .stat-card { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .stat-card.completed { background: var(--success-light); border-color: var(--success); }
-        .stat-card.completed .value { color: #137333; }
-        .stat-card .value { font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-top: 3px; }
-        .stat-card .label { font-size: 0.75rem; color: var(--text-muted); }
-
-        .form-section { background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; }
-        .form-section h2 { font-size: 1rem; margin-bottom: 12px; }
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-        .form-group { display: flex; flex-direction: column; gap: 4px; }
-        .form-group label { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); }
-        .form-group input, .form-group select { padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: #f9fafb; width: 100%; }
-        
-        .btn-submit { grid-column: 1 / -1; background: var(--primary); color: white; padding: 14px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: 5px; }
-        .btn-submit:hover { background: #1d4ed8; }
-        .backup-zone { background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
-        .btn-backup { background: #4b5563; color: white; padding: 10px 14px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; flex: 1; text-align: center; min-width: 120px; }
-
-        .album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .country-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; z-index: 2; position: relative; }
-        .card-header h3 { font-size: 1rem; display: flex; align-items: center; gap: 6px; }
-        /* Стиль для маленького флага перед названием страны */
-        .card-title-flag {
+:where(#skin-classic) *{ box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+:where(#skin-classic){ background-color: var(--bg-color); color: var(--text-main); padding: 12px; padding-bottom: 60px; }
+:where(#skin-classic) .container{ max-width: 1000px; margin: 0 auto; }
+:where(#skin-classic) header{ margin-bottom: 15px; text-align: center; }
+:where(#skin-classic) header h1{ font-size: 1.4rem; color: var(--primary); }
+:where(#skin-classic) .dashboard{ display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 15px; }
+:where(#skin-classic) .stat-card{ background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+:where(#skin-classic) .stat-card.completed{ background: var(--success-light); border-color: var(--success); }
+:where(#skin-classic) .stat-card.completed .value{ color: #137333; }
+:where(#skin-classic) .stat-card .value{ font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-top: 3px; }
+:where(#skin-classic) .stat-card .label{ font-size: 0.75rem; color: var(--text-muted); }
+:where(#skin-classic) .form-section{ background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; }
+:where(#skin-classic) .form-section h2{ font-size: 1rem; margin-bottom: 12px; }
+:where(#skin-classic) .form-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+:where(#skin-classic) .form-group{ display: flex; flex-direction: column; gap: 4px; }
+:where(#skin-classic) .form-group label{ font-size: 0.8rem; font-weight: 500; color: var(--text-muted); }
+:where(#skin-classic) .form-group input,:where(#skin-classic) .form-group select{ padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: #f9fafb; width: 100%; }
+:where(#skin-classic) .btn-submit{ grid-column: 1 / -1; background: var(--primary); color: white; padding: 14px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: 5px; }
+:where(#skin-classic) .btn-submit:hover{ background: #1d4ed8; }
+:where(#skin-classic) .backup-zone{ background: var(--card-bg); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+:where(#skin-classic) .btn-backup{ background: #4b5563; color: white; padding: 10px 14px; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; flex: 1; text-align: center; min-width: 120px; }
+:where(#skin-classic) .album-grid{ display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+:where(#skin-classic) .country-card{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+:where(#skin-classic) .card-header{ display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; z-index: 2; position: relative; }
+:where(#skin-classic) .card-header h3{ font-size: 1rem; display: flex; align-items: center; gap: 6px; }
+:where(#skin-classic) .card-title-flag{
             width: 30px;
             height: 18px !important;
-            object-fit: contain; /* Принудительно вписывает SVG в рамки 20х15 */
+            object-fit: contain; 
             border-radius: 2px;
             border: 1px solid rgba(0, 0, 0, 0.08);
             margin-right: 6px;
@@ -58,46 +55,39 @@
             display: inline-block;
             cursor: pointer;
         }
-        .currency-info { display: flex; flex-direction: column; align-items: flex-end; }
-        .currency-badge { font-size: 0.7rem; background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-weight: 600; }
-        .currency-name-label { 
+:where(#skin-classic) .currency-info{ display: flex; flex-direction: column; align-items: flex-end; }
+:where(#skin-classic) .currency-badge{ font-size: 0.7rem; background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+:where(#skin-classic) .currency-name-label{ 
             font-size: 0.65rem; 
             color: var(--text-muted); 
             margin-top: 2px; 
             font-weight: 500; 
             text-align: right; 
             max-width: 120px; 
-            /* ФИКС: разрешаем перенос длинных названий на новую строку */
+            
             white-space: normal !important; 
             line-height: 1.1;
         }
-        
-        .country-card.historical-card {
-            /* Эффект выцветшей бумаги для фона карточки */
+:where(#skin-classic) .country-card.historical-card{
+            
             background-color: #f1ebd9 !important; 
             border-color: #d8cfb4 !important;
         }
-        
-        /* Эффект старого выцветшего фото для всех иконок и плиток внутри исторической карточки */
-        .historical-card .items-list {
+:where(#skin-classic) .historical-card .items-list{
             filter: sepia(0.6) grayscale(0.2) contrast(0.9);
-            background: #ede6d0 !important; /* Чуть более темная подложка для плиток */
+            background: #ede6d0 !important; 
         }
-
-        
-        .progress-container { margin: 8px 0; z-index: 2; position: relative; }
-        .progress-bar { background: #e5e7eb; height: 6px; border-radius: 3px; overflow: hidden; }
-        .progress-fill { background: var(--success); height: 100%; width: 0%; transition: width 0.3s; }
-        .progress-text { font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px; }
-        
-        .items-list { margin-top: 10px; background: #f9fafb; border-radius: 8px; padding: 8px; max-height: 280px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 6px; z-index: 2; position: relative; }
-        .coin-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 2px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.75rem; font-weight: 700; text-align: center; background: #ffffff; transition: all 0.15s ease; cursor: pointer; }
-        .coin-tile.missing { background: #f3f4f6; border-style: dashed; color: #9ca3af; }
-        .coin-tile.owned { background: #ffffff; border-color: var(--success); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1); color: var(--text-main); }
-        .coin-tile .icon-wrapper { display: flex; align-items: center; justify-content: center; width: 24px; height: 18px; margin-bottom: 3px; }
-        .coin-tile .price-tag { font-size: 0.6rem; font-weight: 500; color: #047857; margin-top: 2px; background: #ecfdf5; padding: 1px 3px; border-radius: 4px; }
-
-        .card-bg-flag { 
+:where(#skin-classic) .progress-container{ margin: 8px 0; z-index: 2; position: relative; }
+:where(#skin-classic) .progress-bar{ background: #e5e7eb; height: 6px; border-radius: 3px; overflow: hidden; }
+:where(#skin-classic) .progress-fill{ background: var(--success); height: 100%; width: 0%; transition: width 0.3s; }
+:where(#skin-classic) .progress-text{ font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px; }
+:where(#skin-classic) .items-list{ margin-top: 10px; background: #f9fafb; border-radius: 8px; padding: 8px; max-height: 280px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 6px; z-index: 2; position: relative; }
+:where(#skin-classic) .coin-tile{ display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 2px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.75rem; font-weight: 700; text-align: center; background: #ffffff; transition: all 0.15s ease; cursor: pointer; }
+:where(#skin-classic) .coin-tile.missing{ background: #f3f4f6; border-style: dashed; color: #9ca3af; }
+:where(#skin-classic) .coin-tile.owned{ background: #ffffff; border-color: var(--success); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1); color: var(--text-main); }
+:where(#skin-classic) .coin-tile .icon-wrapper{ display: flex; align-items: center; justify-content: center; width: 24px; height: 18px; margin-bottom: 3px; }
+:where(#skin-classic) .coin-tile .price-tag{ font-size: 0.6rem; font-weight: 500; color: #047857; margin-top: 2px; background: #ecfdf5; padding: 1px 3px; border-radius: 4px; }
+:where(#skin-classic) .card-bg-flag{ 
             position: absolute; 
             right: 5px; 
             bottom: 5px; 
@@ -111,50 +101,139 @@
             background-position: right bottom; 
             z-index: 1; 
         }
-        .css-coin { 
+:where(#skin-classic) .css-coin{ 
             width: 13px; 
             height: 14px; 
             background: #f59e0b; 
             border: 2px solid #d97706; 
             border-radius: 50%; 
             position: relative; }
-        .css-coin::after { content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; border: 1px dashed #b45309; border-radius: 50%; }
-        .css-bill { width: 19px; height: 12px; background: #10b981; border: 1px solid #047857; border-radius: 2px; position: relative; }
-        .css-bill::after { content: '$'; position: absolute; font-size: 7px; color: #047857; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; line-height: 1; }
-        
-        .coin-tile.missing .css-coin { background: #d1d5db; border-color: #9ca3af; }
-        .coin-tile.missing .css-coin::after { border-color: #9ca3af; }
-        .coin-tile.missing .css-bill { background: #d1d5db; border-color: #9ca3af; }
-        .coin-tile.missing .css-bill::after { color: #9ca3af; }
-        .card-stats { border-top: 1px dashed var(--border); padding-top: 10px; margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; z-index: 2; position: relative; }
-        .card-stats div span { display: block; color: var(--text-muted); font-size: 0.75rem; }
-                /* СТИЛИ ДЛЯ ВЫДЕЛЕНИЯ СТРАН, СОБРАННЫХ НА 100% */
-        .country-card.perfect-match {
+:where(#skin-classic) .css-coin::after{ content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; border: 1px dashed #b45309; border-radius: 50%; }
+:where(#skin-classic) .css-bill{ width: 19px; height: 12px; background: #10b981; border: 1px solid #047857; border-radius: 2px; position: relative; }
+:where(#skin-classic) .css-bill::after{ content: '$'; position: absolute; font-size: 7px; color: #047857; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; line-height: 1; }
+:where(#skin-classic) .coin-tile.missing .css-coin{ background: #d1d5db; border-color: #9ca3af; }
+:where(#skin-classic) .coin-tile.missing .css-coin::after{ border-color: #9ca3af; }
+:where(#skin-classic) .coin-tile.missing .css-bill{ background: #d1d5db; border-color: #9ca3af; }
+:where(#skin-classic) .coin-tile.missing .css-bill::after{ color: #9ca3af; }
+:where(#skin-classic) .card-stats{ border-top: 1px dashed var(--border); padding-top: 10px; margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; z-index: 2; position: relative; }
+:where(#skin-classic) .card-stats div span{ display: block; color: var(--text-muted); font-size: 0.75rem; }
+:where(#skin-classic) .country-card.perfect-match{
             border-color: var(--success) !important;
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12) !important;
-            background-color: #f0fdf4 !important; /* Легкий мятный оттенок фона */
-            opacity: 1 !important; /* Убираем полупрозрачность, если страна закрыта */
+            background-color: #f0fdf4 !important; 
+            opacity: 1 !important; 
         }
-        
-        .country-card.perfect-match h3 {
-            color: #14532d !important; /* Темно-зеленый текст заголовка */
+:where(#skin-classic) .country-card.perfect-match h3{
+            color: #14532d !important; 
             font-weight: 800;
         }
-
-        .country-card.perfect-match .currency-badge {
+:where(#skin-classic) .country-card.perfect-match .currency-badge{
             background: #d1fae5 !important;
             color: #065f46 !important;
             border: 1px solid rgba(16, 185, 129, 0.2);
         }
-
-        /* Плавное скрытие карточек, не подошедших под условия поиска */
-        .country-card.search-hidden {
+:where(#skin-classic) .country-card.search-hidden{
             display: none !important;
         }
+/* ===== Скин «Альбом» ===== */
 
-    </style>
+:root{--linen:#e5e9e7;--paper:#f7f8f6;--ink:#19262b;--mute:#66767b;--line:#cdd5d2;--felt:#244240;--felt2:#183030;--brass:#c49b4a;--brass2:#8a6528;--sepia:#e4d6ae;--sepia-ink:#5c4b2b;--ui:'Golos Text',system-ui,sans-serif;--disp:'Forum',Georgia,serif}
+:where(#skin-album) *,dialog *{box-sizing:border-box;margin:0}
+dialog{margin:auto}
+:where(#skin-album){color:var(--ink);font:400 15px/1.4 var(--ui);padding-bottom:70px}
+:where(#skin-album) button,:where(#skin-album) input,dialog button,dialog input{font:inherit;color:inherit}
+:where(#skin-album) button,dialog button{cursor:pointer}
+:where(#skin-album) :focus-visible,dialog :focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 14px}
+.top{padding-top:14px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px}
+:where(#skin-album) h1{font:400 1.6rem var(--disp)}
+.ghost{background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:12px 0;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.stats div{padding:9px 10px;border-left:1px solid var(--line);display:flex;flex-direction:column}
+.stats div:first-child{border-left:0}
+.stats b{font:400 1.25rem/1.2 var(--disp)}.stats span{font-size:.7rem;color:var(--mute)}
+@media(max-width:520px){.stats b{font-size:1.02rem}}
+.notice[hidden]{display:none}
+.notice{display:flex;gap:10px;align-items:center;justify-content:space-between;background:#f3e8c9;border:1px solid #d9c58a;border-radius:8px;padding:8px 12px;font-size:.85rem;margin-bottom:8px}
+.notice button{border:1px solid #b9a057;background:none;border-radius:6px;padding:5px 10px;white-space:nowrap}
+.tools{position:sticky;top:0;background:var(--linen);padding:8px 0;z-index:5;display:grid;gap:8px}
+#q{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.chips button{white-space:nowrap;border:1px solid var(--line);background:var(--paper);border-radius:99px;padding:6px 12px;font-size:.85rem}
+.chips button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rg{font:400 1.3rem var(--disp);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:10px}
+.rg small{font:500 .78rem var(--ui);color:var(--mute)}
+.none{margin:40px 0;text-align:center;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:10px}
+.plate{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 11px;display:flex;flex-direction:column;gap:6px;min-height:108px}
+.plate:hover{border-color:var(--brass2)}
+.plate img{width:30px;height:20px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px #0002}
+.nm{font:400 1.05rem/1.15 var(--disp)}.cc{font-size:.72rem;color:var(--mute)}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;gap:6px;margin-top:auto}
+.dots{display:flex;flex-wrap:wrap;gap:3px}
+.dots i{width:7px;height:7px;border-radius:50%;border:1.5px solid #9aa7aa}
+.dots i.n{border-radius:1.5px;width:10px}
+.dots i.on{background:var(--brass);border-color:var(--brass2)}
+.ct{font:600 .72rem var(--ui);color:var(--mute);white-space:nowrap}
+.plate.empty{background:transparent;border-style:dashed}.plate.empty img{filter:grayscale(1);opacity:.55}
+.plate.done{border:2px solid var(--brass);background:#fbf6e8}
+.plate.hist{background:var(--sepia);border-color:#c9b985;color:var(--sepia-ink)}.plate.hist .cc,.plate.hist .ct{color:#7d6a43}
+dialog{border:0;padding:0;background:var(--paper);color:var(--ink);border-radius:14px;width:720px;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);overflow:auto;box-shadow:0 20px 60px #0007}
+dialog::backdrop{background:#10191cb8}
+@media(max-width:600px){#sheet{margin:auto 0 0;width:100%;max-width:100%;border-radius:16px 16px 0 0;max-height:94dvh}}
+.sh-top{position:sticky;top:0;z-index:2;display:flex;gap:12px;align-items:center;padding:14px 16px;background:var(--paper);border-bottom:1px solid var(--line)}
+.sh-top img{width:44px;height:30px;object-fit:cover;border-radius:3px;box-shadow:0 0 0 1px #0002}
+.sh-top div{flex:1}.sh-top h2{font:400 1.5rem/1.1 var(--disp)}.sh-top p{font-size:.8rem;color:var(--mute)}
+.tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;background:var(--sepia);color:var(--sepia-ink);font-size:.7rem}
+.x{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:none}
+.felt{position:relative;background:radial-gradient(120% 90% at 50% 0,var(--felt),var(--felt2));padding:16px 16px 24px;color:#d6e2df;--hole:#0e1d1c}
+.felt::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.2;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.felt.hist{background:#d9c9a0;color:var(--sepia-ink);--hole:#b7a574}
+.felt h3{position:relative;font:400 1.1rem var(--disp);margin:6px 0 12px}.felt h3 small{font:500 .75rem var(--ui);opacity:.7;margin-left:6px}
+.felt h3:not(:first-child){margin-top:26px}
+.row{position:relative;display:flex;flex-wrap:wrap;gap:16px 14px}
+.slot{background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:5px;color:inherit}
+.slot em{font:normal 600 .72rem var(--ui);opacity:.8;min-height:1em}
+.coin .face{width:var(--d);height:var(--d);border-radius:50%;display:grid;place-items:center;font:400 calc(var(--d)*var(--k)) var(--disp);background:var(--hole);box-shadow:inset 0 3px 8px #000a,0 1px 0 #ffffff22}
+.coin.on .face{background:radial-gradient(circle at 35% 30%,var(--m1),var(--m2) 72%);box-shadow:inset 0 0 0 3px var(--m3),inset 0 0 0 5px #0003,0 3px 6px #0007;color:#2b1e0a}
+.copper{--m1:#e3a37d;--m2:#a65e38;--m3:#cc8760}.brass{--m1:#f1d78f;--m2:#b38836;--m3:#dbb862}.silver{--m1:#f2f5f6;--m2:#9da8ad;--m3:#d0d8db}
+.note .face{width:var(--w);height:calc(var(--w)*.5);border-radius:4px;display:grid;place-items:center;font:400 1.05rem var(--disp);background:#0003;border:1.5px dashed #ffffff3d}
+.felt.hist .note .face{background:#0001;border-color:#5c4b2b55}
+.note.on .face{background:repeating-radial-gradient(circle at 20% 130%,hsl(var(--h) 35% 80%) 0 2px,hsl(var(--h) 40% 71%) 2px 4px);border:1.5px solid hsl(var(--h) 40% 34%);box-shadow:inset 0 0 0 3px hsl(var(--h) 40% 86%/.55),0 3px 6px #0007;color:hsl(var(--h) 55% 17%)}
+.slot.hs .face{filter:sepia(.6) saturate(.8)}
+.drop .face{animation:drop .35s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes drop{from{transform:translateY(-16px) scale(1.2);opacity:.2}to{transform:none;opacity:1}}
+.sh-foot{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 16px}
+.sh-foot span{display:block;font-size:.72rem;color:var(--mute)}.sh-foot b{font-weight:600}
+#item,#menu{width:360px}
+#item form,#menu>div{padding:18px;display:grid;gap:10px}
+#item h2,#menu h2{font:400 1.5rem var(--disp)}#it-s{color:var(--mute);font-size:.85rem;margin-top:-6px}
+dialog label{display:grid;gap:4px;font-size:.82rem;color:var(--mute)}
+dialog label input[type=number]{padding:11px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+dialog label.chk{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:.9rem}
+.acts{display:grid;gap:8px;margin-top:6px}
+.acts button,#menu button.b{padding:11px;border-radius:8px;border:1px solid var(--line);background:none}
+.acts .pri{background:var(--felt);color:#fff;border-color:var(--felt);font-weight:600}
+.acts .danger{color:#a03a2c;border-color:#d9b1aa}
+#menu p{font-size:.85rem;color:var(--mute)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.histbtn{grid-column:1/-1;padding:10px;border-radius:8px;border:1px solid var(--line);background:none}
+body{margin:0}
+.cc{font-size:.8rem;color:var(--ink);line-height:1.25}.rng{font-size:.72rem;color:var(--mute);line-height:1.3}.plate.hist .rng{color:#7d6a43}
+#credit{max-width:1100px;margin:0 auto;padding:0 14px 76px;font:400 .75rem system-ui,sans-serif;color:#66767b;text-align:center}#credit a{color:inherit}
+body[data-skin=classic]{background:#f4f6f9}body[data-skin=album]{background:var(--linen)}
+body[data-skin=classic] #skin-album,body[data-skin=album] #skin-classic{display:none}
+#skinbar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:50;display:flex;background:#19262bf2;border-radius:99px;padding:3px;box-shadow:0 4px 14px #0005}
+#skinbar button{border:0;background:none;color:#cfd8d6;padding:8px 15px;border-radius:99px;font:500 .85rem system-ui,sans-serif;cursor:pointer}
+#skinbar button[aria-pressed=true]{background:#f7f8f6;color:#19262b}
+
+</style>
 </head>
 <body>
+<script>document.body.dataset.skin=localStorage.getItem('numismat_skin')==='album'?'album':'classic'</script>
+<div id="skin-classic">
 <div class="container">
     <header><h1>🗺️ Интерактивный Атлас Коллекционера</h1></header>
 
@@ -211,174 +290,199 @@
     <h2 style="font-size:1.1rem; margin-bottom:12px;">🗺️ Состояние мирового альбома</h2>
     <div class="album-grid" id="album-container"></div>
 </div>
+</div>
+<div id="skin-album">
+<header class="wrap top">
+  <div class="bar"><h1>Нумизматический альбом</h1><button class="ghost" id="mMenu">Резервная копия</button></div>
+  <div class="stats" id="stats"></div>
+  <div class="notice" id="notice" hidden><span>Изменения пока только в этом браузере. Скачайте data.json и замените файл в репозитории.</span><button data-exp>Скачать</button></div>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Страна или валюта" autocomplete="off">
+    <div class="chips" id="regions"></div>
+    <div class="chips" id="states"></div>
+  </div>
+</header>
+<main class="wrap" id="main"></main>
+</div>
+<dialog id="sheet"></dialog>
+<dialog id="item"><form id="itf">
+  <h2 id="it-h"></h2><p id="it-s"></p>
+  <label>Цена покупки, ₽<input id="it-cost" type="number" min="0" step="any" inputmode="decimal"></label>
+  <label class="chk"><input id="it-hist" type="checkbox">Выведена из обращения</label>
+  <div class="acts"><button class="pri" id="it-ok">Положить в альбом</button><button type="button" class="danger" id="it-del">Убрать из альбома</button><button type="button" data-close>Отмена</button></div>
+</form></dialog>
+<dialog id="menu"><div>
+  <h2>Резервная копия</h2>
+  <p>Скачайте data.json и замените им файл в репозитории, чтобы коллекция открывалась на любом устройстве.</p>
+  <button class="b" data-exp>Скачать data.json</button>
+  <button class="b" data-imp>Загрузить файл</button>
+  <button class="b" data-close>Закрыть</button>
+  <input type="file" id="file" accept=".json,application/json" hidden>
+</div></dialog>
 
+
+<footer id="credit">Курсы валют: <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates By Exchange Rate API</a>, обновляются раз в сутки.<span id="credit-d"></span></footer>
+<div id="skinbar" role="group" aria-label="Оформление"><button data-skin="classic" aria-pressed="false">Классика</button><button data-skin="album" aria-pressed="false">Альбом</button></div>
 <script>
+function persist(){localStorage.setItem('numismat_db',JSON.stringify(collection));localStorage.setItem('numismat_dirty','1');}
+
     // ВСТРАИВАЕМ ПОЛНЫЙ КАТАЛОГ СТРАН С НАЗВАНИЯМИ ВАЛЮТ
 window.WORLD_CATALOG = [
-//ЕВРОПА И ЕВРОЗОНА
-      { "region": "Европа", "country": "Албания", "currency": "ALL", "currency_name": "Албанский лек", "coin_name": "", "rate_default": 0.92, "coins": [1, 5, 10, 20, 50, 100], "bills": [200, 500, 1000, 2000, 5000] },
-      { "region": "Европа", "country": "Беларусь", "currency": "BYN", "currency_name": "Белорусский рубль", "coin_name": "копейка", "rate_default": 28.02, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "region": "Европа", "country": "Болгария", "currency": "BGN", "currency_name": "Болгарский лев", "coin_name": "	стотинка", "rate_default": 47.06, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "region": "Европа", "country": "Босния и Герцеговина", "currency": "BAM", "currency_name": "Конвертируемая марка", "coin_name": "фенинг", "rate_default": 48.65, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
-      { "region": "Европа", "country": "Великобритания", "currency": "GBP", "currency_name": "Фунт стерлингов", "coin_name": "пенни", "rate_default": 112.74, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50] },
-      { "region": "Европа", "country": "Венгрия", "currency": "HUF", "currency_name": "Венгерский форинт", "coin_name": "", "rate_default": 0.26, "coins": [5, 10, 20, 50, 100, 200], "bills": [500, 1000, 2000, 5000, 10000, 20000] },
-      { "region": "Европа", "country": "Гибралтар", "currency": "GIP", "currency_name": "Гибралтарский фунт", "coin_name": "пенни", "rate_default": 112.74, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "region": "Европа", "country": "Дания", "currency": "DKK", "currency_name": "Датская крона", "coin_name": "эре", "rate_default": 12.76, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [50, 100, 200, 500, 1000] },
-      { "region": "Европа", "country": "Еврозона", "currency": "EUR", "currency_name": "Евро", "coin_name": "евроцент", "rate_default": 95.42, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "region": "Европа", "country": "Исландия", "currency": "ISK", "currency_name": "Исландская крона", "coin_name": "", "rate_default": 0.62, "coins": [1, 5, 10, 50, 100], "bills": [500, 1000, 2000, 5000, 10000] },
-      { "region": "Европа", "country": "Молдова", "currency": "MDL", "currency_name": "Молдавский лей", "coin_name": "бань", "rate_default": 4.76, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [1, 5, 10, 20, 50, 100, 200, 500, 1000] },
-      { "region": "Европа", "country": "Норвегия", "currency": "NOK", "currency_name": "Норвежская крона", "coin_name": "", "rate_default": 8.9, "coins": [1, 5, 10, 20], "bills": [50, 100, 200, 500, 1000] },
-      { "region": "Европа", "country": "Польша", "currency": "PLN", "currency_name": "Польский злотый", "coin_name": "грош", "rate_default": 21.72, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 500] },
-      { "region": "Европа", "country": "Россия", "currency": "RUB", "currency_name": "Российский рубль", "coin_name": "копейка", "rate_default": 1.0, "coins": [0.05, 0.1, 0.5, 1, 2, 5, 10], "bills": [5, 10, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "region": "Европа", "country": "Румыния", "currency": "RON", "currency_name": "Румынский лей", "coin_name": "бань", "rate_default": 17.88, "coins": [0.01, 0.05, 0.1, 0.5], "bills": [1, 5, 10, 50, 100, 200, 500] },
-      { "region": "Европа", "country": "Северная Македония", "currency": "MKD", "currency_name": "Македонский денар", "coin_name": "", "rate_default": 1.54, "coins": [1, 2, 5, 10, 50], "bills": [10, 50, 100, 200, 500, 1000, 2000] },
-      { "region": "Европа", "country": "Сербия", "currency": "RSD", "currency_name": "Сербский динар", "coin_name": "", "rate_default": 0.81, "coins": [1, 2, 5, 10, 20], "bills": [10, 20, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "region": "Европа", "country": "Украина", "currency": "UAH", "currency_name": "Украинская гривна", "coin_name": "копейка", "rate_default": 2.15, "coins": [0.1, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "region": "Европа", "country": "Швейцария", "currency": "CHF", "currency_name": "Швейцарский франк", "coin_name": "раппен", "rate_default": 102.55, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200, 1000] },
-      { "region": "Европа", "country": "Швеция", "currency": "SEK", "currency_name": "Шведская крона", "coin_name": "", "rate_default": 8.5, "coins": [1, 2, 5, 10], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "region": "Европа", "country": "Чехия", "currency": "CZK", "currency_name": "Чешская крона", "coin_name": "", "rate_default": 3.91, "coins": [1, 2, 5, 10, 20, 50], "bills": [100, 200, 500, 1000, 2000, 5000] },
-
-//СТРАНЫ АЗИИ
-      { "region": "Азия", "country": "Азербайджан", "currency": "AZN", "currency_name": "Азербайджанский манат", "coin_name": "", "rate_default": 50.06, "coins": [0.01, 0.03, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
-      { "region": "Азия", "country": "Армения", "currency": "AMD", "currency_name": "Армянский драм", "coin_name": "", "rate_default": 0.23, "coins": [10, 20, 50, 100, 200, 500], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000] },
-      { "region": "Азия", "country": "Афганистан", "currency": "AFN", "currency_name": "Афгани", "coin_name": "", "rate_default": 1.25, "coins": [1, 2, 5], "bills": [10, 20, 50, 100, 500, 1000] },
-      { "region": "Азия", "country": "Бангладеш", "currency": "BDT", "currency_name": "Бангладешская така", "coin_name": "", "rate_default": 0.72, "coins": [], "bills": [2, 5, 10, 20, 50, 100, 200, 500, 1000] },
-      { "region": "Азия", "country": "Бахрейн", "currency": "BHD", "currency_name": "Бахрейнский динар", "coin_name": "", "rate_default": 226.4, "coins": [0.005, 0.01, 0.025, 0.05, 0.1, 0.5], "bills": [0.5, 1, 5, 10, 20] },
-      { "region": "Азия", "country": "Бруней", "currency": "BND", "currency_name": "Брунейский доллар", "coin_name": "", "rate_default": 66.57, "coins": [0.01, 0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 50, 100] },
-      { "region": "Азия", "country": "Бутан", "currency": "BTN", "currency_name": "Нгултрум", "coin_name": "", "rate_default": 0.88, "coins": [0.2, 0.25, 0.5, 1], "bills": [1, 5, 10, 20, 50, 100, 500, 1000] },
-      { "region": "Азия", "country": "Вьетнам", "currency": "VND", "currency_name": "Вьетнамский донг", "coin_name": "", "rate_default": 0.0032, "coins": [200, 500, 1000, 2000, 5000], "bills": [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000]},
-      { "region": "Азия", "country": "Гонконг", "currency": "HKD", "currency_name": "Гонконгский доллар", "coin_name": "", "rate_default": 10.84, "coins": [0.1, 0.2, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 500, 1000] },
-      { "region": "Азия", "country": "Грузия", "currency": "GEL", "currency_name": "Грузинский лари", "coin_name": "", "rate_default": 32.86, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200] },
-      { "region": "Азия", "country": "Израиль", "currency": "ILS", "currency_name": "Новый израильский шекель", "coin_name": "", "rate_default": 23.1, "coins": [0.1, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 200] },
-      { "region": "Азия", "country": "Индия", "currency": "INR", "currency_name": "Индийская рупия", "coin_name": "", "rate_default": 0.88, "coins": [0.5, 1, 2, 5, 10, 20], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "region": "Азия", "country": "Индонезия", "currency": "IDR", "currency_name": "Индонезийская рупия", "coin_name": "", "rate_default": 0.0055, "coins": [100, 200, 500, 1000], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000] },
-      { "region": "Азия", "country": "Иордания", "currency": "JOD", "currency_name": "Иорданский динар", "coin_name": "", "rate_default": 120.1, "coins": [0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 5, 10, 20, 50] },
-      { "region": "Азия", "country": "Ирак", "currency": "IQD", "currency_name": "Иракский динар", "coin_name": "", "rate_default": 0.065, "coins": [], "bills": [250, 500, 1000, 5000, 10000, 25000, 50000] },
-      { "region": "Азия", "country": "Иран", "currency": "IRR", "currency_name": "Иранский риал", "coin_name": "", "rate_default": 0.002, "coins": [], "bills": [10000, 20000, 50000, 100000] },
-      { "region": "Азия", "country": "Йемен", "currency": "YER", "currency_name": "Йеменский риал", "coin_name": "", "rate_default": 0.34, "coins": [], "bills": [50, 100, 200, 500, 1000] },
-      { "region": "Азия", "country": "Казахстан", "currency": "KZT", "currency_name": "Казахстанский тенге", "coin_name": "тиын", "rate_default": 0.18, "coins": [], "bills": [200, 500, 1000, 2000, 5000, 10000, 20000] },
-      { "region": "Азия", "country": "Камбоджа", "currency": "KHR", "currency_name": "Риель", "coin_name": "", "rate_default": 0.021, "coins": [], "bills": [100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 50000] },
-      { "region": "Азия", "country": "Катар", "currency": "QAR", "currency_name": "Катарский риал", "coin_name": "", "rate_default": 23.38, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [1, 5, 10, 50, 100, 200, 500] },
-      { "region": "Азия", "country": "Китай", "currency": "CNY", "currency_name": "Китайский юань", "coin_name": "", "rate_default": 12.71, "coins": [0.01, 0.02, 0.05, 0.1, 0.5, 1], "bills": [0.1, 0.2, 0.5, 1, 5, 10, 20, 50, 100] },
-      { "region": "Азия", "country": "Кувейт", "currency": "KWD", "currency_name": "Кувейтский динар", "coin_name": "", "rate_default": 277.5, "coins": [0.005, 0.01, 0.02, 0.05, 0.1], "bills": [0.25, 0.5, 1, 5, 10, 20] },
-      { "region": "Азия", "country": "Кыргызстан", "currency": "KGS", "currency_name": "Кыргызский сом", "coin_name": "", "rate_default": 0.97, "coins": [0.1, 0.5, 1, 3, 5, 10], "bills": [20, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "region": "Азия", "country": "Лаос", "currency": "LAK", "currency_name": "Кип", "coin_name": "", "rate_default": 0.0039, "coins": [], "bills": [500, 1000, 2000, 5000, 10000, 20000, 50000, 100000] },
-      { "region": "Азия", "country": "Ливан", "currency": "LBP", "currency_name": "Ливанский фунт", "coin_name": "", "rate_default": 0.00095, "coins": [], "bills": [1000, 5000, 10000, 20000, 50000, 100000] },
-      { "region": "Азия", "country": "Макао", "currency": "MOP", "currency_name": "Патака", "coin_name": "", "rate_default": 10.6, "coins": [0.1, 0.2, 0.5, 1, 2, 5, 10], "bills": [10, 20, 50, 100, 500, 1000] },
-      { "region": "Азия", "country": "Малайзия", "currency": "MYR", "currency_name": "Малайзийский ринггит", "coin_name": "", "rate_default": 19.3, "coins": [0.05, 0.1, 0.2, 0.5], "bills": [1, 5, 10, 20, 50, 100] },
-      { "region": "Азия", "country": "Мальдивы", "currency": "MVR", "currency_name": "Руфия", "coin_name": "", "rate_default": 5.5, "coins": [0.01, 0.02, 0.05, 0.1, 0.25, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 500, 1000] },
-      { "region": "Азия", "country": "Монголия", "currency": "MNT", "currency_name": "Тугрик", "coin_name": "", "rate_default": 0.025, "coins": [], "bills": [1, 5, 10, 20, 50, 100, 500, 1000, 5000, 10000, 20000] },
-      { "region": "Азия", "country": "Мьянма", "currency": "MMK", "currency_name": "Кьят", "coin_name": "", "rate_default": 0.04, "coins": [], "bills": [50, 100, 200, 500, 1000, 5000, 10000] },
-      { "region": "Азия", "country": "Непал", "currency": "NPR", "currency_name": "Непальская рупия", "coin_name": "", "rate_default": 0.55, "coins": [], "bills": [5, 10, 20, 50, 100, 500, 1000] },
-      { "region": "Азия", "country": "ОАЭ", "currency": "AED", "currency_name": "Дирхам ОАЭ", "coin_name": "", "rate_default": 23.17, "coins": [0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200, 500, 1000] },
-      { "region": "Азия", "country": "Оман", "currency": "OMR", "currency_name": "Оманский риал", "coin_name": "", "rate_default": 221.2, "coins": [0.005, 0.01, 0.025, 0.05], "bills": [0.1, 0.25, 0.5, 1, 5, 10, 20, 50] },
-      { "region": "Азия", "country": "Пакистан", "currency": "PKR", "currency_name": "Пакистанская рупия", "coin_name": "", "rate_default": 0.31, "coins": [1, 2, 5, 10], "bills": [10, 20, 50, 100, 500, 1000, 5000] },
-      { "region": "Азия", "country": "Саудовская Аравия", "currency": "SAR", "currency_name": "Саудовский риал", "coin_name": "", "rate_default": 22.7, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2], "bills": [5, 10, 50, 100, 500] },
-      { "region": "Азия", "country": "Северная Корея", "currency": "KPW", "currency_name": "Северокорейская вона", "coin_name": "", "rate_default": 0.09, "coins": [0.01, 0.05, 0.1, 0.5, 1], "bills": [5, 10, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "region": "Азия", "country": "Сингапур", "currency": "SGD", "currency_name": "Сингапурский доллар", "coin_name": "", "rate_default": 64.1, "coins": [0.05, 0.1, 0.2, 0.5, 1], "bills": [2, 5, 10, 50, 100, 1000] },
-      { "region": "Азия", "country": "Сирия", "currency": "SYP", "currency_name": "Сирийский фунт", "coin_name": "", "rate_default": 0.0065, "coins": [], "bills": [50, 100, 200, 500, 1000, 2000, 5000] },
-      { "region": "Азия", "country": "Таджикистан", "currency": "TJS", "currency_name": "Таджикский сомони", "coin_name": "", "rate_default": 9.26, "coins": [0.1, 0.2, 0.5, 1, 3, 5], "bills": [1, 5, 10, 20, 50, 100, 200, 500] },
-      { "region": "Азия", "country": "Таиланд", "currency": "THB", "currency_name": "Таиландский бат", "coin_name": "", "rate_default": 2.53, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 500, 1000] },
-      { "region": "Азия", "country": "Тайвань", "currency": "TWD", "currency_name": "Новый тайваньский доллар", "coin_name": "", "rate_default": 2.65, "coins": [1, 5, 10, 20, 50], "bills": [100, 200, 500, 1000, 2000] },
-      { "region": "Азия", "country": "Туркменистан", "currency": "TMT", "currency_name": "Туркменский манат", "coin_name": "", "rate_default": 24.29, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [1, 5, 10, 20, 50, 100] },
-      { "region": "Азия", "country": "Турция", "currency": "TRY", "currency_name": "Турецкая лира", "coin_name": "", "rate_default": 1.72, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200] },
-      { "region": "Азия", "country": "Узбекистан", "currency": "UZS", "currency_name": "Узбекский сум", "coin_name": "", "rate_default": 0.0075, "coins": [50, 100, 200, 500], "bills": [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000] },
-      { "region": "Азия", "country": "Филиппины", "currency": "PHP", "currency_name": "Филиппинское песо", "coin_name": "", "rate_default": 1.48, "coins": [0.01, 0.05, 0.25, 1, 5, 10, 20], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "region": "Азия", "country": "Шри-Ланка", "currency": "LKR", "currency_name": "Шри-Ланкийская рупия", "coin_name": "", "rate_default": 0.29, "coins": [1, 2, 5, 10], "bills": [20, 50, 100, 500, 1000, 5000] },
-      { "region": "Азия", "country": "Южная Корея", "currency": "KRW", "currency_name": "Южнокорейская вона", "coin_name": "", "rate_default": 0.063, "coins": [1, 5, 10, 50, 100, 500], "bills": [1000, 2000, 5000, 10000, 50000] },
-      { "region": "Азия", "country": "Япония", "currency": "JPY", "currency_name": "Японская иена", "coin_name": "", "rate_default": 0.53, "coins": [1, 5, 10, 50, 100, 500], "bills": [1000, 2000, 5000, 10000] },
-
-//СТРАНЫ АФРИКИ
-      { "region": "Африка", "country": "Алжир", "currency": "DZD", "currency_name": "Алжирский динар", "coin_name": "", "rate_default": 0.63, "coins": [5, 10, 20, 50], "bills": [100, 200, 500, 1000, 2000] },
-      { "region": "Африка", "country": "Ангола", "currency": "AOA", "currency_name": "Кванза", "coin_name": "", "rate_default": 0.09, "coins": [0.5, 1, 5, 10, 20], "bills": [1, 5, 10, 50, 100, 200, 500, 1000, 2000, 5000] },
-      { "region": "Африка", "country": "Ботсвана", "currency": "BWP", "currency_name": "Пула", "coin_name": "", "rate_default": 6.31, "coins": [0.05, 0.1, 0.25, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
-      { "region": "Африка", "country": "Бурунди", "currency": "BIF", "currency_name": "Бурундийский франк", "coin_name": "", "rate_default": 0.02, "coins": [], "bills": [100, 500, 1000, 2000, 5000, 10000] },
-      { "region": "Африка", "country": "Гамбия", "currency": "GMD", "currency_name": "Даласи", "coin_name": "", "rate_default": 1.22, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [5, 10, 25, 50, 100, 200] },
-      { "region": "Африка", "country": "Гана", "currency": "GHS", "currency_name": "Ганский седи", "coin_name": "", "rate_default": 1.22, "coins": [0.01, 0.05, 0.1, 0.2, 0.5, 1], "bills": [1, 2, 5, 10, 20, 50, 100, 200] },
-      { "region": "Африка", "country": "Гвинея", "currency": "GNF", "currency_name": "Гвинейский франк", "coin_name": "", "rate_default": 0.0098, "coins": [], "bills": [100, 500, 1000, 2000, 5000, 10000, 20000] },
-      { "region": "Африка", "country": "Джибути", "currency": "DJF", "currency_name": "Франк Джибути", "coin_name": "", "rate_default": 0.48, "coins": [5, 10, 20, 50, 100, 250, 500], "bills": [1000, 2000, 5000, 10000] },
-      { "region": "Африка", "country": "Египет", "currency": "EGP", "currency_name": "Египетский фунт", "coin_name": "", "rate_default": 1.62, "coins": [0.05, 0.1, 0.25, 0.5, 1], "bills": [0.25, 0.5, 1, 5, 10, 20, 50, 100, 200] },
-      { "region": "Африка", "country": "Замбия", "currency": "ZMW", "currency_name": "Замбийская квача", "coin_name": "", "rate_default": 1.22, "coins": [0.05, 0.1, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100] },
-      { "region": "Африка", "country": "Зимбабве", "currency": "ZWG", "currency_name": "Зимбабвийский золотой (ZiG)", "coin_name": "", "rate_default": 3.2, "coins": [1, 2, 5], "bills": [10, 20, 50] },
-      { "region": "Африка", "country": "Кабо-Верде", "currency": "CVE", "currency_name": "Эскудо Кабо-Верде", "coin_name": "", "rate_default": 0.86, "coins": [1, 5, 10, 20, 50, 100], "bills": [200, 500, 1000, 2000, 2500, 5000] },
-      { "region": "Африка", "country": "Кения", "currency": "KES", "currency_name": "Кенийский шиллинг", "coin_name": "", "rate_default": 0.66, "coins": [1, 5, 10, 20], "bills": [50, 100, 200, 500, 1000] },
-      { "region": "Африка", "country": "Коморы", "currency": "KMF", "currency_name": "Коморский франк", "coin_name": "", "rate_default": 0.194, "coins": [25, 50, 100, 250], "bills": [500, 1000, 2000, 5000, 10000] },
-      { "region": "Африка", "country": "Демократическая Республика Конго", "currency": "CDF", "currency_name": "Конголезский франк", "coin_name": "", "rate_default": 0.036, "coins": [], "bills": [50, 100, 200, 500, 1000, 5000, 10000, 20000] },
-      { "region": "Африка", "country": "Лесото", "currency": "LSL", "currency_name": "Лоти", "coin_name": "", "rate_default": 5.16, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
-      { "region": "Африка", "country": "Либерия", "currency": "LRD", "currency_name": "Либерийский доллар", "coin_name": "", "rate_default": 0.44, "coins": [0.05, 0.1, 0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 500] },
-      { "region": "Африка", "country": "Ливия", "currency": "LYD", "currency_name": "Ливийский динар", "coin_name": "", "rate_default": 17.65, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [0.25, 0.5, 1, 5, 10, 20, 50] },
-      { "region": "Африка", "country": "Мадагаскар", "currency": "MGA", "currency_name": "Малагасийский ариари", "coin_name": "", "rate_default": 0.019, "coins": [], "bills": [100, 200, 500, 1000, 2000, 5000, 10000, 20000] },
-      { "region": "Африка", "country": "Малави", "currency": "MWK", "currency_name": "Малавийская квача", "coin_name": "", "rate_default": 0.049, "coins": [], "bills": [20, 50, 100, 200, 500, 1000, 2000] },
-      { "region": "Африка", "country": "Мавритания", "currency": "MRU", "currency_name": "Угия", "coin_name": "", "rate_default": 2.14, "coins": [0.2, 1, 5, 10, 20], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "region": "Африка", "country": "Маврикий", "currency": "MUR", "currency_name": "Маврикийская рупия", "coin_name": "", "rate_default": 1.84, "coins": [0.05, 0.2, 0.5, 1, 5, 10, 20], "bills": [25, 50, 100, 200, 500, 1000, 2000] },
-      { "region": "Африка", "country": "Марокко", "currency": "MAD", "currency_name": "Марокканский дирхам", "coin_name": "", "rate_default": 8.64, "coins": [0.1, 0.2, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 200] },
-      { "region": "Африка", "country": "Мозамбик", "currency": "MZN", "currency_name": "Метикал", "coin_name": "", "rate_default": 1.33, "coins": [0.01, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "region": "Африка", "country": "Намибия", "currency": "NAD", "currency_name": "Намибийский доллар", "coin_name": "", "rate_default": 5.16, "coins": [0.05, 0.1, 0.2, 0.5, 1, 5, 10], "bills": [10, 20, 50, 100, 200] },
-      { "region": "Африка", "country": "Нигерия", "currency": "NGN", "currency_name": "Найра", "coin_name": "", "rate_default": 0.053, "coins": [0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200, 500, 1000] },
-      { "region": "Африка", "country": "Руанда", "currency": "RWF", "currency_name": "Франк Руанды", "coin_name": "", "rate_default": 0.063, "coins": [1, 5, 10, 20, 50, 100], "bills": [500, 1000, 2000, 5000] },
-      { "region": "Африка", "country": "Сан-Томе и Принсипи", "currency": "STN", "currency_name": "Добра", "coin_name": "", "rate_default": 3.78, "coins": [0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 200] },
-      { "region": "Африка", "country": "Сейшелы", "currency": "SCR", "currency_name": "Сейшельская рупия", "coin_name": "", "rate_default": 6.12, "coins": [0.05, 0.1, 0.25, 1, 5], "bills": [25, 50, 100, 500] },
-      { "region": "Африка", "country": "Сьерра-Леоне", "currency": "SLE", "currency_name": "Леоне", "coin_name": "", "rate_default": 3.75, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [1, 2, 5, 10, 20] },
-      { "region": "Африка", "country": "Сомали", "currency": "SOS", "currency_name": "Сомалийский шиллинг", "coin_name": "", "rate_default": 0.15, "coins": [], "bills": [500, 1000] },
-      { "region": "Африка", "country": "Судан", "currency": "SDG", "currency_name": "Суданский фунт", "coin_name": "", "rate_default": 0.14, "coins": [], "bills": [100, 200, 500, 1000] },
-      { "region": "Африка", "country": "Танзания", "currency": "TZS", "currency_name": "Танзанийский шиллинг", "coin_name": "", "rate_default": 0.031, "coins": [50, 100, 200, 500], "bills": [1000, 2000, 5000, 10000] },
-      { "region": "Африка", "country": "Тунис", "currency": "TND", "currency_name": "Тунисский динар", "coin_name": "", "rate_default": 28.03, "coins": [0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [5, 10, 20, 50] },
-      { "region": "Африка", "country": "Уганда", "currency": "UGX", "currency_name": "Угандийский шиллинг", "coin_name": "", "rate_default": 0.023, "coins": [50, 100, 200, 500, 1000], "bills": [1000, 2000, 5000, 10000, 20000, 50000] },
-      { "region": "Африка", "country": "Центральная Африка (зона BEAC)", "currency": "XAF", "currency_name": "Франк КФА BEAC", "coin_name": "", "rate_default": 0.1455, "coins": [1, 5, 10, 25, 50, 100, 500], "bills": [500, 1000, 2000, 5000, 10000] },
-      { "region": "Африка", "country": "Западная Африка (зона BCEAO)", "currency": "XOF", "currency_name": "Франк КФА BCEAO", "coin_name": "", "rate_default": 0.1455, "coins": [1, 5, 10, 25, 50, 100, 200, 250, 500], "bills": [500, 1000, 2000, 5000, 10000] },
-      { "region": "Африка", "country": "Острова Святой Елены", "currency": "SHP", "currency_name": "Фунт Святой Елены", "coin_name": "", "rate_default": 112.74, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20] },
-      { "region": "Африка", "country": "Эритрея", "currency": "ERN", "currency_name": "Накфа", "coin_name": "", "rate_default": 5.67, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 5, 10, 20, 50, 100] },
-      { "region": "Африка", "country": "Эсватини", "currency": "SZL", "currency_name": "Лилангени", "coin_name": "", "rate_default": 5.16, "coins": [0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
-      { "region": "Африка", "country": "Эфиопия", "currency": "ETB", "currency_name": "Эфиопский быр", "coin_name": "", "rate_default": 0.68, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [1, 5, 10, 50, 100, 200] },
-      { "region": "Африка", "country": "ЮАР", "currency": "ZAR", "currency_name": "Южноафриканский рэнд", "coin_name": "", "rate_default": 5.16, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
-      { "region": "Африка", "country": "Южный Судан", "currency": "SSP", "currency_name": "Южносуданский фунт", "coin_name": "", "rate_default": 0.065, "coins": [0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100, 500, 1000] },
-
-//АМЕРИКА
-      { "region": "Америка", "country": "Аргентина", "currency": "ARS", "currency_name": "Аргентинское песо", "coin_name": "", "rate_default": 0.085, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10], "bills": [10, 20, 50, 100, 200, 500, 1000, 2000, 10000, 20000] },
-      { "region": "Америка", "country": "Аруба", "currency": "AWG", "currency_name": "Арубанский флорин", "coin_name": "", "rate_default": 47.55, "coins": [0.05, 0.1, 0.25, 0.5, 1, 2.5, 5], "bills": [10, 25, 50, 100, 200] },
-      { "region": "Америка", "country": "Багамы", "currency": "BSD", "currency_name": "Багамский доллар", "coin_name": "", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.15, 0.25], "bills": [0.5, 1, 3, 5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "Барбадос", "currency": "BBD", "currency_name": "Барбадосский доллар", "coin_name": "", "rate_default": 42.56, "coins": [0.01, 0.05, 0.1, 0.25], "bills": [2, 5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "Бермудские Острова", "currency": "BMD", "currency_name": "Бермудский доллар", "coin_name": "", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.25, 1], "bills": [2, 5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "Боливия", "currency": "BOB", "currency_name": "Боливиано", "coin_name": "", "rate_default": 12.35, "coins": [0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
-      { "region": "Америка", "country": "Белиз", "currency": "BZD", "currency_name": "Белизский доллар", "coin_name": "", "rate_default": 42.56, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "Бразилия", "currency": "BRL", "currency_name": "Бразильский реал", "coin_name": "", "rate_default": 17.05, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100, 200] },
-      { "region": "Америка", "country": "Венесуэла", "currency": "VES", "currency_name": "Венесуэльский боливар", "coin_name": "", "rate_default": 0.097, "coins": [0.25, 0.5, 1], "bills": [5, 10, 20, 50, 100, 200, 500] },
-      { "region": "Америка", "country": "Восточно-карибские государства", "currency": "XCD", "currency_name": "Восточно-карибский доллар", "coin_name": "", "rate_default": 31.52, "coins": [0.05, 0.1, 0.25, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "Гватемала", "currency": "GTQ", "currency_name": "Кетсаль", "coin_name": "", "rate_default": 10.95, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 5, 10, 20, 50, 100, 200] },
-      { "region": "Америка", "country": "Гайана", "currency": "GYD", "currency_name": "Гайанский доллар", "coin_name": "", "rate_default": 0.41, "coins": [], "bills": [20, 50, 100, 500, 1000, 5000] },
-      { "region": "Америка", "country": "Гаити", "currency": "HTG", "currency_name": "Гурд", "coin_name": "", "rate_default": 0.64, "coins": [0.5, 1, 5], "bills": [10, 20, 25, 50, 100, 250, 500, 1000] },
-      { "region": "Америка", "country": "Гондурас", "currency": "HNL", "currency_name": "Лемпира", "coin_name": "", "rate_default": 3.37, "coins": [0.05, 0.1, 0.2, 0.5], "bills": [1, 2, 5, 10, 20, 50, 100, 200, 500] },
-      { "region": "Америка", "country": "Доминиканская Республика", "currency": "DOP", "currency_name": "Доминиканское песо", "coin_name": "", "rate_default": 1.41, "coins": [1, 5, 10, 25], "bills": [20, 50, 100, 200, 500, 1000, 2000] },
-      { "region": "Америка", "country": "Каймановы Острова", "currency": "KYD", "currency_name": "Доллар Каймановых Островов", "coin_name": "", "rate_default": 102.13, "coins": [0.01, 0.05, 0.1, 0.25], "bills": [1, 5, 10, 25, 50, 100] },
-      { "region": "Америка", "country": "Канада", "currency": "CAD", "currency_name": "Канадский доллар", "coin_name": "", "rate_default": 59.7, "coins": [0.05, 0.1, 0.25, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "Колумбия", "currency": "COP", "currency_name": "Колумбийское песо", "coin_name": "", "rate_default": 0.021, "coins": [50, 100, 200, 500, 1000], "bills": [2000, 5000, 10000, 20000, 50000, 100000] },
-      { "region": "Америка", "country": "Коста-Рика", "currency": "CRC", "currency_name": "Костариканский колон", "coin_name": "", "rate_default": 0.16, "coins": [5, 10, 25, 50, 100, 500], "bills": [1000, 2000, 5000, 10000, 20000] },
-      { "region": "Америка", "country": "Куба", "currency": "CUP", "currency_name": "Кубинское песо", "coin_name": "", "rate_default": 3.55, "coins": [0.01, 0.02, 0.05, 0.2, 1, 3, 5], "bills": [1, 3, 5, 10, 20, 50, 100, 200, 500, 1000] },
-      { "region": "Америка", "country": "Мексика", "currency": "MXN", "currency_name": "Мексиканское песо", "coin_name": "", "rate_default": 4.62, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20], "bills": [20, 50, 100, 200, 500, 1000] },
-      { "region": "Америка", "country": "Никарагуа", "currency": "NIO", "currency_name": "Кордоба", "coin_name": "", "rate_default": 2.32, "coins": [0.05, 0.1, 0.25, 0.5, 1, 5], "bills": [10, 20, 50, 100, 200, 500, 1000] },
-      { "region": "Америка", "country": "Панама", "currency": "PAB", "currency_name": "Бальбоа", "coin_name": "", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [] },
-      { "region": "Америка", "country": "Парагвай", "currency": "PYG", "currency_name": "Гуарани", "coin_name": "", "rate_default": 0.011, "coins": [50, 100, 500, 1000], "bills": [2000, 5000, 10000, 20000, 50000, 100000] },
-      { "region": "Америка", "country": "Перу", "currency": "PEN", "currency_name": "Соль", "coin_name": "", "rate_default": 22.82, "coins": [0.1, 0.2, 0.5, 1, 2, 5], "bills": [10, 20, 50, 100, 200] },
-      { "region": "Америка", "country": "Сальвадор", "currency": "USD", "currency_name": "Доллар США", "coin_name": "", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 2, 5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "Суринам", "currency": "SRD", "currency_name": "Суринамский доллар", "coin_name": "", "rate_default": 2.51, "coins": [0.01, 0.05, 0.1, 0.25, 1, 2.5], "bills": [5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "США", "currency": "USD", "currency_name": "Доллар США", "coin_name": "цент", "rate_default": 85.11, "coins": [0.01, 0.05, 0.1, 0.25, 0.5, 1], "bills": [1, 2, 5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "Тринидад и Тобаго", "currency": "TTD", "currency_name": "Доллар Тринидада и Тобаго", "coin_name": "", "rate_default": 12.53, "coins": [0.05, 0.1, 0.25, 0.5], "bills": [1, 5, 10, 20, 50, 100] },
-      { "region": "Америка", "country": "Уругвай", "currency": "UYU", "currency_name": "Уругвайское песо", "coin_name": "", "rate_default": 2.16, "coins": [1, 2, 5, 10, 50], "bills": [20, 50, 100, 200, 500, 1000, 2000] },
-      { "region": "Америка", "country": "Фолклендские острова", "currency": "FKP", "currency_name": "Фунт Фолклендских островов", "coin_name": "", "rate_default": 112.74, "coins": [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50] },
-      { "region": "Америка", "country": "Чили", "currency": "CLP", "currency_name": "Чилийское песо", "coin_name": "", "rate_default": 0.091, "coins": [10, 50, 100, 500], "bills": [1000, 2000, 5000, 10000, 20000] },
-      { "region": "Америка", "country": "Эквадор", "currency": "ECS", "currency_name": "Эквадорский сукре", "coin_name": "сентаво", "is_historical": true, "rate_default": 0.003, "coins": [0.01, 0.05, 0.1, 0.25, 0.5], "bills": [5, 10, 20, 50, 100, 500, 1000, 5000, 10000, 20000, 50000] },
-      { "region": "Америка", "country": "Ямайка", "currency": "JMD", "currency_name": "Ямайский доллар", "coin_name": "", "rate_default": 0.55, "coins": [1, 5, 10, 20], "bills": [50, 100, 500, 1000, 2000, 5000] },
-
-//АВСТРАЛИЯ И ОКЕАНИЯ
-      { "region": "Австралия и Океания", "country": "Австралия", "currency": "AUD", "currency_name": "Австралийский доллар", "coin_name": "", "rate_default": 59.43, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "region": "Австралия и Океания", "country": "Вануату", "currency": "VUV", "currency_name": "Вату Вануату", "coin_name": "", "rate_default": 0.76, "coins": [], "bills": [200, 500, 1000, 2000, 5000, 10000] },
-      { "region": "Австралия и Океания", "country": "Новая Зеландия", "currency": "NZD", "currency_name": "Новозеландский доллар", "coin_name": "", "rate_default": 53.64, "coins": [0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "region": "Австралия и Океания", "country": "Папуа — Новая Гвинея", "currency": "PGK", "currency_name": "Кина", "coin_name": "", "rate_default": 21.65, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [2, 5, 10, 20, 50, 100] },
-      { "region": "Австралия и Океания", "country": "Самоа", "currency": "WST", "currency_name": "Тала", "coin_name": "", "rate_default": 30.22, "coins": [0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "region": "Австралия и Океания", "country": "Соломоновы Острова", "currency": "SBD", "currency_name": "Доллар Соломоновых Островов", "coin_name": "", "rate_default": 10.02, "coins": [0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] },
-      { "region": "Австралия и Океания", "country": "Тонга", "currency": "TOP", "currency_name": "Паанга", "coin_name": "", "rate_default": 35.41, "coins": [0.05, 0.1, 0.2, 0.5, 1], "bills": [2, 5, 10, 20, 50, 100] },
-      { "region": "Австралия и Океания", "country": "Фиджи", "currency": "FJD", "currency_name": "Доллар Фиджи", "coin_name": "", "rate_default": 37.85, "coins": [0.05, 0.1, 0.2, 0.5, 1, 2], "bills": [5, 10, 20, 50, 100] }
-    ];
+  {"region":"Европа","country":"Албания","currency":"ALL","currency_name":"Албанский лек","coin_name":"","rate_default":0.92,"coins":[1,5,10,20,50,100],"bills":[200,500,1000,2000,5000]},
+  {"region":"Европа","country":"Беларусь","currency":"BYN","currency_name":"Белорусский рубль","coin_name":"копейка","rate_default":28.02,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200,500]},
+  {"region":"Европа","country":"Болгария","currency":"BGN","currency_name":"Болгарский лев","coin_name":"стотинка","rate_default":47.06,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200,500]},
+  {"region":"Европа","country":"Босния и Герцеговина","currency":"BAM","currency_name":"Конвертируемая марка","coin_name":"фенинг","rate_default":48.65,"coins":[0.05,0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200]},
+  {"region":"Европа","country":"Великобритания","currency":"GBP","currency_name":"Фунт стерлингов","coin_name":"пенни","rate_default":112.74,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50]},
+  {"region":"Европа","country":"Венгрия","currency":"HUF","currency_name":"Венгерский форинт","coin_name":"","rate_default":0.26,"coins":[5,10,20,50,100,200],"bills":[500,1000,2000,5000,10000,20000]},
+  {"region":"Европа","country":"Гибралтар","currency":"GIP","currency_name":"Гибралтарский фунт","coin_name":"пенни","rate_default":112.74,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100]},
+  {"region":"Европа","country":"Дания","currency":"DKK","currency_name":"Датская крона","coin_name":"эре","rate_default":12.76,"coins":[0.5,1,2,5,10,20],"bills":[50,100,200,500,1000]},
+  {"region":"Европа","country":"Еврозона","currency":"EUR","currency_name":"Евро","coin_name":"евроцент","rate_default":95.42,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200,500]},
+  {"region":"Европа","country":"Исландия","currency":"ISK","currency_name":"Исландская крона","coin_name":"","rate_default":0.62,"coins":[1,5,10,50,100],"bills":[500,1000,2000,5000,10000]},
+  {"region":"Европа","country":"Молдова","currency":"MDL","currency_name":"Молдавский лей","coin_name":"бань","rate_default":4.76,"coins":[0.01,0.05,0.1,0.25,0.5,1,2,5,10],"bills":[1,5,10,20,50,100,200,500,1000]},
+  {"region":"Европа","country":"Норвегия","currency":"NOK","currency_name":"Норвежская крона","coin_name":"","rate_default":8.9,"coins":[1,5,10,20],"bills":[50,100,200,500,1000]},
+  {"region":"Европа","country":"Польша","currency":"PLN","currency_name":"Польский злотый","coin_name":"грош","rate_default":21.72,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200,500]},
+  {"region":"Европа","country":"Россия","currency":"RUB","currency_name":"Российский рубль","coin_name":"копейка","rate_default":1,"coins":[0.05,0.1,0.5,1,2,5,10],"bills":[5,10,50,100,200,500,1000,2000,5000]},
+  {"region":"Европа","country":"Румыния","currency":"RON","currency_name":"Румынский лей","coin_name":"бань","rate_default":17.88,"coins":[0.01,0.05,0.1,0.5],"bills":[1,5,10,50,100,200,500]},
+  {"region":"Европа","country":"Северная Македония","currency":"MKD","currency_name":"Македонский денар","coin_name":"","rate_default":1.54,"coins":[1,2,5,10,50],"bills":[10,50,100,200,500,1000,2000]},
+  {"region":"Европа","country":"Сербия","currency":"RSD","currency_name":"Сербский динар","coin_name":"","rate_default":0.81,"coins":[1,2,5,10,20],"bills":[10,20,50,100,200,500,1000,2000,5000]},
+  {"region":"Европа","country":"Украина","currency":"UAH","currency_name":"Украинская гривна","coin_name":"копейка","rate_default":2.15,"coins":[0.1,0.5,1,2,5,10],"bills":[20,50,100,200,500,1000]},
+  {"region":"Европа","country":"Швейцария","currency":"CHF","currency_name":"Швейцарский франк","coin_name":"раппен","rate_default":102.55,"coins":[0.05,0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200,1000]},
+  {"region":"Европа","country":"Швеция","currency":"SEK","currency_name":"Шведская крона","coin_name":"","rate_default":8.5,"coins":[1,2,5,10],"bills":[20,50,100,200,500,1000]},
+  {"region":"Европа","country":"Чехия","currency":"CZK","currency_name":"Чешская крона","coin_name":"","rate_default":3.91,"coins":[1,2,5,10,20,50],"bills":[100,200,500,1000,2000,5000]},
+  {"region":"Азия","country":"Азербайджан","currency":"AZN","currency_name":"Азербайджанский манат","coin_name":"гяпик","rate_default":50.06,"coins":[0.01,0.03,0.05,0.1,0.2,0.5],"bills":[1,5,10,20,50,100,200,500]},
+  {"region":"Азия","country":"Армения","currency":"AMD","currency_name":"Армянский драм","coin_name":"","rate_default":0.23,"coins":[10,20,50,100,200,500],"bills":[1000,2000,5000,10000,20000,50000,100000]},
+  {"region":"Азия","country":"Афганистан","currency":"AFN","currency_name":"Афгани","coin_name":"","rate_default":1.25,"coins":[1,2,5],"bills":[10,20,50,100,500,1000]},
+  {"region":"Азия","country":"Бангладеш","currency":"BDT","currency_name":"Бангладешская така","coin_name":"","rate_default":0.72,"coins":[1,2,5],"bills":[2,5,10,20,50,100,200,500,1000]},
+  {"region":"Азия","country":"Бахрейн","currency":"BHD","currency_name":"Бахрейнский динар","coin_name":"филс","rate_default":226.4,"coins":[0.005,0.01,0.025,0.05,0.1,0.5],"bills":[0.5,1,5,10,20]},
+  {"region":"Азия","country":"Бруней","currency":"BND","currency_name":"Брунейский доллар","coin_name":"сен","rate_default":66.57,"coins":[0.01,0.05,0.1,0.2,0.5],"bills":[1,5,10,50,100]},
+  {"region":"Азия","country":"Бутан","currency":"BTN","currency_name":"Нгултрум","coin_name":"четрум","rate_default":0.88,"coins":[0.2,0.25,0.5,1],"bills":[1,5,10,20,50,100,500,1000]},
+  {"region":"Азия","country":"Вьетнам","currency":"VND","currency_name":"Вьетнамский донг","coin_name":"","rate_default":0.0032,"coins":[200,500,1000,2000,5000],"bills":[100,200,500,1000,2000,5000,10000,20000,50000,100000,200000,500000]},
+  {"region":"Азия","country":"Гонконг","currency":"HKD","currency_name":"Гонконгский доллар","coin_name":"цент","rate_default":10.84,"coins":[0.1,0.2,0.5,1,2,5,10],"bills":[20,50,100,500,1000]},
+  {"region":"Азия","country":"Грузия","currency":"GEL","currency_name":"Грузинский лари","coin_name":"тетри","rate_default":32.86,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200]},
+  {"region":"Азия","country":"Израиль","currency":"ILS","currency_name":"Новый израильский шекель","coin_name":"агора","rate_default":23.1,"coins":[0.1,0.5,1,2,5,10],"bills":[20,50,100,200]},
+  {"region":"Азия","country":"Индия","currency":"INR","currency_name":"Индийская рупия","coin_name":"","rate_default":0.88,"coins":[0.5,1,2,5,10,20],"bills":[5,10,20,50,100,200,500]},
+  {"region":"Азия","country":"Индонезия","currency":"IDR","currency_name":"Индонезийская рупия","coin_name":"","rate_default":0.0055,"coins":[100,200,500,1000],"bills":[1000,2000,5000,10000,20000,50000,100000]},
+  {"region":"Азия","country":"Иордания","currency":"JOD","currency_name":"Иорданский динар","coin_name":"","rate_default":120.1,"coins":[0.01,0.025,0.05,0.1,0.25,0.5,1],"bills":[1,5,10,20,50]},
+  {"region":"Азия","country":"Ирак","currency":"IQD","currency_name":"Иракский динар","coin_name":"","rate_default":0.065,"coins":[],"bills":[250,500,1000,5000,10000,25000,50000]},
+  {"region":"Азия","country":"Иран","currency":"IRR","currency_name":"Иранский риал","coin_name":"","rate_default":0.002,"coins":[],"bills":[10000,20000,50000,100000]},
+  {"region":"Азия","country":"Йемен","currency":"YER","currency_name":"Йеменский риал","coin_name":"","rate_default":0.34,"coins":[],"bills":[50,100,200,500,1000]},
+  {"region":"Азия","country":"Казахстан","currency":"KZT","currency_name":"Казахстанский тенге","coin_name":"тиын","rate_default":0.18,"coins":[1,2,5,10,20,50,100,200],"bills":[200,500,1000,2000,5000,10000,20000]},
+  {"region":"Азия","country":"Камбоджа","currency":"KHR","currency_name":"Риель","coin_name":"","rate_default":0.021,"coins":[],"bills":[100,500,1000,2000,5000,10000,15000,20000,50000]},
+  {"region":"Азия","country":"Катар","currency":"QAR","currency_name":"Катарский риал","coin_name":"дирхам","rate_default":23.38,"coins":[0.01,0.05,0.1,0.25,0.5],"bills":[1,5,10,50,100,200,500]},
+  {"region":"Азия","country":"Китай","currency":"CNY","currency_name":"Китайский юань","coin_name":"","rate_default":12.71,"coins":[0.01,0.02,0.05,0.1,0.5,1],"bills":[0.1,0.2,0.5,1,5,10,20,50,100]},
+  {"region":"Азия","country":"Кувейт","currency":"KWD","currency_name":"Кувейтский динар","coin_name":"филс","rate_default":277.5,"coins":[0.005,0.01,0.02,0.05,0.1],"bills":[0.25,0.5,1,5,10,20]},
+  {"region":"Азия","country":"Кыргызстан","currency":"KGS","currency_name":"Кыргызский сом","coin_name":"тыйын","rate_default":0.97,"coins":[0.1,0.5,1,3,5,10],"bills":[20,50,100,200,500,1000,2000,5000]},
+  {"region":"Азия","country":"Лаос","currency":"LAK","currency_name":"Кип","coin_name":"","rate_default":0.0039,"coins":[],"bills":[500,1000,2000,5000,10000,20000,50000,100000]},
+  {"region":"Азия","country":"Ливан","currency":"LBP","currency_name":"Ливанский фунт","coin_name":"","rate_default":0.00095,"coins":[],"bills":[1000,5000,10000,20000,50000,100000]},
+  {"region":"Азия","country":"Макао","currency":"MOP","currency_name":"Патака","coin_name":"аво","rate_default":10.6,"coins":[0.1,0.2,0.5,1,2,5,10],"bills":[10,20,50,100,500,1000]},
+  {"region":"Азия","country":"Малайзия","currency":"MYR","currency_name":"Малайзийский ринггит","coin_name":"сен","rate_default":19.3,"coins":[0.05,0.1,0.2,0.5],"bills":[1,5,10,20,50,100]},
+  {"region":"Азия","country":"Мальдивы","currency":"MVR","currency_name":"Руфия","coin_name":"лаари","rate_default":5.5,"coins":[0.01,0.02,0.05,0.1,0.25,0.5,1,2],"bills":[5,10,20,50,100,500,1000]},
+  {"region":"Азия","country":"Монголия","currency":"MNT","currency_name":"Тугрик","coin_name":"","rate_default":0.025,"coins":[],"bills":[1,5,10,20,50,100,500,1000,5000,10000,20000]},
+  {"region":"Азия","country":"Мьянма","currency":"MMK","currency_name":"Кьят","coin_name":"","rate_default":0.04,"coins":[],"bills":[50,100,200,500,1000,5000,10000]},
+  {"region":"Азия","country":"Непал","currency":"NPR","currency_name":"Непальская рупия","coin_name":"","rate_default":0.55,"coins":[1,2,5,10],"bills":[5,10,20,50,100,500,1000]},
+  {"region":"Азия","country":"ОАЭ","currency":"AED","currency_name":"Дирхам ОАЭ","coin_name":"филс","rate_default":23.17,"coins":[0.25,0.5,1],"bills":[5,10,20,50,100,200,500,1000]},
+  {"region":"Азия","country":"Оман","currency":"OMR","currency_name":"Оманский риал","coin_name":"байса","rate_default":221.2,"coins":[0.005,0.01,0.025,0.05],"bills":[0.1,0.25,0.5,1,5,10,20,50]},
+  {"region":"Азия","country":"Пакистан","currency":"PKR","currency_name":"Пакистанская рупия","coin_name":"","rate_default":0.31,"coins":[1,2,5,10],"bills":[10,20,50,100,500,1000,5000]},
+  {"region":"Азия","country":"Саудовская Аравия","currency":"SAR","currency_name":"Саудовский риал","coin_name":"халала","rate_default":22.7,"coins":[0.01,0.05,0.1,0.25,0.5,1,2],"bills":[5,10,50,100,500]},
+  {"region":"Азия","country":"Северная Корея","currency":"KPW","currency_name":"Северокорейская вона","coin_name":"","rate_default":0.09,"coins":[0.01,0.05,0.1,0.5,1],"bills":[5,10,50,100,200,500,1000,2000,5000]},
+  {"region":"Азия","country":"Сингапур","currency":"SGD","currency_name":"Сингапурский доллар","coin_name":"цент","rate_default":64.1,"coins":[0.05,0.1,0.2,0.5,1],"bills":[2,5,10,50,100,1000]},
+  {"region":"Азия","country":"Сирия","currency":"SYP","currency_name":"Сирийский фунт","coin_name":"","rate_default":0.0065,"coins":[1,2,5,10,25],"bills":[50,100,200,500,1000,2000,5000]},
+  {"region":"Азия","country":"Таджикистан","currency":"TJS","currency_name":"Таджикский сомони","coin_name":"дирам","rate_default":9.26,"coins":[0.1,0.2,0.5,1,3,5],"bills":[1,5,10,20,50,100,200,500]},
+  {"region":"Азия","country":"Таиланд","currency":"THB","currency_name":"Таиландский бат","coin_name":"сатанг","rate_default":2.53,"coins":[0.01,0.05,0.1,0.25,0.5,1,2,5,10],"bills":[20,50,100,500,1000]},
+  {"region":"Азия","country":"Тайвань","currency":"TWD","currency_name":"Новый тайваньский доллар","coin_name":"","rate_default":2.65,"coins":[1,5,10,20,50],"bills":[100,200,500,1000,2000]},
+  {"region":"Азия","country":"Туркменистан","currency":"TMT","currency_name":"Туркменский манат","coin_name":"тенге","rate_default":24.29,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[1,5,10,20,50,100]},
+  {"region":"Азия","country":"Турция","currency":"TRY","currency_name":"Турецкая лира","coin_name":"куруш","rate_default":1.72,"coins":[0.01,0.05,0.1,0.25,0.5,1],"bills":[5,10,20,50,100,200]},
+  {"region":"Азия","country":"Узбекистан","currency":"UZS","currency_name":"Узбекский сум","coin_name":"","rate_default":0.0075,"coins":[50,100,200,500],"bills":[1000,2000,5000,10000,20000,50000,100000,200000]},
+  {"region":"Азия","country":"Филиппины","currency":"PHP","currency_name":"Филиппинское песо","coin_name":"сентимо","rate_default":1.48,"coins":[0.01,0.05,0.25,1,5,10,20],"bills":[20,50,100,200,500,1000]},
+  {"region":"Азия","country":"Шри-Ланка","currency":"LKR","currency_name":"Шри-Ланкийская рупия","coin_name":"","rate_default":0.29,"coins":[1,2,5,10],"bills":[20,50,100,500,1000,5000]},
+  {"region":"Азия","country":"Южная Корея","currency":"KRW","currency_name":"Южнокорейская вона","coin_name":"","rate_default":0.063,"coins":[1,5,10,50,100,500],"bills":[1000,2000,5000,10000,50000]},
+  {"region":"Азия","country":"Япония","currency":"JPY","currency_name":"Японская иена","coin_name":"","rate_default":0.53,"coins":[1,5,10,50,100,500],"bills":[1000,2000,5000,10000]},
+  {"region":"Африка","country":"Алжир","currency":"DZD","currency_name":"Алжирский динар","coin_name":"","rate_default":0.63,"coins":[5,10,20,50],"bills":[100,200,500,1000,2000]},
+  {"region":"Африка","country":"Ангола","currency":"AOA","currency_name":"Кванза","coin_name":"","rate_default":0.09,"coins":[0.5,1,5,10,20],"bills":[1,5,10,50,100,200,500,1000,2000,5000]},
+  {"region":"Африка","country":"Ботсвана","currency":"BWP","currency_name":"Пула","coin_name":"тхебе","rate_default":6.31,"coins":[0.05,0.1,0.25,0.5,1,2,5],"bills":[10,20,50,100,200]},
+  {"region":"Африка","country":"Бурунди","currency":"BIF","currency_name":"Бурундийский франк","coin_name":"","rate_default":0.02,"coins":[],"bills":[100,500,1000,2000,5000,10000]},
+  {"region":"Африка","country":"Гамбия","currency":"GMD","currency_name":"Даласи","coin_name":"бутут","rate_default":1.22,"coins":[0.01,0.05,0.1,0.25,0.5,1],"bills":[5,10,25,50,100,200]},
+  {"region":"Африка","country":"Гана","currency":"GHS","currency_name":"Ганский седи","coin_name":"песева","rate_default":1.22,"coins":[0.01,0.05,0.1,0.2,0.5,1],"bills":[1,2,5,10,20,50,100,200]},
+  {"region":"Африка","country":"Гвинея","currency":"GNF","currency_name":"Гвинейский франк","coin_name":"","rate_default":0.0098,"coins":[],"bills":[100,500,1000,2000,5000,10000,20000]},
+  {"region":"Африка","country":"Джибути","currency":"DJF","currency_name":"Франк Джибути","coin_name":"","rate_default":0.48,"coins":[5,10,20,50,100,250,500],"bills":[1000,2000,5000,10000]},
+  {"region":"Африка","country":"Египет","currency":"EGP","currency_name":"Египетский фунт","coin_name":"пиастр","rate_default":1.62,"coins":[0.05,0.1,0.25,0.5,1],"bills":[0.25,0.5,1,5,10,20,50,100,200]},
+  {"region":"Африка","country":"Замбия","currency":"ZMW","currency_name":"Замбийская квача","coin_name":"нгве","rate_default":1.22,"coins":[0.05,0.1,0.5,1],"bills":[2,5,10,20,50,100]},
+  {"region":"Африка","country":"Зимбабве","currency":"ZWG","currency_name":"Зимбабвийский золотой (ZiG)","coin_name":"цент","rate_default":3.2,"coins":[1,2,5],"bills":[10,20,50]},
+  {"region":"Африка","country":"Кабо-Верде","currency":"CVE","currency_name":"Эскудо Кабо-Верде","coin_name":"","rate_default":0.86,"coins":[1,5,10,20,50,100],"bills":[200,500,1000,2000,2500,5000]},
+  {"region":"Африка","country":"Кения","currency":"KES","currency_name":"Кенийский шиллинг","coin_name":"цент","rate_default":0.66,"coins":[1,5,10,20],"bills":[50,100,200,500,1000]},
+  {"region":"Африка","country":"Коморы","currency":"KMF","currency_name":"Коморский франк","coin_name":"","rate_default":0.194,"coins":[25,50,100,250],"bills":[500,1000,2000,5000,10000]},
+  {"region":"Африка","country":"Демократическая Республика Конго","currency":"CDF","currency_name":"Конголезский франк","coin_name":"","rate_default":0.036,"coins":[],"bills":[50,100,200,500,1000,5000,10000,20000]},
+  {"region":"Африка","country":"Лесото","currency":"LSL","currency_name":"Лоти","coin_name":"сенте","rate_default":5.16,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200]},
+  {"region":"Африка","country":"Либерия","currency":"LRD","currency_name":"Либерийский доллар","coin_name":"","rate_default":0.44,"coins":[0.05,0.1,0.25,0.5,1],"bills":[5,10,20,50,100,500]},
+  {"region":"Африка","country":"Ливия","currency":"LYD","currency_name":"Ливийский динар","coin_name":"дирхам","rate_default":17.65,"coins":[0.01,0.05,0.1,0.25,0.5],"bills":[0.25,0.5,1,5,10,20,50]},
+  {"region":"Африка","country":"Мадагаскар","currency":"MGA","currency_name":"Малагасийский ариари","coin_name":"","rate_default":0.019,"coins":[],"bills":[100,200,500,1000,2000,5000,10000,20000]},
+  {"region":"Африка","country":"Малави","currency":"MWK","currency_name":"Малавийская квача","coin_name":"тамбала","rate_default":0.049,"coins":[],"bills":[20,50,100,200,500,1000,2000]},
+  {"region":"Африка","country":"Мавритания","currency":"MRU","currency_name":"Угия","coin_name":"","rate_default":2.14,"coins":[0.2,1,5,10,20],"bills":[20,50,100,200,500,1000]},
+  {"region":"Африка","country":"Маврикий","currency":"MUR","currency_name":"Маврикийская рупия","coin_name":"цент","rate_default":1.84,"coins":[0.05,0.2,0.5,1,5,10,20],"bills":[25,50,100,200,500,1000,2000]},
+  {"region":"Африка","country":"Марокко","currency":"MAD","currency_name":"Марокканский дирхам","coin_name":"сантим","rate_default":8.64,"coins":[0.1,0.2,0.5,1,2,5,10],"bills":[20,50,100,200]},
+  {"region":"Африка","country":"Мозамбик","currency":"MZN","currency_name":"Метикал","coin_name":"сентаво","rate_default":1.33,"coins":[0.01,0.05,0.1,0.2,0.5,1,2,5,10],"bills":[20,50,100,200,500,1000]},
+  {"region":"Африка","country":"Намибия","currency":"NAD","currency_name":"Намибийский доллар","coin_name":"цент","rate_default":5.16,"coins":[0.05,0.1,0.2,0.5,1,5,10],"bills":[10,20,50,100,200]},
+  {"region":"Африка","country":"Нигерия","currency":"NGN","currency_name":"Найра","coin_name":"кобо","rate_default":0.053,"coins":[0.5,1,2],"bills":[5,10,20,50,100,200,500,1000]},
+  {"region":"Африка","country":"Руанда","currency":"RWF","currency_name":"Франк Руанды","coin_name":"","rate_default":0.063,"coins":[1,5,10,20,50,100],"bills":[500,1000,2000,5000]},
+  {"region":"Африка","country":"Сан-Томе и Принсипи","currency":"STN","currency_name":"Добра","coin_name":"сентимо","rate_default":3.78,"coins":[0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200]},
+  {"region":"Африка","country":"Сейшелы","currency":"SCR","currency_name":"Сейшельская рупия","coin_name":"цент","rate_default":6.12,"coins":[0.05,0.1,0.25,1,5],"bills":[25,50,100,500]},
+  {"region":"Африка","country":"Сьерра-Леоне","currency":"SLE","currency_name":"Леоне","coin_name":"цент","rate_default":3.75,"coins":[0.01,0.05,0.1,0.25,0.5],"bills":[1,2,5,10,20]},
+  {"region":"Африка","country":"Сомали","currency":"SOS","currency_name":"Сомалийский шиллинг","coin_name":"","rate_default":0.15,"coins":[],"bills":[500,1000]},
+  {"region":"Африка","country":"Судан","currency":"SDG","currency_name":"Суданский фунт","coin_name":"","rate_default":0.14,"coins":[],"bills":[100,200,500,1000]},
+  {"region":"Африка","country":"Танзания","currency":"TZS","currency_name":"Танзанийский шиллинг","coin_name":"","rate_default":0.031,"coins":[50,100,200,500],"bills":[1000,2000,5000,10000]},
+  {"region":"Африка","country":"Тунис","currency":"TND","currency_name":"Тунисский динар","coin_name":"миллим","rate_default":28.03,"coins":[0.005,0.01,0.02,0.05,0.1,0.2,0.5,1,2,5],"bills":[5,10,20,50]},
+  {"region":"Африка","country":"Уганда","currency":"UGX","currency_name":"Угандийский шиллинг","coin_name":"","rate_default":0.023,"coins":[50,100,200,500,1000],"bills":[1000,2000,5000,10000,20000,50000]},
+  {"region":"Африка","country":"Центральная Африка (зона BEAC)","currency":"XAF","currency_name":"Франк КФА BEAC","coin_name":"","rate_default":0.1455,"coins":[1,5,10,25,50,100,500],"bills":[500,1000,2000,5000,10000]},
+  {"region":"Африка","country":"Западная Африка (зона BCEAO)","currency":"XOF","currency_name":"Франк КФА BCEAO","coin_name":"","rate_default":0.1455,"coins":[1,5,10,25,50,100,200,250,500],"bills":[500,1000,2000,5000,10000]},
+  {"region":"Африка","country":"Острова Святой Елены","currency":"SHP","currency_name":"Фунт Святой Елены","coin_name":"пенни","rate_default":112.74,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20]},
+  {"region":"Африка","country":"Эритрея","currency":"ERN","currency_name":"Накфа","coin_name":"цент","rate_default":5.67,"coins":[0.01,0.05,0.1,0.25,0.5,1],"bills":[1,5,10,20,50,100]},
+  {"region":"Африка","country":"Эсватини","currency":"SZL","currency_name":"Лилангени","coin_name":"цент","rate_default":5.16,"coins":[0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200]},
+  {"region":"Африка","country":"Эфиопия","currency":"ETB","currency_name":"Эфиопский быр","coin_name":"сантим","rate_default":0.68,"coins":[0.01,0.05,0.1,0.25,0.5],"bills":[1,5,10,50,100,200]},
+  {"region":"Африка","country":"ЮАР","currency":"ZAR","currency_name":"Южноафриканский рэнд","coin_name":"цент","rate_default":5.16,"coins":[0.05,0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200]},
+  {"region":"Африка","country":"Южный Судан","currency":"SSP","currency_name":"Южносуданский фунт","coin_name":"пиастр","rate_default":0.065,"coins":[0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,500,1000]},
+  {"region":"Америка","country":"Аргентина","currency":"ARS","currency_name":"Аргентинское песо","coin_name":"сентаво","rate_default":0.085,"coins":[0.01,0.05,0.1,0.25,0.5,1,2,5,10],"bills":[10,20,50,100,200,500,1000,2000,10000,20000]},
+  {"region":"Америка","country":"Аруба","currency":"AWG","currency_name":"Арубанский флорин","coin_name":"цент","rate_default":47.55,"coins":[0.05,0.1,0.25,0.5,1,2.5,5],"bills":[10,25,50,100,200]},
+  {"region":"Америка","country":"Багамы","currency":"BSD","currency_name":"Багамский доллар","coin_name":"цент","rate_default":85.11,"coins":[0.01,0.05,0.1,0.15,0.25],"bills":[0.5,1,3,5,10,20,50,100]},
+  {"region":"Америка","country":"Барбадос","currency":"BBD","currency_name":"Барбадосский доллар","coin_name":"цент","rate_default":42.56,"coins":[0.01,0.05,0.1,0.25],"bills":[2,5,10,20,50,100]},
+  {"region":"Америка","country":"Бермудские Острова","currency":"BMD","currency_name":"Бермудский доллар","coin_name":"цент","rate_default":85.11,"coins":[0.01,0.05,0.1,0.25,1],"bills":[2,5,10,20,50,100]},
+  {"region":"Америка","country":"Боливия","currency":"BOB","currency_name":"Боливиано","coin_name":"сентаво","rate_default":12.35,"coins":[0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200]},
+  {"region":"Америка","country":"Белиз","currency":"BZD","currency_name":"Белизский доллар","coin_name":"цент","rate_default":42.56,"coins":[0.01,0.05,0.1,0.25,0.5,1],"bills":[2,5,10,20,50,100]},
+  {"region":"Америка","country":"Бразилия","currency":"BRL","currency_name":"Бразильский реал","coin_name":"сентаво","rate_default":17.05,"coins":[0.01,0.05,0.1,0.25,0.5,1],"bills":[2,5,10,20,50,100,200]},
+  {"region":"Америка","country":"Венесуэла","currency":"VES","currency_name":"Венесуэльский боливар","coin_name":"сентимо","rate_default":0.097,"coins":[0.25,0.5,1],"bills":[5,10,20,50,100,200,500]},
+  {"region":"Америка","country":"Восточно-карибские государства","currency":"XCD","currency_name":"Восточно-карибский доллар","coin_name":"цент","rate_default":31.52,"coins":[0.05,0.1,0.25,1,2],"bills":[5,10,20,50,100]},
+  {"region":"Америка","country":"Гватемала","currency":"GTQ","currency_name":"Кетсаль","coin_name":"сентаво","rate_default":10.95,"coins":[0.01,0.05,0.1,0.25,0.5,1],"bills":[1,5,10,20,50,100,200]},
+  {"region":"Америка","country":"Гайана","currency":"GYD","currency_name":"Гайанский доллар","coin_name":"","rate_default":0.41,"coins":[1,5,10],"bills":[20,50,100,500,1000,5000]},
+  {"region":"Америка","country":"Гаити","currency":"HTG","currency_name":"Гурд","coin_name":"сантим","rate_default":0.64,"coins":[0.5,1,5],"bills":[10,20,25,50,100,250,500,1000]},
+  {"region":"Америка","country":"Гондурас","currency":"HNL","currency_name":"Лемпира","coin_name":"сентаво","rate_default":3.37,"coins":[0.05,0.1,0.2,0.5],"bills":[1,2,5,10,20,50,100,200,500]},
+  {"region":"Америка","country":"Доминиканская Республика","currency":"DOP","currency_name":"Доминиканское песо","coin_name":"сентаво","rate_default":1.41,"coins":[1,5,10,25],"bills":[20,50,100,200,500,1000,2000]},
+  {"region":"Америка","country":"Каймановы Острова","currency":"KYD","currency_name":"Доллар Каймановых Островов","coin_name":"цент","rate_default":102.13,"coins":[0.01,0.05,0.1,0.25],"bills":[1,5,10,25,50,100]},
+  {"region":"Америка","country":"Канада","currency":"CAD","currency_name":"Канадский доллар","coin_name":"цент","rate_default":59.7,"coins":[0.05,0.1,0.25,0.5,1,2],"bills":[5,10,20,50,100]},
+  {"region":"Америка","country":"Колумбия","currency":"COP","currency_name":"Колумбийское песо","coin_name":"","rate_default":0.021,"coins":[50,100,200,500,1000],"bills":[2000,5000,10000,20000,50000,100000]},
+  {"region":"Америка","country":"Коста-Рика","currency":"CRC","currency_name":"Костариканский колон","coin_name":"","rate_default":0.16,"coins":[5,10,25,50,100,500],"bills":[1000,2000,5000,10000,20000]},
+  {"region":"Америка","country":"Куба","currency":"CUP","currency_name":"Кубинское песо","coin_name":"сентаво","rate_default":3.55,"coins":[0.01,0.02,0.05,0.2,1,3,5],"bills":[1,3,5,10,20,50,100,200,500,1000]},
+  {"region":"Америка","country":"Мексика","currency":"MXN","currency_name":"Мексиканское песо","coin_name":"сентаво","rate_default":4.62,"coins":[0.05,0.1,0.2,0.5,1,2,5,10,20],"bills":[20,50,100,200,500,1000]},
+  {"region":"Америка","country":"Никарагуа","currency":"NIO","currency_name":"Кордоба","coin_name":"сентаво","rate_default":2.32,"coins":[0.05,0.1,0.25,0.5,1,5],"bills":[10,20,50,100,200,500,1000]},
+  {"region":"Америка","country":"Панама","currency":"PAB","currency_name":"Бальбоа","coin_name":"сентесимо","rate_default":85.11,"coins":[0.01,0.05,0.1,0.25,0.5,1],"bills":[]},
+  {"region":"Америка","country":"Парагвай","currency":"PYG","currency_name":"Гуарани","coin_name":"","rate_default":0.011,"coins":[50,100,500,1000],"bills":[2000,5000,10000,20000,50000,100000]},
+  {"region":"Америка","country":"Перу","currency":"PEN","currency_name":"Соль","coin_name":"сентимо","rate_default":22.82,"coins":[0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200]},
+  {"region":"Америка","country":"Сальвадор","currency":"USD","currency_name":"Доллар США","coin_name":"цент","rate_default":85.11,"coins":[0.01,0.05,0.1,0.25,0.5,1],"bills":[1,2,5,10,20,50,100]},
+  {"region":"Америка","country":"Суринам","currency":"SRD","currency_name":"Суринамский доллар","coin_name":"цент","rate_default":2.51,"coins":[0.01,0.05,0.1,0.25,1,2.5],"bills":[5,10,20,50,100]},
+  {"region":"Америка","country":"США","currency":"USD","currency_name":"Доллар США","coin_name":"цент","rate_default":85.11,"coins":[0.01,0.05,0.1,0.25,0.5,1],"bills":[1,2,5,10,20,50,100]},
+  {"region":"Америка","country":"Тринидад и Тобаго","currency":"TTD","currency_name":"Доллар Тринидада и Тобаго","coin_name":"цент","rate_default":12.53,"coins":[0.05,0.1,0.25,0.5],"bills":[1,5,10,20,50,100]},
+  {"region":"Америка","country":"Уругвай","currency":"UYU","currency_name":"Уругвайское песо","coin_name":"","rate_default":2.16,"coins":[1,2,5,10,50],"bills":[20,50,100,200,500,1000,2000]},
+  {"region":"Америка","country":"Фолклендские острова","currency":"FKP","currency_name":"Фунт Фолклендских островов","coin_name":"пенни","rate_default":112.74,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50]},
+  {"region":"Америка","country":"Чили","currency":"CLP","currency_name":"Чилийское песо","coin_name":"","rate_default":0.091,"coins":[10,50,100,500],"bills":[1000,2000,5000,10000,20000]},
+  {"region":"Америка","country":"Эквадор","currency":"ECS","currency_name":"Эквадорский сукре","coin_name":"сентаво","is_historical":true,"rate_default":0.003,"coins":[0.01,0.05,0.1,0.25,0.5],"bills":[5,10,20,50,100,500,1000,5000,10000,20000,50000]},
+  {"region":"Америка","country":"Ямайка","currency":"JMD","currency_name":"Ямайский доллар","coin_name":"","rate_default":0.55,"coins":[1,5,10,20],"bills":[50,100,500,1000,2000,5000]},
+  {"region":"Австралия и Океания","country":"Австралия","currency":"AUD","currency_name":"Австралийский доллар","coin_name":"цент","rate_default":59.43,"coins":[0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100]},
+  {"region":"Австралия и Океания","country":"Вануату","currency":"VUV","currency_name":"Вату Вануату","coin_name":"","rate_default":0.76,"coins":[1,2,5,10,20,50,100],"bills":[200,500,1000,2000,5000,10000]},
+  {"region":"Австралия и Океания","country":"Новая Зеландия","currency":"NZD","currency_name":"Новозеландский доллар","coin_name":"цент","rate_default":53.64,"coins":[0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100]},
+  {"region":"Австралия и Океания","country":"Папуа — Новая Гвинея","currency":"PGK","currency_name":"Кина","coin_name":"тойя","rate_default":21.65,"coins":[0.05,0.1,0.2,0.5,1,2],"bills":[2,5,10,20,50,100]},
+  {"region":"Австралия и Океания","country":"Самоа","currency":"WST","currency_name":"Тала","coin_name":"сене","rate_default":30.22,"coins":[0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100]},
+  {"region":"Австралия и Океания","country":"Соломоновы Острова","currency":"SBD","currency_name":"Доллар Соломоновых Островов","coin_name":"","rate_default":10.02,"coins":[0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100]},
+  {"region":"Австралия и Океания","country":"Тонга","currency":"TOP","currency_name":"Паанга","coin_name":"сенити","rate_default":35.41,"coins":[0.05,0.1,0.2,0.5,1],"bills":[2,5,10,20,50,100]},
+  {"region":"Австралия и Океания","country":"Фиджи","currency":"FJD","currency_name":"Доллар Фиджи","coin_name":"цент","rate_default":37.85,"coins":[0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100]}
+];
 
 
 
@@ -424,7 +528,7 @@ window.WORLD_CATALOG = [
         downloadAnchor.setAttribute("download", "data.json");
         document.body.appendChild(downloadAnchor); 
         downloadAnchor.click(); 
-        downloadAnchor.remove();
+        downloadAnchor.remove(); localStorage.removeItem('numismat_dirty');
     };
 
 
@@ -436,7 +540,7 @@ window.WORLD_CATALOG = [
             try {
                 const importedData = JSON.parse(e.target.result);
                 if (Array.isArray(importedData)) {
-                    collection = importedData; localStorage.setItem('numismat_db', JSON.stringify(collection));
+                    collection = importedData; persist();
                     alert("Успешно восстановлено!"); renderApp();
                 }
             } catch (err) { alert("Ошибка файла."); }
@@ -467,7 +571,7 @@ window.WORLD_CATALOG = [
                             collection = collection.filter(item => !(item.country === countryName && item.nominal === parseFloat(nominalValue) && item.type === itemType));
                             
                             // 2. Сразу сохраняем чистую базу в память устройства
-                            localStorage.setItem('numismat_db', JSON.stringify(collection));
+                            persist();
                             
                             // 3. ФИКС ДУБЛЕЙ: Полностью сбрасываем форму и прячем кнопку удаления
                             form.reset();
@@ -502,7 +606,7 @@ window.WORLD_CATALOG = [
         };
 
         if (existingIdx > -1) { collection[existingIdx] = record; } else { collection.push(record); }
-        localStorage.setItem('numismat_db', JSON.stringify(collection));
+        persist();
         deleteBtn.style.display = 'none'; form.reset();
         nominalSelect.innerHTML = '<option value="">Сначала выберите страну</option>';
         renderApp();
@@ -511,7 +615,7 @@ window.WORLD_CATALOG = [
         // УМНАЯ АВТОЗАГРУЗКА ИЗ OБЛАКА С ИСПРАВЛЕНИЕМ СТАРЫХ ЗАПИСЕЙ БЭКАПА
     async function loadCloudCollection() {
         try {
-            const response = await fetch('data.json');
+            const response = localStorage.getItem('numismat_dirty') ? await Promise.resolve({ok:false}) : await fetch('data.json',{cache:'no-cache'});
             if (response.ok) {
                 let cloudData = await response.json();
                 if (Array.isArray(cloudData) && cloudData.length > 0) {
@@ -522,8 +626,8 @@ window.WORLD_CATALOG = [
                         }
                         return item;
                     });
-                    localStorage.setItem('numismat_db', JSON.stringify(collection));
-                    console.log("Коллекция успешно синхронизирована с GitHub!");
+                    persist();
+                    localStorage.removeItem('numismat_dirty');
                 }
             }
         } catch (error) {
@@ -533,7 +637,7 @@ window.WORLD_CATALOG = [
     }
 
     // Запуск приложения через облачный фильтр
-    loadCloudCollection();
+    window.__ready = loadCloudCollection();
 
 
  function renderApp() {
@@ -644,7 +748,7 @@ window.WORLD_CATALOG = [
                 "SBD": "sb", "TOP": "to", "WST": "ws", "BMD": "bm", "VND": "vn", 
                 "GHS": "gh", "ZMW": "zm", "ZWL": "zw", "KYD": "ky", "CDF": "cd", 
                 "KPW": "kp", "KRW": "kr", "SVC": "sv", "SHP": "sh", "TND": "tn", 
-                "FKP": "fk", "LBP": "lb", "ZWG": "zw"
+                "FKP": "fk", "LBP": "lb", "ZWG": "zw", "HKD": "hk"
             };
                 const flagCode = currencyToFlag[catalogCountry.currency] || "un";
 
@@ -771,12 +875,184 @@ window.WORLD_CATALOG = [
         });
 
         // Сохраняем обновленную чистую базу в память устройства
-        localStorage.setItem('numismat_db', JSON.stringify(collection));
+        persist();
         
         // Мгновенно перерисовываем альбом с новыми стилями флагов и рамок
         renderApp();
     };
 
+
+window.__classicReload=function(){collection=JSON.parse(localStorage.getItem('numismat_db'))||[];renderApp();};
+
+</script>
+<script>
+(()=>{
+
+const WORLD_CATALOG=window.WORLD_CATALOG;
+const FLAG={
+                    // Очищенный и исправленный транслятор валют в флаги
+                "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
+                "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
+                "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
+                "SEK": "se", "DKK": "dk", "PLN": "pl", "CZK": "cz", "HUF": "hu",
+                "RON": "ro", "BGN": "bg", "RSD": "rs", "USD": "us", "CAD": "ca",
+                "AUD": "au", "CNY": "cn", "JPY": "jp", "TRY": "tr", "AED": "ae",
+                "INR": "in", "THB": "th", "EGP": "eg", "ZAR": "za", "BRL": "br",
+                "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", 
+                "ECS": "ec", "ALL": "al", "BAM": "ba", "ISK": "is", "MKD": "mk", 
+                "UAH": "ua", "GIP": "gi", "JEP": "je", "GGY": "gg", "IMP": "im",
+                "AFN": "af", "BHD": "bh", "BDT": "bd", "BTN": "bt", "IDR": "id",
+                "ILS": "il", "IQD": "iq", "IRR": "ir", "JOD": "jo", "KWD": "kw",
+                "LBN": "lb", "LKR": "lk", "MMK": "mm", "MNT": "mn", "MOP": "mo",
+                "MVR": "mv", "MYR": "my", "NPR": "np", "OMR": "om", "PHP": "ph",
+                "PKR": "pk", "QAR": "qa", "SAR": "sa", "SGD": "sg", "SYP": "sy",
+                "TWD": "tw", "YER": "ye", "KHR": "kh", "LAK": "la", "DZD": "dz", 
+                "AOA": "ao", "BIF": "bi", "BWP": "bw", "GMD": "gm", "GNF": "gn", 
+                "DJF": "dj", "ERN": "er", "ETB": "et", "KES": "ke", "KMF": "km", 
+                "LSL": "ls", "LRD": "lr", "LYD": "ly", "MGA": "mg", "MWK": "mw", 
+                "MRU": "mr", "MUR": "mu", "MAD": "ma", "MZN": "mz", "NAD": "na", 
+                "NGN": "ng", "RWF": "rw", "SCR": "sc", "SLE": "sl", "SOS": "so", 
+                "SDG": "sd", "SZL": "sz", "TZS": "tz", "UGX": "ug", "XAF": "cf", 
+                "XOF": "sn", "STN": "st", "SSP": "ss", "ARS": "ar", "AWG": "aw", 
+                "BSD": "bs", "BBD": "bb", "BOB": "bo", "CLP": "cl", "COP": "co", 
+                "CRC": "cr", "CUP": "cu", "DOP": "do", "GTQ": "gt", "GYD": "gy", 
+                "HTG": "ht", "HNL": "hn", "JMD": "jm", "NIO": "ni", "PAB": "pa", 
+                "PYG": "py", "PEN": "pe", "SRD": "sr", "TTD": "tt", "UYU": "uy", 
+                "VES": "ve", "XCD": "lc", "FJD": "fj", "NZD": "nz", "PGK": "pg", 
+                "SBD": "sb", "TOP": "to", "WST": "ws", "BMD": "bm", "VND": "vn", 
+                "GHS": "gh", "ZMW": "zm", "ZWL": "zw", "KYD": "ky", "CDF": "cd", 
+                "KPW": "kp", "KRW": "kr", "SVC": "sv", "SHP": "sh", "TND": "tn", 
+                "FKP": "fk", "LBP": "lb", "ZWG": "zw", "HKD": "hk"
+            };
+const K='numismat_db',D='numismat_dirty',REG=['Европа','Азия','Африка','Америка','Австралия и Океания'];
+const ALIAS={'Европа':'Еврозона','Еврозона (Европа)':'Еврозона'};
+let col=[],cat=[],f={q:'',r:'',s:''},open=null,cur=null,flash=null;
+const $=s=>document.querySelector(s);
+const fmt=n=>(+n).toLocaleString('ru-RU',{maximumFractionDigits:3});
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fl=c=>'flags/'+(FLAG[c.currency]||'un')+'.svg';
+const IMG=c=>`<img src="${fl(c)}" alt="" onerror="this.style.visibility='hidden'">`;
+
+function norm(a){const m=new Map();a.forEach(i=>{i.country=ALIAS[i.country]||i.country;i.nominal=+i.nominal;i.cost=+i.cost||0;
+  const k=i.country+'|'+i.nominal+'|'+i.type,o=m.get(k);
+  if(!o||i.cost>o.cost){if(o&&o.is_historical)i.is_historical=true;m.set(k,i)}else if(i.is_historical)o.is_historical=true});
+  return [...m.values()]}
+
+function build(){
+  cat=WORLD_CATALOG.map(c=>({...c,coin_name:(c.coin_name||'').trim(),coins:[...(c.coins||[])],bills:[...(c.bills||[])]}));
+  const by=new Map(cat.map(c=>[c.country,c]));
+  col.forEach(i=>{let c=by.get(i.country);
+    if(!c){c={region:'Прочее',country:i.country,currency:i.currency||'',coin_name:'',coins:[],bills:[],rate_default:i.rate||0};cat.push(c);by.set(i.country,c)}
+    const l=i.type==='Купюра'?c.bills:c.coins;if(!l.includes(i.nominal))l.push(i.nominal)});
+  cat.forEach(c=>{c.coins.sort((a,b)=>a-b);c.bills.sort((a,b)=>a-b)});
+  cat.sort((a,b)=>a.country.localeCompare(b.country,'ru'))}
+
+const rg=l=>l.length?fmt(l[0])+(l.length>1?'–'+fmt(l[l.length-1]):''):'';
+const rng=c=>[c.coins.length&&'монеты '+rg(c.coins),c.bills.length&&'купюры '+rg(c.bills)].filter(Boolean).join(', ');
+function info(c){
+  const own=col.filter(i=>i.country===c.country),m=new Map(own.map(i=>[i.type+'|'+i.nominal,i]));
+  const items=[...c.coins.map(n=>['Монета',n]),...c.bills.map(n=>['Купюра',n])].map(([t,n])=>({t,n,it:m.get(t+'|'+n)}));
+  const got=items.filter(y=>y.it).length,tot=items.length;
+  return{own,items,got,tot,done:tot>0&&got===tot,
+    hist:own.length?own.every(i=>i.is_historical):!!c.is_historical,
+    spent:own.reduce((s,i)=>s+i.cost,0),face:own.reduce((s,i)=>s+i.nominal,0)}}
+
+function save(){localStorage.setItem(K,JSON.stringify(col));localStorage.setItem(D,'1');draw()}
+
+function draw(){
+  const I=cat.map(c=>[c,info(c)]);let started=0,done=0;
+  I.forEach(([c,x])=>{if(x.got)started++;if(x.done)done++});
+  $('#stats').innerHTML=[[fmt(col.reduce((s,i)=>s+i.cost,0))+' ₽','потрачено'],[col.length,'предметов'],[started+' из '+cat.length,'стран начато'],[done,'закрыто']].map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
+  $('#notice').hidden=!localStorage.getItem(D);
+  const regs=['',...REG,...new Set(cat.map(c=>c.region).filter(r=>!REG.includes(r)))];
+  $('#regions').innerHTML=regs.map(r=>`<button data-r="${r}" aria-pressed="${f.r===r}">${r||'Весь мир'}</button>`).join('');
+  $('#states').innerHTML=[['','Все'],['p','В процессе'],['n','Не начаты'],['d','Закрыты']].map(([v,l])=>`<button data-s="${v}" aria-pressed="${f.s===v}">${l}</button>`).join('');
+  const q=f.q.toLowerCase();
+  const ok=([c,x])=>(!f.r||c.region===f.r)&&(!q||[c.country,c.currency,c.currency_name||''].some(s=>s.toLowerCase().includes(q)))&&
+    (!f.s||(f.s==='p'&&x.got>0&&!x.done)||(f.s==='n'&&!x.got)||(f.s==='d'&&x.done));
+  const list=I.filter(ok);let h='';
+  regs.slice(1).forEach(r=>{const L=list.filter(([c])=>c.region===r);if(!L.length)return;
+    h+=`<section><h2 class="rg">${r}<small>${L.filter(([,x])=>x.got).length} из ${L.length}</small></h2><div class="grid">`+
+    L.map(([c,x])=>`<button class="plate ${x.done?'done':''} ${x.hist?'hist':''} ${x.got?'':'empty'}" data-c="${esc(c.country)}">${IMG(c)}<span class="nm">${esc(c.country)}</span><span class="cc">${esc(c.currency_name||c.currency)}${c.coin_name?' / '+esc(c.coin_name):''}</span><span class="rng">${esc(c.currency)}: ${rng(c)}${x.hist?', историческая':''}</span><span class="foot"><span class="dots">${x.items.map(y=>`<i class="${y.t==='Купюра'?'n':''} ${y.it?'on':''}"></i>`).join('')}</span><span class="ct">${x.got}/${x.tot}</span></span></button>`).join('')+'</div></section>'});
+  $('#main').innerHTML=h||'<p class="none">Ничего не найдено. Измените запрос или фильтр.</p>';
+  if($('#sheet').open)sheet()}
+
+function sheet(){
+  const c=cat.find(z=>z.country===open);if(!c)return;const x=info(c);
+  const grp=t=>{const L=x.items.filter(y=>y.t===t),N=L.length;if(!N)return'';
+    return`<h3>${t==='Монета'?'Монеты':'Купюры'}<small>${L.filter(y=>y.it).length} из ${N}</small></h3><div class="row">`+L.map((y,k)=>{
+      const r=N>1?k/(N-1):0,s=fmt(y.n).length,coin=t==='Монета';
+      const cls=`slot ${coin?'coin':'note'} ${y.it?'on':''} ${y.it&&coin?(r<.34?'copper':r<.67?'brass':'silver'):''} ${y.it&&y.it.is_historical?'hs':''} ${flash===open+t+y.n?'drop':''}`;
+      const sz=coin?`--d:${Math.round(46+20*r)}px;--k:${s<=3?.34:s<=5?.27:.2}`:`--w:${Math.round(86+44*r)}px;--h:${Math.round(165-150*r)}`;
+      return`<button class="${cls}" style="${sz}" data-t="${t}" data-n="${y.n}" aria-label="${t} ${fmt(y.n)} ${esc(c.currency)}, ${y.it?'в альбоме':'не хватает'}"><span class="face">${y.it?fmt(y.n):''}</span><em>${y.it?(y.it.cost?fmt(y.it.cost)+' ₽':''):fmt(y.n)}</em></button>`}).join('')+'</div>'};
+  $('#sheet').innerHTML=`<div class="sh-top">${IMG(c)}<div><h2>${esc(c.country)}${x.hist?'<span class="tag">историческая</span>':''}</h2><p>${esc(c.currency_name||'')}${c.coin_name?' / '+esc(c.coin_name):''} ${esc(c.currency)}</p></div><button class="x" data-close aria-label="Закрыть">✕</button></div>
+  <div class="felt ${x.hist?'hist':''}">${grp('Монета')}${grp('Купюра')}</div>
+  <div class="sh-foot"><div><span>Сумма номиналов</span><b>${fmt(x.face)} ${esc(c.currency)} ≈ ${fmt(x.face*(c.rate_default||0))} ₽</b></div><div><span>Потрачено</span><b>${fmt(x.spent)} ₽</b></div><button class="histbtn" data-hist>${x.hist?'Вернуть в действующие':'Отметить валюту исторической'}</button></div>`;
+  if(flash)setTimeout(()=>flash=null,500)}
+
+function openItem(t,n){
+  const c=cat.find(z=>z.country===open),x=info(c),it=col.find(i=>i.country===open&&i.type===t&&i.nominal===n);cur={t,n};
+  $('#it-h').textContent=fmt(n)+' '+c.currency+(t==='Монета'?', монета':', купюра');
+  $('#it-s').textContent=c.country+(it?', в альбоме':', не хватает');
+  $('#it-cost').value=it?it.cost:0;$('#it-hist').checked=it?!!it.is_historical:x.hist;
+  $('#it-ok').textContent=it?'Сохранить':'Положить в альбом';$('#it-del').hidden=!it;
+  $('#item').showModal();$('#it-cost').select()}
+
+$('#itf').onsubmit=e=>{e.preventDefault();
+  const c=cat.find(z=>z.country===open),cost=Math.max(0,parseFloat($('#it-cost').value)||0),h=$('#it-hist').checked;
+  const it=col.find(i=>i.country===open&&i.type===cur.t&&i.nominal===cur.n);
+  if(it){it.cost=cost;it.is_historical=h}
+  else col.push({id:Date.now(),country:open,currency:c.currency,nominal:cur.n,type:cur.t,rate:c.rate_default,cost,...(h?{is_historical:true}:{})});
+  flash=open+cur.t+cur.n;$('#item').close();save()};
+$('#it-del').onclick=()=>{if(!confirm('Убрать этот предмет из альбома?'))return;
+  col=col.filter(i=>!(i.country===open&&i.type===cur.t&&i.nominal===cur.n));$('#item').close();save()};
+
+function exp(){if(!col.length)return alert('Коллекция пуста.');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(col,null,2)],{type:'application/json'}));
+  a.download='data.json';document.body.appendChild(a);a.click();a.remove();localStorage.removeItem(D);draw()}
+$('#file').onchange=e=>{const fl=e.target.files[0];if(!fl)return;const r=new FileReader();
+  r.onload=()=>{try{const j=JSON.parse(r.result);if(!Array.isArray(j))throw 0;col=norm(j);build();save();$('#menu').close();alert('Коллекция восстановлена.')}catch(x){alert('Не удалось прочитать файл.')}};
+  r.readAsText(fl);e.target.value=''};
+
+const RK='numismat_rates';
+function ratesDate(){try{const r=JSON.parse(localStorage.getItem(RK));return r?new Date(r.t).toLocaleDateString('ru-RU'):''}catch(e){return''}}
+function credit(){const d=ratesDate();$('#credit-d').textContent=d?' Обновлено: '+d+'.':' Пока используются курсы из каталога.'}
+function applyRates(r){(window.WORLD_CATALOG||[]).forEach(c=>{const v=r.rub[c.currency];if(v>0)c.rate_default=v})}
+async function loadRates(){let r=null;try{r=JSON.parse(localStorage.getItem(RK))}catch(e){}
+  if(r&&r.rub)applyRates(r);credit();
+  if(r&&Date.now()-r.t<6*36e5)return;
+  try{const j=await(await fetch('https://open.er-api.com/v6/latest/RUB')).json();if(j.result!=='success')return;
+    const rub={};for(const k in j.rates)if(j.rates[k]>0)rub[k]=1/j.rates[k];
+    r={t:Date.now(),rub};localStorage.setItem(RK,JSON.stringify(r));applyRates(r);credit();
+    if(document.body.dataset.skin==='album'){build();draw()}else if(window.__classicReload)window.__classicReload()}catch(e){}}
+function togHist(){const c=cat.find(z=>z.country===open),x=info(c);
+  if(!x.own.length)return alert('Сначала положите в альбом хотя бы один номинал: статус хранится в записях коллекции.');
+  const h=!x.hist;col.forEach(i=>{if(i.country===open)i.is_historical=h});save()}
+function skin(n){localStorage.setItem('numismat_skin',n);document.body.dataset.skin=n;
+  document.querySelectorAll('#skinbar button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.skin===n));
+  if(n==='album'){try{col=norm(JSON.parse(localStorage.getItem(K))||[])}catch(e){col=[]}build();draw()}
+  else if(window.__classicReload)window.__classicReload()}
+document.addEventListener('click',e=>{const t=e.target;let b;
+  if(b=t.closest('#skinbar button')){skin(b.dataset.skin);return}
+  if(t.closest('[data-hist]')){togHist();return}
+  if(t.tagName==='DIALOG'){t.close();return}
+  if(t.closest('[data-close]')){t.closest('dialog').close();return}
+  if(b=t.closest('.plate')){open=b.dataset.c;sheet();$('#sheet').showModal();return}
+  if(b=t.closest('#sheet .slot')){openItem(b.dataset.t,+b.dataset.n);return}
+  if(b=t.closest('[data-r]')){f.r=b.dataset.r;draw();return}
+  if(b=t.closest('[data-s]')){f.s=b.dataset.s;draw();return}
+  if(t.closest('[data-exp]'))exp();
+  if(t.closest('[data-imp]'))$('#file').click();
+  if(t.id==='mMenu')$('#menu').showModal()});
+$('#sheet').addEventListener('close',()=>open=null);
+$('#q').oninput=e=>{f.q=e.target.value.trim();draw()};
+
+(async()=>{try{await window.__ready}catch(e){}
+  try{col=norm(JSON.parse(localStorage.getItem(K))||[])}catch(e){col=[]}
+  localStorage.setItem(K,JSON.stringify(col));loadRates();build();
+  skin(localStorage.getItem('numismat_skin')==='album'?'album':'classic')})();
+
+})();
 </script>
 </body>
 </html>
