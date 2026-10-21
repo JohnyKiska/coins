@@ -327,6 +327,43 @@ body[data-skin=classic] #skin-album,body[data-skin=album] #skin-classic{display:
 function persist(){localStorage.setItem('numismat_db',JSON.stringify(collection));localStorage.setItem('numismat_dirty','1');}
 
     // ВСТРАИВАЕМ ПОЛНЫЙ КАТАЛОГ СТРАН С НАЗВАНИЯМИ ВАЛЮТ
+// Карта флагов: код валюты -> файл в папке flags/ (общая для обоих скинов)
+window.FLAG = {
+                    // Очищенный и исправленный транслятор валют в флаги
+                "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
+                "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
+                "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
+                "SEK": "se", "DKK": "dk", "PLN": "pl", "CZK": "cz", "HUF": "hu",
+                "RON": "ro", "BGN": "bg", "RSD": "rs", "USD": "us", "CAD": "ca",
+                "AUD": "au", "CNY": "cn", "JPY": "jp", "TRY": "tr", "AED": "ae",
+                "INR": "in", "THB": "th", "EGP": "eg", "ZAR": "za", "BRL": "br",
+                "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", 
+                "ECS": "ec", "ALL": "al", "BAM": "ba", "ISK": "is", "MKD": "mk", 
+                "UAH": "ua", "GIP": "gi", "JEP": "je", "GGY": "gg", "IMP": "im",
+                "AFN": "af", "BHD": "bh", "BDT": "bd", "BTN": "bt", "IDR": "id",
+                "ILS": "il", "IQD": "iq", "IRR": "ir", "JOD": "jo", "KWD": "kw",
+                "LBN": "lb", "LKR": "lk", "MMK": "mm", "MNT": "mn", "MOP": "mo",
+                "MVR": "mv", "MYR": "my", "NPR": "np", "OMR": "om", "PHP": "ph",
+                "PKR": "pk", "QAR": "qa", "SAR": "sa", "SGD": "sg", "SYP": "sy",
+                "TWD": "tw", "YER": "ye", "KHR": "kh", "LAK": "la", "DZD": "dz", 
+                "AOA": "ao", "BIF": "bi", "BWP": "bw", "GMD": "gm", "GNF": "gn", 
+                "DJF": "dj", "ERN": "er", "ETB": "et", "KES": "ke", "KMF": "km", 
+                "LSL": "ls", "LRD": "lr", "LYD": "ly", "MGA": "mg", "MWK": "mw", 
+                "MRU": "mr", "MUR": "mu", "MAD": "ma", "MZN": "mz", "NAD": "na", 
+                "NGN": "ng", "RWF": "rw", "SCR": "sc", "SLE": "sl", "SOS": "so", 
+                "SDG": "sd", "SZL": "sz", "TZS": "tz", "UGX": "ug", "XAF": "cf", 
+                "XOF": "sn", "STN": "st", "SSP": "ss", "ARS": "ar", "AWG": "aw", 
+                "BSD": "bs", "BBD": "bb", "BOB": "bo", "CLP": "cl", "COP": "co", 
+                "CRC": "cr", "CUP": "cu", "DOP": "do", "GTQ": "gt", "GYD": "gy", 
+                "HTG": "ht", "HNL": "hn", "JMD": "jm", "NIO": "ni", "PAB": "pa", 
+                "PYG": "py", "PEN": "pe", "SRD": "sr", "TTD": "tt", "UYU": "uy", 
+                "VES": "ve", "XCD": "lc", "FJD": "fj", "NZD": "nz", "PGK": "pg", 
+                "SBD": "sb", "TOP": "to", "WST": "ws", "BMD": "bm", "VND": "vn", 
+                "GHS": "gh", "ZMW": "zm", "ZWL": "zw", "KYD": "ky", "CDF": "cd", 
+                "KPW": "kp", "KRW": "kr", "SVC": "sv", "SHP": "sh", "TND": "tn", 
+                "FKP": "fk", "LBP": "lb", "ZWG": "zw", "HKD": "hk"
+            };
+
 window.WORLD_CATALOG = [
   {"region":"Европа","country":"Албания","currency":"ALL","currency_name":"Албанский лек","coin_name":"","rate_default":0.92,"coins":[1,5,10,20,50,100],"bills":[200,500,1000,2000,5000]},
   {"region":"Европа","country":"Беларусь","currency":"BYN","currency_name":"Белорусский рубль","coin_name":"копейка","rate_default":28.02,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200,500]},
@@ -715,41 +752,7 @@ window.WORLD_CATALOG = [
                 const valueInRub = (totalFaceValue * catalogCountry.rate_default).toFixed(2);
                 
                 // Умный транслятор для флагов
-             const currencyToFlag = {
-                    // Очищенный и исправленный транслятор валют в флаги
-                "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
-                "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
-                "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
-                "SEK": "se", "DKK": "dk", "PLN": "pl", "CZK": "cz", "HUF": "hu",
-                "RON": "ro", "BGN": "bg", "RSD": "rs", "USD": "us", "CAD": "ca",
-                "AUD": "au", "CNY": "cn", "JPY": "jp", "TRY": "tr", "AED": "ae",
-                "INR": "in", "THB": "th", "EGP": "eg", "ZAR": "za", "BRL": "br",
-                "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", 
-                "ECS": "ec", "ALL": "al", "BAM": "ba", "ISK": "is", "MKD": "mk", 
-                "UAH": "ua", "GIP": "gi", "JEP": "je", "GGY": "gg", "IMP": "im",
-                "AFN": "af", "BHD": "bh", "BDT": "bd", "BTN": "bt", "IDR": "id",
-                "ILS": "il", "IQD": "iq", "IRR": "ir", "JOD": "jo", "KWD": "kw",
-                "LBN": "lb", "LKR": "lk", "MMK": "mm", "MNT": "mn", "MOP": "mo",
-                "MVR": "mv", "MYR": "my", "NPR": "np", "OMR": "om", "PHP": "ph",
-                "PKR": "pk", "QAR": "qa", "SAR": "sa", "SGD": "sg", "SYP": "sy",
-                "TWD": "tw", "YER": "ye", "KHR": "kh", "LAK": "la", "DZD": "dz", 
-                "AOA": "ao", "BIF": "bi", "BWP": "bw", "GMD": "gm", "GNF": "gn", 
-                "DJF": "dj", "ERN": "er", "ETB": "et", "KES": "ke", "KMF": "km", 
-                "LSL": "ls", "LRD": "lr", "LYD": "ly", "MGA": "mg", "MWK": "mw", 
-                "MRU": "mr", "MUR": "mu", "MAD": "ma", "MZN": "mz", "NAD": "na", 
-                "NGN": "ng", "RWF": "rw", "SCR": "sc", "SLE": "sl", "SOS": "so", 
-                "SDG": "sd", "SZL": "sz", "TZS": "tz", "UGX": "ug", "XAF": "cf", 
-                "XOF": "sn", "STN": "st", "SSP": "ss", "ARS": "ar", "AWG": "aw", 
-                "BSD": "bs", "BBD": "bb", "BOB": "bo", "CLP": "cl", "COP": "co", 
-                "CRC": "cr", "CUP": "cu", "DOP": "do", "GTQ": "gt", "GYD": "gy", 
-                "HTG": "ht", "HNL": "hn", "JMD": "jm", "NIO": "ni", "PAB": "pa", 
-                "PYG": "py", "PEN": "pe", "SRD": "sr", "TTD": "tt", "UYU": "uy", 
-                "VES": "ve", "XCD": "lc", "FJD": "fj", "NZD": "nz", "PGK": "pg", 
-                "SBD": "sb", "TOP": "to", "WST": "ws", "BMD": "bm", "VND": "vn", 
-                "GHS": "gh", "ZMW": "zm", "ZWL": "zw", "KYD": "ky", "CDF": "cd", 
-                "KPW": "kp", "KRW": "kr", "SVC": "sv", "SHP": "sh", "TND": "tn", 
-                "FKP": "fk", "LBP": "lb", "ZWG": "zw", "HKD": "hk"
-            };
+             const currencyToFlag = window.FLAG;
                 const flagCode = currencyToFlag[catalogCountry.currency] || "un";
 
                 // Умная проверка: если монеты внесены, берем твой статус из базы, иначе - дефолт из каталога
@@ -889,41 +892,7 @@ window.__classicReload=function(){collection=JSON.parse(localStorage.getItem('nu
 (()=>{
 
 const WORLD_CATALOG=window.WORLD_CATALOG;
-const FLAG={
-                    // Очищенный и исправленный транслятор валют в флаги
-                "RUB": "ru", "BYN": "by", "KZT": "kz", "AMD": "am", "UZS": "uz",
-                "KGS": "kg", "TJS": "tj", "TMT": "tm", "AZN": "az", "GEL": "ge",
-                "MDL": "md", "EUR": "eu", "GBP": "gb", "CHF": "ch", "NOK": "no",
-                "SEK": "se", "DKK": "dk", "PLN": "pl", "CZK": "cz", "HUF": "hu",
-                "RON": "ro", "BGN": "bg", "RSD": "rs", "USD": "us", "CAD": "ca",
-                "AUD": "au", "CNY": "cn", "JPY": "jp", "TRY": "tr", "AED": "ae",
-                "INR": "in", "THB": "th", "EGP": "eg", "ZAR": "za", "BRL": "br",
-                "MXN": "mx", "BZD": "bz", "BND": "bn", "VUV": "vu", "CVE": "cv", 
-                "ECS": "ec", "ALL": "al", "BAM": "ba", "ISK": "is", "MKD": "mk", 
-                "UAH": "ua", "GIP": "gi", "JEP": "je", "GGY": "gg", "IMP": "im",
-                "AFN": "af", "BHD": "bh", "BDT": "bd", "BTN": "bt", "IDR": "id",
-                "ILS": "il", "IQD": "iq", "IRR": "ir", "JOD": "jo", "KWD": "kw",
-                "LBN": "lb", "LKR": "lk", "MMK": "mm", "MNT": "mn", "MOP": "mo",
-                "MVR": "mv", "MYR": "my", "NPR": "np", "OMR": "om", "PHP": "ph",
-                "PKR": "pk", "QAR": "qa", "SAR": "sa", "SGD": "sg", "SYP": "sy",
-                "TWD": "tw", "YER": "ye", "KHR": "kh", "LAK": "la", "DZD": "dz", 
-                "AOA": "ao", "BIF": "bi", "BWP": "bw", "GMD": "gm", "GNF": "gn", 
-                "DJF": "dj", "ERN": "er", "ETB": "et", "KES": "ke", "KMF": "km", 
-                "LSL": "ls", "LRD": "lr", "LYD": "ly", "MGA": "mg", "MWK": "mw", 
-                "MRU": "mr", "MUR": "mu", "MAD": "ma", "MZN": "mz", "NAD": "na", 
-                "NGN": "ng", "RWF": "rw", "SCR": "sc", "SLE": "sl", "SOS": "so", 
-                "SDG": "sd", "SZL": "sz", "TZS": "tz", "UGX": "ug", "XAF": "cf", 
-                "XOF": "sn", "STN": "st", "SSP": "ss", "ARS": "ar", "AWG": "aw", 
-                "BSD": "bs", "BBD": "bb", "BOB": "bo", "CLP": "cl", "COP": "co", 
-                "CRC": "cr", "CUP": "cu", "DOP": "do", "GTQ": "gt", "GYD": "gy", 
-                "HTG": "ht", "HNL": "hn", "JMD": "jm", "NIO": "ni", "PAB": "pa", 
-                "PYG": "py", "PEN": "pe", "SRD": "sr", "TTD": "tt", "UYU": "uy", 
-                "VES": "ve", "XCD": "lc", "FJD": "fj", "NZD": "nz", "PGK": "pg", 
-                "SBD": "sb", "TOP": "to", "WST": "ws", "BMD": "bm", "VND": "vn", 
-                "GHS": "gh", "ZMW": "zm", "ZWL": "zw", "KYD": "ky", "CDF": "cd", 
-                "KPW": "kp", "KRW": "kr", "SVC": "sv", "SHP": "sh", "TND": "tn", 
-                "FKP": "fk", "LBP": "lb", "ZWG": "zw", "HKD": "hk"
-            };
+const FLAG=window.FLAG;
 const K='numismat_db',D='numismat_dirty',REG=['Европа','Азия','Африка','Америка','Австралия и Океания'];
 const ALIAS={'Европа':'Еврозона','Еврозона (Европа)':'Еврозона'};
 let col=[],cat=[],f={q:'',r:'',s:''},open=null,cur=null,flash=null;
