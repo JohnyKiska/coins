@@ -149,11 +149,11 @@ dialog{margin:auto}
 .bar{display:flex;justify-content:space-between;align-items:center;gap:10px}
 :where(#skin-album) h1{font:400 1.6rem var(--disp)}
 .ghost{background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:12px 0;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin:12px 0;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
 .stats div{padding:9px 10px;border-left:1px solid var(--line);display:flex;flex-direction:column}
 .stats div:first-child{border-left:0}
 .stats b{font:400 1.25rem/1.2 var(--disp)}.stats span{font-size:.7rem;color:var(--mute)}
-@media(max-width:520px){.stats b{font-size:1.02rem}}
+@media(max-width:520px){.stats b{font-size:1.02rem}.stats span{font-size:.64rem}}
 .notice[hidden]{display:none}
 .notice{display:flex;gap:10px;align-items:center;justify-content:space-between;background:#f3e8c9;border:1px solid #d9c58a;border-radius:8px;padding:8px 12px;font-size:.85rem;margin-bottom:8px}
 .notice button{border:1px solid #b9a057;background:none;border-radius:6px;padding:5px 10px;white-space:nowrap}
@@ -423,7 +423,7 @@ window.WORLD_CATALOG = [
   {"region":"Азия","country":"Саудовская Аравия","currency":"SAR","currency_name":"Саудовский риал","coin_name":"халала","rate_default":22.7,"coins":[0.01,0.05,0.1,0.25,0.5,1,2],"bills":[5,10,50,100,500]},
   {"region":"Азия","country":"Северная Корея","currency":"KPW","currency_name":"Северокорейская вона","coin_name":"","rate_default":0.09,"coins":[0.01,0.05,0.1,0.5,1],"bills":[5,10,50,100,200,500,1000,2000,5000]},
   {"region":"Азия","country":"Сингапур","currency":"SGD","currency_name":"Сингапурский доллар","coin_name":"цент","rate_default":64.1,"coins":[0.05,0.1,0.2,0.5,1],"bills":[2,5,10,50,100,1000]},
-  {"region":"Азия","country":"Сирия","currency":"SYP","currency_name":"Сирийский фунт","coin_name":"","rate_default":0.0065,"coins":[1,2,5,10,25],"bills":[50,100,200,500,1000,2000,5000]},
+  {"region":"Азия","country":"Сирия","currency":"SYP","currency_name":"Сирийский фунт","coin_name":"","rate_default":0.67,"coins":[1,2,5,10,25],"bills":[50,100,200,500,1000,2000,5000]},
   {"region":"Азия","country":"Таджикистан","currency":"TJS","currency_name":"Таджикский сомони","coin_name":"дирам","rate_default":9.26,"coins":[0.1,0.2,0.5,1,3,5],"bills":[1,5,10,20,50,100,200,500]},
   {"region":"Азия","country":"Таиланд","currency":"THB","currency_name":"Таиландский бат","coin_name":"сатанг","rate_default":2.53,"coins":[0.01,0.05,0.1,0.25,0.5,1,2,5,10],"bills":[20,50,100,500,1000]},
   {"region":"Азия","country":"Тайвань","currency":"TWD","currency_name":"Новый тайваньский доллар","coin_name":"","rate_default":2.65,"coins":[1,5,10,20,50],"bills":[100,200,500,1000,2000]},
@@ -931,7 +931,20 @@ function save(){localStorage.setItem(K,JSON.stringify(col));localStorage.setItem
 function draw(){
   const I=cat.map(c=>[c,info(c)]);let started=0,done=0;
   I.forEach(([c,x])=>{if(x.got)started++;if(x.done)done++});
-  $('#stats').innerHTML=[[fmt(col.reduce((s,i)=>s+i.cost,0))+' ₽','потрачено'],[col.length,'предметов'],[started+' из '+cat.length,'стран начато'],[done,'закрыто']].map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
+  const spent=col.reduce((s,i)=>s+i.cost,0);
+const rateOf=i=>{const c=cat.find(z=>z.country===i.country);return c?c.rate_default:(i.rate||0)};
+const valAll=col.reduce((s,i)=>s+(+i.nominal||0)*rateOf(i),0);
+const valHist=col.reduce((s,i)=>i.is_historical?s+(+i.nominal||0)*rateOf(i):s,0);
+const valAct=valAll-valHist;
+$('#stats').innerHTML=[
+  [fmt(spent)+' ₽','потрачено'],
+  [fmt(valAll)+' ₽','ценность всего'],
+  [fmt(valAct)+' ₽','действующие'],
+  [fmt(valHist)+' ₽','исторические'],
+  [col.length,'предметов'],
+  [started+' из '+cat.length,'стран начато'],
+  [done,'закрыто']
+].map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
   $('#notice').hidden=!localStorage.getItem(D);
   const regs=['',...REG,...new Set(cat.map(c=>c.region).filter(r=>!REG.includes(r)))];
   $('#regions').innerHTML=regs.map(r=>`<button data-r="${r}" aria-pressed="${f.r===r}">${r||'Весь мир'}</button>`).join('');
