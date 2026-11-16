@@ -7,7 +7,9 @@
     "type": "Монета",
     "rate": 105.5,
     "cost": 0,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791783050245,
@@ -17,7 +19,9 @@
     "type": "Монета",
     "rate": 105.5,
     "cost": 0,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791783068263,
@@ -27,7 +31,9 @@
     "type": "Монета",
     "rate": 105.5,
     "cost": 0,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791782991348,
@@ -37,7 +43,9 @@
     "type": "Монета",
     "rate": 105.5,
     "cost": 0,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791947225348,
@@ -46,7 +54,9 @@
     "nominal": 1,
     "type": "Купюра",
     "rate": 85.11,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791783001508,
@@ -56,7 +66,9 @@
     "type": "Монета",
     "rate": 105.5,
     "cost": 0,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791783013788,
@@ -66,7 +78,9 @@
     "type": "Монета",
     "rate": 105.5,
     "cost": 0,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791783040403,
@@ -76,7 +90,9 @@
     "type": "Монета",
     "rate": 105.5,
     "cost": 0,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964156114,
@@ -85,17 +101,21 @@
     "nominal": 0.01,
     "type": "Монета",
     "rate": 42.56,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964167424,
     "country": "Болгария",
-    "currency": "EUR",
+    "currency": "BGN",
     "nominal": 0.02,
     "type": "Монета",
-    "rate": 95.42,
+    "rate": 0,
     "cost": 0,
-    "is_historical": true
+    "is_historical": true,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964183006,
@@ -104,7 +124,9 @@
     "nominal": 0.5,
     "type": "Монета",
     "rate": 0.097,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964197766,
@@ -113,7 +135,9 @@
     "nominal": 1000,
     "type": "Купюра",
     "rate": 0.0032,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964199958,
@@ -122,7 +146,9 @@
     "nominal": 5000,
     "type": "Купюра",
     "rate": 0.0032,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964216770,
@@ -131,7 +157,9 @@
     "nominal": 0.1,
     "type": "Монета",
     "rate": 10.84,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964228010,
@@ -140,7 +168,9 @@
     "nominal": 0.5,
     "type": "Монета",
     "rate": 1.62,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964230404,
@@ -149,7 +179,9 @@
     "nominal": 1,
     "type": "Монета",
     "rate": 1.62,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964250053,
@@ -158,7 +190,9 @@
     "nominal": 100,
     "type": "Монета",
     "rate": 0.0055,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964252317,
@@ -167,7 +201,9 @@
     "nominal": 500,
     "type": "Монета",
     "rate": 0.0055,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964269751,
@@ -176,7 +212,9 @@
     "nominal": 1,
     "type": "Монета",
     "rate": 0.18,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964272349,
@@ -185,7 +223,9 @@
     "nominal": 2,
     "type": "Монета",
     "rate": 0.18,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964274151,
@@ -194,7 +234,9 @@
     "nominal": 5,
     "type": "Монета",
     "rate": 0.18,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964276711,
@@ -203,7 +245,9 @@
     "nominal": 10,
     "type": "Монета",
     "rate": 0.18,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964280287,
@@ -212,7 +256,9 @@
     "nominal": 20,
     "type": "Монета",
     "rate": 0.18,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964282985,
@@ -221,7 +267,9 @@
     "nominal": 50,
     "type": "Монета",
     "rate": 0.18,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964285265,
@@ -230,7 +278,9 @@
     "nominal": 100,
     "type": "Монета",
     "rate": 0.18,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964286623,
@@ -239,7 +289,9 @@
     "nominal": 200,
     "type": "Монета",
     "rate": 0.18,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964307302,
@@ -248,7 +300,9 @@
     "nominal": 0.1,
     "type": "Монета",
     "rate": 59.7,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964366672,
@@ -257,7 +311,9 @@
     "nominal": 5,
     "type": "Купюра",
     "rate": 12.71,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964369992,
@@ -266,7 +322,9 @@
     "nominal": 1,
     "type": "Купюра",
     "rate": 12.71,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964376676,
@@ -275,7 +333,9 @@
     "nominal": 1,
     "type": "Монета",
     "rate": 12.71,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791964385650,
@@ -284,7 +344,9 @@
     "nominal": 0.1,
     "type": "Монета",
     "rate": 12.71,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965059005,
@@ -293,7 +355,9 @@
     "nominal": 100,
     "type": "Купюра",
     "rate": 0.09,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965078302,
@@ -302,7 +366,9 @@
     "nominal": 10,
     "type": "Монета",
     "rate": 0.063,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965081020,
@@ -311,7 +377,9 @@
     "nominal": 50,
     "type": "Монета",
     "rate": 0.063,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965084312,
@@ -320,7 +388,9 @@
     "nominal": 100,
     "type": "Монета",
     "rate": 0.063,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965098142,
@@ -329,7 +399,9 @@
     "nominal": 100,
     "type": "Монета",
     "rate": 0.16,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965124305,
@@ -338,7 +410,9 @@
     "nominal": 0.01,
     "type": "Монета",
     "rate": 5.16,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965127553,
@@ -347,7 +421,9 @@
     "nominal": 0.05,
     "type": "Монета",
     "rate": 5.16,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965149767,
@@ -356,7 +432,9 @@
     "nominal": 500,
     "type": "Купюра",
     "rate": 0.025,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965166991,
@@ -365,7 +443,9 @@
     "nominal": 0.25,
     "type": "Монета",
     "rate": 2.32,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965169545,
@@ -374,7 +454,9 @@
     "nominal": 0.5,
     "type": "Монета",
     "rate": 2.32,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965172777,
@@ -383,7 +465,9 @@
     "nominal": 1,
     "type": "Монета",
     "rate": 2.32,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965184309,
@@ -393,7 +477,9 @@
     "type": "Монета",
     "rate": 1,
     "cost": 0.05,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "images/coins/ru/RUB/coin-0.05/front.jpg",
+    "photoBack": "images/coins/ru/RUB/coin-0.05/back.jpg"
   },
   {
     "id": 1791965186349,
@@ -403,7 +489,9 @@
     "type": "Монета",
     "rate": 1,
     "cost": 0.1,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "images/coins/ru/RUB/coin-0.1/front.jpg",
+    "photoBack": "images/coins/ru/RUB/coin-0.1/back.jpg"
   },
   {
     "id": 1791965187631,
@@ -413,7 +501,9 @@
     "type": "Монета",
     "rate": 1,
     "cost": 0.5,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "images/coins/ru/RUB/coin-0.5/front.jpg",
+    "photoBack": "images/coins/ru/RUB/coin-0.5/back.jpg"
   },
   {
     "id": 1791965188905,
@@ -423,7 +513,9 @@
     "type": "Монета",
     "rate": 1,
     "cost": 1,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "images/coins/ru/RUB/coin-1/front.jpg",
+    "photoBack": "images/coins/ru/RUB/coin-1/back.jpg"
   },
   {
     "id": 1791965193431,
@@ -433,7 +525,9 @@
     "type": "Монета",
     "rate": 1,
     "cost": 2,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "images/coins/ru/RUB/coin-2/front.jpg",
+    "photoBack": "images/coins/ru/RUB/coin-2/back.jpg"
   },
   {
     "id": 1791965195409,
@@ -443,7 +537,9 @@
     "type": "Монета",
     "rate": 1,
     "cost": 5,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "images/coins/ru/RUB/coin-5/front.jpg",
+    "photoBack": "images/coins/ru/RUB/coin-5/back.jpg"
   },
   {
     "id": 1791965196547,
@@ -453,7 +549,9 @@
     "type": "Монета",
     "rate": 1,
     "cost": 10,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "images/coins/ru/RUB/coin-10/front.jpg",
+    "photoBack": "images/coins/ru/RUB/coin-10/back.jpg"
   },
   {
     "id": 1791965201261,
@@ -463,7 +561,9 @@
     "type": "Купюра",
     "rate": 1,
     "cost": 10,
-    "is_historical": false
+    "is_historical": false,
+    "photoFront": "images/coins/ru/RUB/note-10/front.jpg",
+    "photoBack": "images/coins/ru/RUB/note-10/back.jpg"
   },
   {
     "id": 1791965219779,
@@ -472,7 +572,9 @@
     "nominal": 50,
     "type": "Купюра",
     "rate": 0.0065,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965222087,
@@ -481,7 +583,9 @@
     "nominal": 100,
     "type": "Купюра",
     "rate": 0.0065,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965223163,
@@ -490,7 +594,9 @@
     "nominal": 200,
     "type": "Купюра",
     "rate": 0.0065,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965224161,
@@ -499,7 +605,9 @@
     "nominal": 500,
     "type": "Купюра",
     "rate": 0.0065,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965225188,
@@ -508,7 +616,9 @@
     "nominal": 1000,
     "type": "Купюра",
     "rate": 0.0065,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965266732,
@@ -517,7 +627,9 @@
     "nominal": 1,
     "type": "Монета",
     "rate": 1.72,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965277310,
@@ -526,17 +638,21 @@
     "nominal": 0.1,
     "type": "Монета",
     "rate": 2.15,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965296461,
     "country": "Эквадор",
-    "currency": "USD",
+    "currency": "ECS",
     "nominal": 0.5,
     "type": "Монета",
-    "rate": 85.11,
+    "rate": 0,
     "cost": 0,
-    "is_historical": true
+    "is_historical": true,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965307553,
@@ -545,7 +661,9 @@
     "nominal": 1,
     "type": "Монета",
     "rate": 0.53,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965309989,
@@ -554,7 +672,9 @@
     "nominal": 10,
     "type": "Монета",
     "rate": 0.53,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
     "id": 1791965312317,
@@ -563,96 +683,173 @@
     "nominal": 100,
     "type": "Монета",
     "rate": 0.53,
-    "cost": 0
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
-    "id": 1792759204420,
+    "id": 1794806394816,
+    "country": "Албания",
+    "currency": "ALL",
+    "nominal": 1,
+    "type": "Монета",
+    "rate": 1.0036986294495216,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806396532,
+    "country": "Албания",
+    "currency": "ALL",
+    "nominal": 20,
+    "type": "Монета",
+    "rate": 1.0036986294495216,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806397676,
+    "country": "Албания",
+    "currency": "ALL",
+    "nominal": 50,
+    "type": "Монета",
+    "rate": 1.0036986294495216,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806398710,
+    "country": "Албания",
+    "currency": "ALL",
+    "nominal": 100,
+    "type": "Монета",
+    "rate": 1.0036986294495216,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806450031,
     "country": "Чехия",
     "currency": "CZK",
     "nominal": 2,
     "type": "Монета",
-    "rate": 3.776149837625557,
-    "cost": 0
+    "rate": 3.732206704536124,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
-    "id": 1792759258998,
-    "country": "Мавритания",
-    "currency": "MRU",
-    "nominal": 10,
-    "type": "Монета",
-    "rate": 2.041091249025379,
-    "cost": 0
-  },
-  {
-    "id": 1792759385491,
-    "country": "Мавритания",
-    "currency": "MRU",
-    "nominal": 5,
-    "type": "Монета",
-    "rate": 2.041091249025379,
-    "cost": 0
-  },
-  {
-    "id": 1792759425892,
-    "country": "Турция",
-    "currency": "TRY",
-    "nominal": 0.5,
-    "type": "Монета",
-    "rate": 1.6430262572026164,
-    "cost": 0
-  },
-  {
-    "id": 1792759439360,
-    "country": "Турция",
-    "currency": "TRY",
-    "nominal": 0.01,
-    "type": "Монета",
-    "rate": 1.6430262572026164,
-    "cost": 0
-  },
-  {
-    "id": 1792759444439,
-    "country": "Турция",
-    "currency": "TRY",
-    "nominal": 0.1,
-    "type": "Монета",
-    "rate": 1.6430262572026164,
-    "cost": 0
-  },
-  {
-    "id": 1792759452293,
-    "country": "Турция",
-    "currency": "TRY",
-    "nominal": 0.05,
-    "type": "Монета",
-    "rate": 1.6430262572026164,
-    "cost": 0
-  },
-  {
-    "id": 1792759911126,
+    "id": 1794806485661,
     "country": "Китай",
     "currency": "CNY",
     "nominal": 0.5,
     "type": "Монета",
-    "rate": 12.285012285012286,
-    "cost": 0
+    "rate": 12.406947890818858,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   },
   {
-    "id": 1792759953538,
-    "country": "Канада",
-    "currency": "CAD",
-    "nominal": 0.01,
-    "type": "Монета",
-    "rate": 57.92735909169901,
-    "cost": 0
-  },
-  {
-    "id": 1792760029635,
+    "id": 1794806502015,
     "country": "ОАЭ",
     "currency": "AED",
     "nominal": 1,
     "type": "Монета",
-    "rate": 22.19509488403063,
-    "cost": 0
+    "rate": 22.489598560665694,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806525633,
+    "country": "Турция",
+    "currency": "TRY",
+    "nominal": 0.01,
+    "type": "Монета",
+    "rate": 1.6402342910661358,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806526721,
+    "country": "Турция",
+    "currency": "TRY",
+    "nominal": 0.05,
+    "type": "Монета",
+    "rate": 1.6402342910661358,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806527947,
+    "country": "Турция",
+    "currency": "TRY",
+    "nominal": 0.1,
+    "type": "Монета",
+    "rate": 1.6402342910661358,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806531757,
+    "country": "Турция",
+    "currency": "TRY",
+    "nominal": 0.5,
+    "type": "Монета",
+    "rate": 1.6402342910661358,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806557470,
+    "country": "Мавритания",
+    "currency": "MRU",
+    "nominal": 5,
+    "type": "Монета",
+    "rate": 2.0331732548257366,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806559025,
+    "country": "Мавритания",
+    "currency": "MRU",
+    "nominal": 10,
+    "type": "Монета",
+    "rate": 2.0331732548257366,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806584434,
+    "country": "Канада",
+    "currency": "CAD",
+    "nominal": 0.01,
+    "type": "Монета",
+    "rate": 57.88041905423395,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
+  },
+  {
+    "id": 1794806635492,
+    "country": "Беларусь",
+    "currency": "BYN",
+    "nominal": 0.01,
+    "type": "Монета",
+    "rate": 27.437100447224736,
+    "cost": 0,
+    "photoFront": "",
+    "photoBack": ""
   }
 ]

@@ -157,6 +157,7 @@ dialog{margin:auto}
 .stats div:first-child{border-left:0}
 .stats b{font:400 1.25rem/1.2 var(--disp)}.stats span{font-size:.7rem;color:var(--mute)}
 .stats .money-minor{font-size:.7em;color:var(--mute);vertical-align:baseline}
+.stats .album-value b{font-size:clamp(.9rem,1.25vw,1.15rem);white-space:nowrap}
 @media(max-width:520px){.stats b{font-size:1.02rem}.stats span{font-size:.64rem}}
 .notice[hidden]{display:none}
 .notice{display:flex;gap:10px;align-items:center;justify-content:space-between;background:#f3e8c9;border:1px solid #d9c58a;border-radius:8px;padding:8px 12px;font-size:.85rem;margin-bottom:8px}
@@ -233,6 +234,7 @@ dialog label.chk{display:flex;align-items:center;gap:8px;color:var(--ink);font-s
 .acts .danger{color:#a03a2c;border-color:#d9b1aa}
 #menu p{font-size:.85rem;color:var(--mute)}
 .photo-tools{display:grid;gap:10px}
+.photo-hint{margin:0;color:var(--mute);font-size:.76rem}
 .photo-side{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:9px;background:#f7f5ee}
 .photo-side strong{font-size:.82rem;color:var(--ink)}
 .photo-preview{width:100%;height:130px;object-fit:contain;background:#eef0e9;border:1px solid var(--line);border-radius:7px}
@@ -322,7 +324,7 @@ body[data-skin=classic] #skin-album,body[data-skin=album] #skin-classic{display:
 <header class="wrap top">
   <div class="bar"><div class="brand"><span class="brand-kicker">Личный каталог коллекционера</span><h1>Нумизматический альбом</h1><p>Монеты и банкноты со всего мира — бережно собранные в одном месте.</p></div><button class="ghost" id="mMenu">Резервная копия</button></div>
   <div class="stats" id="stats"></div>
-  <div class="notice" id="notice" hidden><span>Изменения пока только в этом браузере. Скачайте data.json и замените файл в репозитории.</span><button data-exp>Скачать</button></div>
+  <div class="notice" id="notice" hidden><span>Изменения пока только в этом браузере. Добавьте data.json и папку images в репозиторий.</span><button data-exp>Скачать</button></div>
   <div class="tools">
     <input id="q" type="search" placeholder="Страна или валюта" autocomplete="off">
     <div class="tool-row">
@@ -344,12 +346,13 @@ body[data-skin=classic] #skin-album,body[data-skin=album] #skin-classic{display:
     <div class="photo-side"><strong>Лицевая сторона</strong><img id="photo-front-preview" class="photo-preview" alt="Предпросмотр лицевой стороны" hidden><div class="photo-actions"><input id="it-photo-front" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="photo-remove" type="button" data-remove-photo="front">Удалить фото</button></div></div>
     <div class="photo-side"><strong>Оборотная сторона</strong><img id="photo-back-preview" class="photo-preview" alt="Предпросмотр оборотной стороны" hidden><div class="photo-actions"><input id="it-photo-back" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="photo-remove" type="button" data-remove-photo="back">Удалить фото</button></div></div>
   </div>
+  <p class="photo-hint">При первом сохранении выберите корневую папку проекта. Для новых фото загрузчик создаст папки в images/coins/ и сохранит путь в коллекции.</p>
   <label class="chk"><input id="it-hist" type="checkbox">Выведена из обращения</label>
   <div class="acts"><button class="pri" id="it-ok">Положить в альбом</button><button type="button" class="danger" id="it-del">Убрать из альбома</button><button type="button" data-close>Отмена</button></div>
 </form></dialog>
 <dialog id="menu"><div>
   <h2>Резервная копия</h2>
-  <p>Резервная копия сохраняет коллекцию вместе с фотографиями. Загрузите файл, чтобы восстановить данные в этом браузере.</p>
+  <p>data.json сохраняет коллекцию и пути к фото. Добавьте папку images в репозиторий вместе с файлом; встроенные фото останутся в резервной копии.</p>
   <button class="b" data-exp>Скачать data.json</button>
   <button class="b" data-imp>Загрузить файл</button>
   <button class="b" data-close>Закрыть</button>
@@ -396,13 +399,37 @@ window.FLAG = {
                 "SBD": "sb", "TOP": "to", "WST": "ws", "BMD": "bm", "VND": "vn", 
                 "GHS": "gh", "ZMW": "zm", "ZWL": "zw", "KYD": "ky", "CDF": "cd", 
                 "KPW": "kp", "KRW": "kr", "SVC": "sv", "SHP": "sh", "TND": "tn", 
-                "FKP": "fk", "LBP": "lb", "ZWG": "zw", "HKD": "hk"
+                "FKP": "fk", "LBP": "lb", "ZWG": "zw", "HKD": "hk",
+                "ATS": "at", "BEF": "be", "CYP": "cy", "EEK": "ee", "FIM": "fi",
+                "FRF": "fr", "DEM": "de", "GRD": "gr", "IEP": "ie", "ITL": "it",
+                "HRK": "hr", "LVL": "lv", "LTL": "lt", "LUF": "lu", "MTL": "mt",
+                "NLG": "nl", "PTE": "pt", "SKK": "sk", "SIT": "si", "ESP": "es"
             };
 
 window.WORLD_CATALOG = [
+  {"region":"Европа","country":"Австрия","currency":"ATS","currency_name":"Австрийский шиллинг","coin_name":"грош","coin_forms":["грош","гроша","грошей"],"subunit":100,"bill_name":"шиллинг","bill_forms":["шиллинг","шиллинга","шиллингов"],"is_historical":true,"rate_default":0,"coins":[0.1,0.5,1,5,10],"bills":[20,50,100,500,1000,5000]},
+  {"region":"Европа","country":"Бельгия","currency":"BEF","currency_name":"Бельгийский франк","coin_name":"сантим","coin_forms":["сантим","сантима","сантимов"],"subunit":100,"bill_name":"франк","bill_forms":["франк","франка","франков"],"is_historical":true,"rate_default":0,"coins":[1,5,20,50],"bills":[100,200,500,1000,2000,5000,10000]},
+  {"region":"Европа","country":"Германия","currency":"DEM","currency_name":"Немецкая марка","coin_name":"пфенниг","coin_forms":["пфенниг","пфеннига","пфеннигов"],"subunit":100,"bill_name":"марка","bill_forms":["марка","марки","марок"],"is_historical":true,"rate_default":0,"coins":[0.01,0.02,0.05,0.1,0.5,1,2,5],"bills":[5,10,20,50,100,200,500,1000]},
+  {"region":"Европа","country":"Греция","currency":"GRD","currency_name":"Греческая драхма","coin_name":"лепта","coin_forms":["лепта","лепты","лепт"],"subunit":100,"bill_name":"драхма","bill_forms":["драхма","драхмы","драхм"],"is_historical":true,"rate_default":0,"coins":[10,20,50,100,500],"bills":[100,200,500,1000,5000,10000]},
+  {"region":"Европа","country":"Ирландия","currency":"IEP","currency_name":"Ирландский фунт","coin_name":"пенни","coin_forms":["пенни","пенни","пенни"],"subunit":100,"bill_name":"фунт","bill_forms":["фунт","фунта","фунтов"],"is_historical":true,"rate_default":0,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1],"bills":[5,10,20,50,100]},
+  {"region":"Европа","country":"Испания","currency":"ESP","currency_name":"Испанская песета","coin_name":"сентимо","coin_forms":["сентимо","сентимо","сентимо"],"subunit":100,"bill_name":"песета","bill_forms":["песета","песеты","песет"],"is_historical":true,"rate_default":0,"coins":[1,5,10,25,50,100,200,500],"bills":[1000,2000,5000,10000]},
+  {"region":"Европа","country":"Италия","currency":"ITL","currency_name":"Итальянская лира","coin_name":"","coin_forms":["","",""],"subunit":100,"bill_name":"лира","bill_forms":["лира","лиры","лир"],"is_historical":true,"rate_default":0,"coins":[50,100,200,500,1000],"bills":[1000,2000,5000,10000,50000,100000,500000]},
+  {"region":"Европа","country":"Кипр","currency":"CYP","currency_name":"Кипрский фунт","coin_name":"цент","coin_forms":["цент","цента","центов"],"subunit":100,"bill_name":"фунт","bill_forms":["фунт","фунта","фунтов"],"is_historical":true,"rate_default":0,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20]},
+  {"region":"Европа","country":"Латвия","currency":"LVL","currency_name":"Латвийский лат","coin_name":"сантим","coin_forms":["сантим","сантима","сантимов"],"subunit":100,"bill_name":"лат","bill_forms":["лат","лата","латов"],"is_historical":true,"rate_default":0,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,500]},
+  {"region":"Европа","country":"Литва","currency":"LTL","currency_name":"Литовский лит","coin_name":"цент","coin_forms":["цент","цента","центов"],"subunit":100,"bill_name":"лит","bill_forms":["лит","лита","литов"],"is_historical":true,"rate_default":0,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200,500]},
+  {"region":"Европа","country":"Люксембург","currency":"LUF","currency_name":"Люксембургский франк","coin_name":"сантим","coin_forms":["сантим","сантима","сантимов"],"subunit":100,"bill_name":"франк","bill_forms":["франк","франка","франков"],"is_historical":true,"rate_default":0,"coins":[1,5,20,50],"bills":[100,1000,5000,10000]},
+  {"region":"Европа","country":"Мальта","currency":"MTL","currency_name":"Мальтийская лира","coin_name":"цент","coin_forms":["цент","цента","центов"],"subunit":100,"bill_name":"лира","bill_forms":["лира","лиры","лир"],"is_historical":true,"rate_default":0,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2,5],"bills":[2,5,10,20]},
+  {"region":"Европа","country":"Нидерланды","currency":"NLG","currency_name":"Нидерландский гульден","coin_name":"цент","coin_forms":["цент","цента","центов"],"subunit":100,"bill_name":"гульден","bill_forms":["гульден","гульдена","гульденов"],"is_historical":true,"rate_default":0,"coins":[0.05,0.1,0.25,1,2.5,5],"bills":[10,25,50,100,250,1000]},
+  {"region":"Европа","country":"Португалия","currency":"PTE","currency_name":"Португальское эскудо","coin_name":"сентаво","coin_forms":["сентаво","сентаво","сентаво"],"subunit":100,"bill_name":"эскудо","bill_forms":["эскудо","эскудо","эскудо"],"is_historical":true,"rate_default":0,"coins":[1,2,5,10,20,50,100,200],"bills":[500,1000,2000,5000,10000]},
+  {"region":"Европа","country":"Словакия","currency":"SKK","currency_name":"Словацкая крона","coin_name":"геллер","coin_forms":["геллер","геллера","геллеров"],"subunit":100,"bill_name":"крона","bill_forms":["крона","кроны","крон"],"is_historical":true,"rate_default":0,"coins":[0.5,1,2,5,10,20,50],"bills":[20,50,100,200,500,1000,5000]},
+  {"region":"Европа","country":"Словения","currency":"SIT","currency_name":"Словенский толар","coin_name":"стотин","coin_forms":["стотин","стотина","стотинов"],"subunit":100,"bill_name":"толар","bill_forms":["толар","толара","толаров"],"is_historical":true,"rate_default":0,"coins":[0.1,0.2,0.5,1,2,5,10,20,50],"bills":[10,20,50,100,200,500,1000,5000,10000]},
+  {"region":"Европа","country":"Финляндия","currency":"FIM","currency_name":"Финская марка","coin_name":"пенни","coin_forms":["пенни","пенни","пенни"],"subunit":100,"bill_name":"марка","bill_forms":["марка","марки","марок"],"is_historical":true,"rate_default":0,"coins":[0.1,0.5,1,5,10],"bills":[10,20,50,100,500,1000]},
+  {"region":"Европа","country":"Франция","currency":"FRF","currency_name":"Французский франк","coin_name":"сантим","coin_forms":["сантим","сантима","сантимов"],"subunit":100,"bill_name":"франк","bill_forms":["франк","франка","франков"],"is_historical":true,"rate_default":0,"coins":[0.05,0.1,0.2,0.5,1,2,5,10],"bills":[20,50,100,200,500]},
+  {"region":"Европа","country":"Хорватия","currency":"HRK","currency_name":"Хорватская куна","coin_name":"липа","coin_forms":["липа","липы","лип"],"subunit":100,"bill_name":"куна","bill_forms":["куна","куны","кун"],"is_historical":true,"rate_default":0,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200,500,1000,2000,5000]},
+  {"region":"Европа","country":"Эстония","currency":"EEK","currency_name":"Эстонская крона","coin_name":"сент","coin_forms":["сент","сента","сентов"],"subunit":100,"bill_name":"крона","bill_forms":["крона","кроны","крон"],"is_historical":true,"rate_default":0,"coins":[0.01,0.05,0.1,0.2,0.5,1,5],"bills":[1,2,5,10,25,50,100,500]},
   {"region":"Европа","country":"Албания","currency":"ALL","currency_name":"Албанский лек","coin_name":"","coin_forms":["","",""],"subunit":100,"rate_default":0.92,"coins":[1,5,10,20,50,100],"bills":[200,500,1000,2000,5000]},
   {"region":"Европа","country":"Беларусь","currency":"BYN","currency_name":"Белорусский рубль","coin_name":"копейка","coin_forms":["копейка","копейки","копеек"],"subunit":100,"rate_default":28.02,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200,500]},
-  {"region":"Европа","country":"Болгария","currency":"BGN","currency_name":"Болгарский лев","coin_name":"стотинка","coin_forms":["стотинка","стотинки","стотинок"],"subunit":100,"bill_name":"лев","bill_forms":["лев","лева","левов"],"rate_default":47.06,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200,500]},
+  {"region":"Европа","country":"Болгария","currency":"BGN","currency_name":"Болгарский лев","coin_name":"стотинка","coin_forms":["стотинка","стотинки","стотинок"],"subunit":100,"bill_name":"лев","bill_forms":["лев","лева","левов"],"is_historical":true,"rate_default":0,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100]},
   {"region":"Европа","country":"Босния и Герцеговина","currency":"BAM","currency_name":"Конвертируемая марка","coin_name":"фенинг","coin_forms":["фенинг","фенинга","фенингов"],"subunit":100,"bill_name":"марка","bill_forms":["марка","марки","марок"],"rate_default":48.65,"coins":[0.05,0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200]},
   {"region":"Европа","country":"Великобритания","currency":"GBP","currency_name":"Фунт стерлингов","coin_name":"пенни","coin_forms":["пенни","пенни","пенни"],"subunit":100,"bill_name":"фунт","bill_forms":["фунт","фунта","фунтов"],"rate_default":112.74,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50]},
   {"region":"Европа","country":"Венгрия","currency":"HUF","currency_name":"Венгерский форинт","coin_name":"","coin_forms":["","",""],"subunit":100,"bill_name":"форинт","bill_forms":["форинт","форинта","форинтов"],"rate_default":0.26,"coins":[5,10,20,50,100,200],"bills":[500,1000,2000,5000,10000,20000]},
@@ -544,7 +571,7 @@ window.WORLD_CATALOG = [
   {"region":"Америка","country":"Уругвай","currency":"UYU","currency_name":"Уругвайское песо","coin_name":"","coin_forms":["","",""],"subunit":100,"bill_name":"песо","bill_forms":["песо","песо","песо"],"rate_default":2.16,"coins":[1,2,5,10,50],"bills":[20,50,100,200,500,1000,2000]},
   {"region":"Америка","country":"Фолклендские острова","currency":"FKP","currency_name":"Фунт Фолклендских островов","coin_name":"пенни","coin_forms":["пенни","пенни","пенни"],"subunit":100,"bill_name":"фунт","bill_forms":["фунт","фунта","фунтов"],"rate_default":112.74,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50]},
   {"region":"Америка","country":"Чили","currency":"CLP","currency_name":"Чилийское песо","coin_name":"","coin_forms":["","",""],"subunit":100,"bill_name":"песо","bill_forms":["песо","песо","песо"],"rate_default":0.091,"coins":[10,50,100,500],"bills":[1000,2000,5000,10000,20000]},
-  {"region":"Америка","country":"Эквадор","currency":"ECS","currency_name":"Эквадорский сукре","coin_name":"сентаво","coin_forms":["сентаво","сентаво","сентаво"],"subunit":100,"bill_name":"сукре","bill_forms":["сукре","сукре","сукре"],"is_historical":true,"rate_default":0.003,"coins":[0.01,0.05,0.1,0.25,0.5],"bills":[5,10,20,50,100,500,1000,5000,10000,20000,50000]},
+  {"region":"Америка","country":"Эквадор","currency":"ECS","currency_name":"Эквадорский сукре","coin_name":"сентаво","coin_forms":["сентаво","сентаво","сентаво"],"subunit":100,"bill_name":"сукре","bill_forms":["сукре","сукре","сукре"],"is_historical":true,"rate_default":0,"coins":[0.01,0.05,0.1,0.25,0.5],"bills":[5,10,20,50,100,500,1000,5000,10000,20000,50000]},
   {"region":"Америка","country":"Ямайка","currency":"JMD","currency_name":"Ямайский доллар","coin_name":"","coin_forms":["","",""],"subunit":100,"bill_name":"доллар","bill_forms":["доллар","доллара","долларов"],"rate_default":0.55,"coins":[1,5,10,20],"bills":[50,100,500,1000,2000,5000]},
   {"region":"Австралия и Океания","country":"Австралия","currency":"AUD","currency_name":"Австралийский доллар","coin_name":"цент","coin_forms":["цент","цента","центов"],"subunit":100,"bill_name":"доллар","bill_forms":["доллар","доллара","долларов"],"rate_default":59.43,"coins":[0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100]},
   {"region":"Австралия и Океания","country":"Вануату","currency":"VUV","currency_name":"Вату Вануату","coin_name":"","coin_forms":["","",""],"subunit":100,"bill_name":"вату","bill_forms":["вату","вату","вату"],"rate_default":0.76,"coins":[1,2,5,10,20,50,100],"bills":[200,500,1000,2000,5000,10000]},
@@ -930,12 +957,15 @@ const WORLD_CATALOG=window.WORLD_CATALOG;
 const FLAG=window.FLAG;
 const K='numismat_db',D='numismat_dirty',REG=['Европа','Азия','Африка','Америка','Австралия и Океания'];
 const ALIAS={'Европа':'Еврозона','Еврозона (Европа)':'Еврозона'};
-let col=[],cat=[],f={q:'',r:'',s:'',kind:'',photos:false,sort:'country'},open=null,cur=null,flash=null,photoDraft={front:'',back:''},flipped=new Set();
+const HISTORICAL_CURRENCY_ALIAS={'Болгария|EUR':'BGN','Эквадор|USD':'ECS'};
+const currencyKey=(country,currency)=>`${country}|${currency||''}`;
+let historicalCurrencyMigrationPending=false;
+let col=[],cat=[],f={q:'',r:'',s:'',kind:'',photos:false,sort:'country'},open=null,cur=null,flash=null,photoDraft={front:'',back:''},photoNeedsFileWrite={front:false,back:false},photoWriteRoot=null,flipped=new Set();
 const $=s=>document.querySelector(s);
 const fmt=n=>(+n).toLocaleString('ru-RU',{maximumFractionDigits:3});
 const moneyStat=n=>{
   const [whole,fraction]=(+n).toLocaleString('ru-RU',{maximumFractionDigits:2}).split(',');
-  return whole+(fraction?`<span class="money-minor">,${fraction}</span>`:'')+' ₽';
+  return whole+(fraction?`<span class="money-minor">,${fraction}</span>`:'')+'&nbsp;₽';
 };
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fl=c=>'flags/'+(FLAG[c.currency]||'un')+'.svg';
@@ -1026,19 +1056,24 @@ function billFaceValue(c,n){
   return fmt(n);
 }
 const hasPhotos=i=>!!(i.photoFront||i.photoBack||i.photo);
+const validPhoto=photo=>typeof photo==='string'&&photo.length<=850000&&(!photo||
+  /^data:image\/jpeg;base64,[A-Za-z0-9+/]+=*$/.test(photo)||
+  /^images\/coins\/[a-z0-9-]+\/[A-Z0-9_-]{1,12}\/(?:coin|note)-\d+(?:\.\d+)?\/(?:front|back)\.jpg$/.test(photo));
 
-function norm(a){const m=new Map();a.forEach(raw=>{
+function norm(a){const m=new Map();historicalCurrencyMigrationPending=false;a.forEach(raw=>{
   if(!raw||typeof raw!=='object'||Array.isArray(raw))throw new Error('В файле найдена некорректная запись.');
-  const i={...raw};i.country=ALIAS[i.country]||i.country;i.nominal=Number(i.nominal);i.cost=Number(i.cost||0);
+  const i={...raw};i.country=ALIAS[i.country]||i.country;i.currency=typeof i.currency==='string'?i.currency:'';i.nominal=Number(i.nominal);i.cost=Number(i.cost||0);
+  const historicalCurrency=HISTORICAL_CURRENCY_ALIAS[i.country+'|'+i.currency];
+  if(historicalCurrency){i.currency=historicalCurrency;i.rate=0;i.is_historical=true;historicalCurrencyMigrationPending=true}
   if(!i.photoFront&&i.photo)i.photoFront=i.photo;
   delete i.photo;
   i.photoFront=i.photoFront||'';i.photoBack=i.photoBack||'';
   if(typeof i.country!=='string'||!i.country.trim()||i.country.length>160||!Number.isFinite(i.nominal)||i.nominal<0||
      !Number.isFinite(i.cost)||i.cost<0||!['Монета','Купюра'].includes(i.type)||
      (i.currency!=null&&(typeof i.currency!=='string'||i.currency.length>12))||
-     ![i.photoFront,i.photoBack].every(photo=>typeof photo==='string'&&photo.length<=850000&&(!photo||/^data:image\/jpeg;base64,[A-Za-z0-9+/]+=*$/.test(photo))))
+     ![i.photoFront,i.photoBack].every(validPhoto))
     throw new Error('В файле есть запись с недопустимыми полями или фотографией.');
-  const k=i.country+'|'+i.nominal+'|'+i.type,o=m.get(k);
+  const k=i.country+'|'+(i.currency||'')+'|'+i.nominal+'|'+i.type,o=m.get(k);
   if(!o||i.cost>o.cost){if(o){if(o.is_historical)i.is_historical=true;if(!i.photoFront)i.photoFront=o.photoFront;if(!i.photoBack)i.photoBack=o.photoBack}m.set(k,i)}
   else{if(i.is_historical)o.is_historical=true;if(!o.photoFront&&i.photoFront)o.photoFront=i.photoFront;if(!o.photoBack&&i.photoBack)o.photoBack=i.photoBack}
   });
@@ -1046,17 +1081,17 @@ function norm(a){const m=new Map();a.forEach(raw=>{
 
 function build(){
   cat=WORLD_CATALOG.map(c=>({...c,coin_name:(c.coin_name||'').trim(),coin_forms:c.coin_forms,subunit:c.subunit,sub_units:c.sub_units,bill_name:c.bill_name,bill_forms:c.bill_forms,coins:[...(c.coins||[])],bills:[...(c.bills||[])]}));
-  const by=new Map(cat.map(c=>[c.country,c]));
-  col.forEach(i=>{let c=by.get(i.country);
-    if(!c){c={region:'Прочее',country:i.country,currency:i.currency||'',coin_name:'',coin_forms:null,subunit:100,coins:[],bills:[],rate_default:i.rate||0};cat.push(c);by.set(i.country,c)}
+  const by=new Map(cat.map(c=>[currencyKey(c.country,c.currency),c]));
+  col.forEach(i=>{const key=currencyKey(i.country,i.currency);let c=by.get(key);
+    if(!c){c={region:'Прочее',country:i.country,currency:i.currency||'',coin_name:'',coin_forms:null,subunit:100,coins:[],bills:[],is_historical:!!i.is_historical,rate_default:i.is_historical?0:(i.rate||0)};cat.push(c);by.set(key,c)}
     const l=i.type==='Купюра'?c.bills:c.coins;if(!l.includes(i.nominal))l.push(i.nominal)});
   cat.forEach(c=>{c.coins.sort((a,b)=>a-b);c.bills.sort((a,b)=>a-b)});
-  cat.sort((a,b)=>a.country.localeCompare(b.country,'ru'))}
+  cat.sort((a,b)=>a.country.localeCompare(b.country,'ru')||a.currency.localeCompare(b.currency,'ru'))}
 
 const rg=l=>l.length?fmt(l[0])+(l.length>1?'–'+fmt(l[l.length-1]):''):'';
 const rng=c=>[c.coins.length&&'монеты '+rg(c.coins),c.bills.length&&'купюры '+rg(c.bills)].filter(Boolean).join(', ');
 function info(c){
-  const own=col.filter(i=>i.country===c.country),m=new Map(own.map(i=>[i.type+'|'+i.nominal,i]));
+  const own=col.filter(i=>i.country===c.country&&i.currency===c.currency),m=new Map(own.map(i=>[i.type+'|'+i.nominal,i]));
   const items=[...c.coins.map(n=>['Монета',n]),...c.bills.map(n=>['Купюра',n])].map(([t,n])=>({t,n,it:m.get(t+'|'+n)}));
   const got=items.filter(y=>y.it).length,tot=items.length;
   return{own,items,got,tot,done:tot>0&&got===tot,
@@ -1083,22 +1118,21 @@ function draw(){
   const I=cat.map(c=>[c,info(c)]);let started=0,done=0;
   I.forEach(([c,x])=>{if(x.got)started++;if(x.done)done++});
   const spent=col.reduce((s,i)=>s+i.cost,0);
-  const rateOf=i=>{const c=cat.find(z=>z.country===i.country);return c?c.rate_default:(i.rate||0)};
+  const rateOf=i=>{const c=cat.find(z=>z.country===i.country&&z.currency===i.currency);return c?c.rate_default:(i.is_historical?0:(i.rate||0))};
   const valAll=col.reduce((s,i)=>s+(+i.nominal||0)*rateOf(i),0);
   const valHist=col.reduce((s,i)=>i.is_historical?s+(+i.nominal||0)*rateOf(i):s,0);
   const valAct=valAll-valHist;
-  const valCatalog=cat.reduce((sum,c)=>sum+[...c.coins,...c.bills].reduce((value,n)=>value+n*(c.rate_default||0),0),0);
+  const valCatalog=cat.reduce((sum,c)=>sum+(c.is_historical?0:[...c.coins,...c.bills].reduce((value,n)=>value+n*(c.rate_default||0),0)),0);
   $('#stats').innerHTML=[
     [moneyStat(spent),'потрачено'],
     [moneyStat(valAll),'ценность собранного'],
     [moneyStat(valAct),'действующие'],
-    [moneyStat(valHist),'исторические'],
-    [moneyStat(valCatalog),'ценность полного альбома','Сумма номиналов всех монет и банкнот каталога в рублях, не рыночная оценка.'],
+    [moneyStat(valCatalog),'ценность альбома','Сумма номиналов современных валют по курсам. Исторические валюты не пересчитываются; это не рыночная оценка.','album-value'],
     [col.length,'предметов'],
     [col.filter(hasPhotos).length,'с фото'],
-    [started+' из '+cat.length,'стран начато'],
+    [started+' из '+cat.length,'валют начато'],
     [done,'закрыто']
-  ].map(([v,l,tip])=>`<div${tip?` title="${esc(tip)}"`:''}><b>${v}</b><span>${l}</span></div>`).join('');
+  ].map(([v,l,tip,cls])=>`<div${cls?` class="${cls}"`:''}${tip?` title="${esc(tip)}"`:''}><b>${v}</b><span>${l}</span></div>`).join('');
   $('#notice').hidden=!localStorage.getItem(D);
   const regs=['',...REG,...new Set(cat.map(c=>c.region).filter(r=>!REG.includes(r)))];
   $('#regions').innerHTML=regs.map(r=>`<button data-r="${r}" aria-pressed="${f.r===r}">${r||'Весь мир'}</button>`).join('');
@@ -1128,7 +1162,7 @@ function draw(){
     h+=`<section><h2 class="rg">${r}<small>${L.filter(([,x])=>x.got).length} из ${L.length}</small></h2><div class="grid">`+
     L.map(([c,x])=>{
       const tip=`${c.currency}: монеты ${rg(c.coins)||'—'}, купюры ${rg(c.bills)||'—'}`;
-      return `<button class="plate ${x.done?'done':''} ${x.hist?'hist':''} ${x.got?'':'empty'}" data-c="${esc(c.country)}">
+      return `<button class="plate ${x.done?'done':''} ${x.hist?'hist':''} ${x.got?'':'empty'}" data-c="${esc(currencyKey(c.country,c.currency))}">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px; width:100%;">
           <div style="display:flex; align-items:center; gap:8px;">
             ${IMG(c)}
@@ -1153,7 +1187,7 @@ function draw(){
   if($('#sheet').open)sheet()}
 
 function sheet(){
-  const c=cat.find(z=>z.country===open);if(!c)return;const x=info(c);
+  const c=cat.find(z=>currencyKey(z.country,z.currency)===open);if(!c)return;const x=info(c);
   const grp=t=>{const L=x.items.filter(y=>y.t===t),N=L.length;if(!N)return'';
     return`<h3>${t==='Монета'?'Монеты':'Купюры'}<small>${L.filter(y=>y.it).length} из ${N}</small></h3><div class="row">`+L.map((y,k)=>{
       const r=N>1?k/(N-1):0,s=fmt(y.n).length,coin=t==='Монета';
@@ -1183,12 +1217,13 @@ function sheet(){
             </div>`}).join('')+'</div>'};
   $('#sheet').innerHTML=`<div class="sh-top">${IMG(c)}<div><h2>${esc(c.country)}${x.hist?'<span class="tag">историческая</span>':''}</h2><p>${esc(c.currency_name||'')}${c.coin_name?' / '+esc(c.coin_name):''} ${esc(c.currency)}</p></div><button class="x" data-close aria-label="Закрыть">✕</button></div>
   <div class="felt ${x.hist?'hist':''}">${grp('Монета')}${grp('Купюра')}</div>
-  <div class="sh-foot"><div><span>Сумма номиналов</span><b>${fmt(x.face)} ${esc(c.currency)} ≈ ${fmt(x.face*(c.rate_default||0))} ₽</b></div><div><span>Потрачено</span><b>${fmt(x.spent)} ₽</b></div><button class="histbtn" data-hist>${x.hist?'Вернуть в действующие':'Отметить валюту исторической'}</button></div>`;
+  <div class="sh-foot"><div><span>${c.is_historical?'Сумма исторических номиналов':'Сумма номиналов'}</span><b>${fmt(x.face)} ${esc(c.currency)}${c.is_historical?' (без пересчёта)':' ≈ '+fmt(x.face*(c.rate_default||0))+' ₽'}</b></div><div><span>Потрачено</span><b>${fmt(x.spent)} ₽</b></div><button class="histbtn" data-hist>${x.hist?'Вернуть в действующие':'Отметить валюту исторической'}</button></div>`;
   if(flash)setTimeout(()=>flash=null,500)}
 
 function openItem(t,n){
-  const c=cat.find(z=>z.country===open),x=info(c),it=col.find(i=>i.country===open&&i.type===t&&i.nominal===n);cur={t,n};
+  const c=cat.find(z=>currencyKey(z.country,z.currency)===open),x=info(c),it=col.find(i=>i.country===c.country&&i.currency===c.currency&&i.type===t&&i.nominal===n);cur={t,n};
   photoDraft={front:it&&(it.photoFront||it.photo)||'',back:it&&it.photoBack||''};
+  photoNeedsFileWrite={front:false,back:false};
   const lbl=t==='Монета'?coinLabel(c,n):billLabel(c,n);
   $('#it-h').textContent=lbl+' '+c.currency+(t==='Монета'?', монета':', купюра');
   $('#it-s').textContent=c.country+(it?', в альбоме':', не хватает');
@@ -1197,14 +1232,26 @@ function openItem(t,n){
   $('#it-ok').textContent=it?'Сохранить':'Положить в альбом';$('#it-del').hidden=!it;
   $('#item').showModal();$('#it-cost').select()}
 
-$('#itf').onsubmit=e=>{e.preventDefault();
-  const c=cat.find(z=>z.country===open),cost=Math.max(0,parseFloat($('#it-cost').value)||0),h=$('#it-hist').checked;
-  const it=col.find(i=>i.country===open&&i.type===cur.t&&i.nominal===cur.n);
-  if(it){it.cost=cost;it.is_historical=h;it.photoFront=photoDraft.front;it.photoBack=photoDraft.back;delete it.photo}
-  else col.push({id:Date.now(),country:open,currency:c.currency,nominal:cur.n,type:cur.t,rate:c.rate_default,cost,...(h?{is_historical:true}:{}),...(photoDraft.front?{photoFront:photoDraft.front}:{}),...(photoDraft.back?{photoBack:photoDraft.back}:{})});
-  flash=open+cur.t+cur.n;$('#item').close();save()};
+$('#itf').onsubmit=async e=>{e.preventDefault();
+  const button=$('#it-ok');if(button.disabled)return;button.disabled=true;
+  try{
+    const c=cat.find(z=>currencyKey(z.country,z.currency)===open),cost=Math.max(0,parseFloat($('#it-cost').value)||0),h=$('#it-hist').checked;
+    const front=await savePhotoInProject(photoDraft.front,c,cur.t,cur.n,'front');
+    const back=await savePhotoInProject(photoDraft.back,c,cur.t,cur.n,'back');
+    photoDraft.front=front.value;photoDraft.back=back.value;
+    const it=col.find(i=>i.country===c.country&&i.currency===c.currency&&i.type===cur.t&&i.nominal===cur.n);
+    if(it){it.cost=cost;it.is_historical=h;it.photoFront=photoDraft.front;it.photoBack=photoDraft.back;delete it.photo}
+    else col.push({id:Date.now(),country:c.country,currency:c.currency,nominal:cur.n,type:cur.t,rate:c.rate_default,cost,...(h?{is_historical:true}:{}),...(photoDraft.front?{photoFront:photoDraft.front}:{}),...(photoDraft.back?{photoBack:photoDraft.back}:{})});
+    flash=open+cur.t+cur.n;
+    if(!save())return;
+    $('#item').close();
+    if(front.localOnly||back.localOnly)alert('В этом браузере нет записи в выбранную папку. Фото сохранены только в локальной коллекции; для файлов в проекте используйте Chrome или Edge.');
+  }catch(error){
+    alert(error.name==='AbortError'?'Выбор папки отменён. Изменения не сохранены.':'Не удалось сохранить фото: '+error.message);
+  }finally{button.disabled=false}};
 $('#it-del').onclick=()=>{if(!confirm('Убрать этот предмет из альбома?'))return;
-  col=col.filter(i=>!(i.country===open&&i.type===cur.t&&i.nominal===cur.n));$('#item').close();save()};
+  const c=cat.find(z=>currencyKey(z.country,z.currency)===open);
+  col=col.filter(i=>!(i.country===c.country&&i.currency===c.currency&&i.type===cur.t&&i.nominal===cur.n));$('#item').close();save()};
 
 function exp(){if(!col.length)return alert('Коллекция пуста.');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(col,null,2)],{type:'application/json'}));
@@ -1227,6 +1274,32 @@ function renderPhotoPreview(){
     document.querySelector(`[data-remove-photo="${side}"]`).hidden=!photo;
   }
 }
+async function savePhotoInProject(photo,c,t,n,side){
+  if(!photo||!photoNeedsFileWrite[side])return{value:photo,localOnly:false};
+  if(typeof window.showDirectoryPicker!=='function'){
+    photoNeedsFileWrite[side]=false;
+    return{value:photo,localOnly:true};
+  }
+  if(!photoWriteRoot)photoWriteRoot=await window.showDirectoryPicker({id:'coins-project-root',mode:'readwrite'});
+  const countryCodes={'Сальвадор':'sv'};
+  const countryCode=countryCodes[c.country]||FLAG[c.currency]||c.currency.toLowerCase()||'unknown';
+  const currencyCode=(c.currency||'UNK').toUpperCase().replace(/[^A-Z0-9_-]/g,'-');
+  const type=t==='Монета'?'coin':'note';
+  const path=`images/coins/${countryCode}/${currencyCode}/${type}-${Number(n)}/${side}.jpg`;
+  try{
+    let directory=photoWriteRoot;
+    for(const part of path.split('/').slice(0,-1))directory=await directory.getDirectoryHandle(part,{create:true});
+    const file=await directory.getFileHandle(side+'.jpg',{create:true});
+    const writable=await file.createWritable();
+    await writable.write(await(await fetch(photo)).blob());
+    await writable.close();
+  }catch(error){
+    if(error.name==='NotAllowedError'||error.name==='SecurityError')photoWriteRoot=null;
+    throw error;
+  }
+  photoNeedsFileWrite[side]=false;
+  return{value:path,localOnly:false};
+}
 async function imageAsDataUrl(file){
   if(!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type))throw new Error('Выберите JPG, PNG, WebP или GIF.');
   if(file.size>8*1024*1024)throw new Error('Размер исходного фото не должен превышать 8 МБ.');
@@ -1246,19 +1319,19 @@ async function imageAsDataUrl(file){
 for(const side of ['front','back']){
   $('#it-photo-'+side).onchange=async e=>{
     const file=e.target.files[0];if(!file)return;
-    try{photoDraft[side]=await imageAsDataUrl(file);renderPhotoPreview()}
+    try{photoDraft[side]=await imageAsDataUrl(file);photoNeedsFileWrite[side]=true;renderPhotoPreview()}
     catch(error){alert(error.message);e.target.value=''}
   };
 }
 document.querySelectorAll('[data-remove-photo]').forEach(button=>button.onclick=()=>{
   const side=button.dataset.removePhoto;
-  photoDraft[side]='';$('#it-photo-'+side).value='';renderPhotoPreview()
+  photoDraft[side]='';photoNeedsFileWrite[side]=false;$('#it-photo-'+side).value='';renderPhotoPreview()
 });
 
 const RK='numismat_rates';
 function ratesDate(){try{const r=JSON.parse(localStorage.getItem(RK));return r?new Date(r.t).toLocaleDateString('ru-RU'):''}catch(e){return''}}
 function credit(){const d=ratesDate();$('#credit-d').textContent=d?' Обновлено: '+d+'.':' Пока используются курсы из каталога.'}
-function applyRates(r){(window.WORLD_CATALOG||[]).forEach(c=>{const v=r.rub[c.currency];if(v>0)c.rate_default=v})}
+function applyRates(r){(window.WORLD_CATALOG||[]).forEach(c=>{const v=r.rub[c.currency];if(!c.is_historical&&v>0)c.rate_default=v})}
 async function loadRates(){let r=null;try{r=JSON.parse(localStorage.getItem(RK))}catch(e){}
   if(r&&r.rub)applyRates(r);credit();
   if(r&&Date.now()-r.t<6*36e5)return;
@@ -1266,9 +1339,9 @@ async function loadRates(){let r=null;try{r=JSON.parse(localStorage.getItem(RK))
     const rub={};for(const k in j.rates)if(j.rates[k]>0)rub[k]=1/j.rates[k];
     r={t:Date.now(),rub};localStorage.setItem(RK,JSON.stringify(r));applyRates(r);credit();
     if(document.body.dataset.skin==='album'){build();draw()}else if(window.__classicReload)window.__classicReload()}catch(e){}}
-function togHist(){const c=cat.find(z=>z.country===open),x=info(c);
+function togHist(){const c=cat.find(z=>currencyKey(z.country,z.currency)===open),x=info(c);
   if(!x.own.length)return alert('Сначала положите в альбом хотя бы один номинал: статус хранится в записях коллекции.');
-  const h=!x.hist;col.forEach(i=>{if(i.country===open)i.is_historical=h});save()}
+  const h=!x.hist;col.forEach(i=>{if(i.country===c.country&&i.currency===c.currency)i.is_historical=h});save()}
 function skin(){document.body.dataset.skin='album';build();draw()}
 document.addEventListener('click',e=>{const t=e.target;let b;
   if(t.closest('[data-hist]')){togHist();return}
@@ -1299,7 +1372,11 @@ $('#photo-only').onchange=e=>{f.photos=e.target.checked;draw()};
 (async()=>{try{await window.__ready}catch(e){}
   const saved=localStorage.getItem(K);
   try{col=norm(saved?JSON.parse(saved):[])}
-  catch(error){col=[];alert('Не удалось прочитать локальную коллекцию: '+error.message+' Резервная копия не перезаписана.')}
+  catch(error){col=[];historicalCurrencyMigrationPending=false;alert('Не удалось прочитать локальную коллекцию: '+error.message+' Резервная копия не перезаписана.')}
+  if(saved!==null&&historicalCurrencyMigrationPending){
+    try{localStorage.setItem(K,JSON.stringify(col));localStorage.setItem(D,'1')}
+    catch(error){alert('Не удалось сохранить исправление валют в коллекции: '+error.message)}
+  }
   if(saved===null)localStorage.setItem(K,JSON.stringify(col));
   loadRates();skin()})();
 
