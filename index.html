@@ -137,39 +137,49 @@
         }
 /* ===== Скин «Альбом» ===== */
 
-:root{--linen:#e5e9e7;--paper:#f7f8f6;--ink:#19262b;--mute:#66767b;--line:#cdd5d2;--felt:#244240;--felt2:#183030;--brass:#c49b4a;--brass2:#8a6528;--sepia:#e4d6ae;--sepia-ink:#5c4b2b;--ui:'Golos Text',system-ui,sans-serif;--disp:'Forum',Georgia,serif}
+:root{--linen:#e7e1d3;--paper:#fbf8f0;--ink:#25382f;--mute:#707a70;--line:#d5cbb7;--felt:#25493b;--felt2:#17352d;--brass:#c89a45;--brass2:#8a6528;--sepia:#e8d9b4;--sepia-ink:#5c4b2b;--ui:'Golos Text',system-ui,sans-serif;--disp:'Forum',Georgia,serif}
 :where(#skin-album) *,dialog *{box-sizing:border-box;margin:0}
 dialog{margin:auto}
 :where(#skin-album){color:var(--ink);font:400 15px/1.4 var(--ui);padding-bottom:70px}
 :where(#skin-album) button,:where(#skin-album) input,dialog button,dialog input{font:inherit;color:inherit}
 :where(#skin-album) button,dialog button{cursor:pointer}
 :where(#skin-album) :focus-visible,dialog :focus-visible{outline:3px solid var(--brass);outline-offset:2px}
-.wrap{max-width:1100px;margin:0 auto;padding:0 14px}
-.top{padding-top:14px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 22px}
+.top{padding-top:30px}
 .bar{display:flex;justify-content:space-between;align-items:center;gap:10px}
-:where(#skin-album) h1{font:400 1.6rem var(--disp)}
-.ghost{background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin:12px 0;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
-.stats div{padding:9px 10px;border-left:1px solid var(--line);display:flex;flex-direction:column}
+:where(#skin-album) h1{font:400 clamp(2rem,4vw,3.2rem)/1.05 var(--disp);letter-spacing:.01em}
+.brand{display:grid;gap:5px}
+.brand-kicker{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brass2);font-weight:600}
+.brand p{font-size:.9rem;color:var(--mute)}
+.ghost{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 14px;box-shadow:0 2px 6px #493b2010}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin:20px 0;border:1px solid var(--line);border-radius:12px;background:var(--paper);box-shadow:0 8px 24px #493b2010}
+.stats div{padding:13px 15px;border-left:1px solid var(--line);display:flex;flex-direction:column}
 .stats div:first-child{border-left:0}
 .stats b{font:400 1.25rem/1.2 var(--disp)}.stats span{font-size:.7rem;color:var(--mute)}
+.stats .money-minor{font-size:.7em;color:var(--mute);vertical-align:baseline}
 @media(max-width:520px){.stats b{font-size:1.02rem}.stats span{font-size:.64rem}}
 .notice[hidden]{display:none}
 .notice{display:flex;gap:10px;align-items:center;justify-content:space-between;background:#f3e8c9;border:1px solid #d9c58a;border-radius:8px;padding:8px 12px;font-size:.85rem;margin-bottom:8px}
 .notice button{border:1px solid #b9a057;background:none;border-radius:6px;padding:5px 10px;white-space:nowrap}
-.tools{position:sticky;top:0;background:var(--linen);padding:8px 0;z-index:5;display:grid;gap:8px}
-#q{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
-.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.tools{position:sticky;top:0;background:var(--linen);padding:12px 0;z-index:5;display:grid;gap:9px}
+#q{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:9px;background:var(--paper)}
+.tool-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tool-row select{min-height:38px;padding:7px 30px 7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);font-size:.82rem}
+.photo-filter{display:flex;align-items:center;gap:7px;margin-left:auto;color:var(--mute);font-size:.82rem}
+.photo-filter input{accent-color:var(--felt);width:16px;height:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
 .chips button{white-space:nowrap;border:1px solid var(--line);background:var(--paper);border-radius:99px;padding:6px 12px;font-size:.85rem}
 .chips button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .rg{font:400 1.3rem var(--disp);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:10px}
 .rg small{font:500 .78rem var(--ui);color:var(--mute)}
 .none{margin:40px 0;text-align:center;color:var(--mute)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:10px}
-.plate{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 11px;display:flex;flex-direction:column;gap:6px;min-height:108px}
-.plate:hover{border-color:var(--brass2)}
+.plate{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:13px 14px;display:flex;flex-direction:column;gap:7px;min-height:116px;box-shadow:0 3px 10px #493b2009;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+.plate:hover{border-color:var(--brass2);transform:translateY(-2px);box-shadow:0 8px 20px #493b2018}
 .plate img{width:30px;height:20px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px #0002}
-.nm{font:400 1.05rem/1.15 var(--disp)}.cc{font-size:.72rem;color:var(--mute)}
+.plate>div:first-child,.plate>div:first-child>div{min-width:0}
+.plate>div:first-child>.cc{flex-shrink:0}
+.nm{min-width:0;overflow-wrap:anywhere;font:400 1.05rem/1.15 var(--disp)}.cc{font-size:.72rem;color:var(--mute)}
 .foot{display:flex;justify-content:space-between;align-items:flex-end;gap:6px;margin-top:auto}
 .dots{display:flex;flex-wrap:wrap;gap:3px}
 .dots i{width:7px;height:7px;border-radius:50%;border:1.5px solid #9aa7aa}
@@ -193,8 +203,13 @@ dialog::backdrop{background:#10191cb8}
 .felt h3{position:relative;font:400 1.1rem var(--disp);margin:6px 0 12px}.felt h3 small{font:500 .75rem var(--ui);opacity:.7;margin-left:6px}
 .felt h3:not(:first-child){margin-top:26px}
 .row{position:relative;display:flex;flex-wrap:wrap;gap:16px 14px}
-.slot{background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:5px;color:inherit}
+.slot{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;color:inherit}
+.slot-view{background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:5px;color:inherit;font:inherit;cursor:pointer}
+.slot-edit{position:absolute;top:-5px;right:-8px;z-index:1;width:22px;height:22px;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--paper);color:var(--ink);font:500 .72rem var(--ui);cursor:pointer;box-shadow:0 2px 5px #0003}
 .slot em{font:normal 600 .72rem var(--ui);opacity:.8;min-height:1em}
+.slot .purchase-price{display:block;margin-top:3px;font-size:.68rem;font-weight:400;line-height:1.15;opacity:.72}
+.face-photo{display:block;width:var(--d);height:var(--d);object-fit:cover;border-radius:50%;border:1px solid #ffffff55;box-shadow:0 2px 7px #0005}
+.note .face-photo{width:var(--w);height:calc(var(--w)*.5);border-radius:4px}
 .coin .face{width:var(--d);height:var(--d);border-radius:50%;display:grid;place-items:center;font:400 calc(var(--d)*var(--k)) var(--disp);background:var(--hole);box-shadow:inset 0 3px 8px #000a,0 1px 0 #ffffff22}
 .coin.on .face{background:radial-gradient(circle at 35% 30%,var(--m1),var(--m2) 72%);box-shadow:inset 0 0 0 3px var(--m3),inset 0 0 0 5px #0003,0 3px 6px #0007;color:#2b1e0a}
 .copper{--m1:#e3a37d;--m2:#a65e38;--m3:#cc8760}.brass{--m1:#f1d78f;--m2:#b38836;--m3:#dbb862}.silver{--m1:#f2f5f6;--m2:#9da8ad;--m3:#d0d8db}
@@ -217,13 +232,25 @@ dialog label.chk{display:flex;align-items:center;gap:8px;color:var(--ink);font-s
 .acts .pri{background:var(--felt);color:#fff;border-color:var(--felt);font-weight:600}
 .acts .danger{color:#a03a2c;border-color:#d9b1aa}
 #menu p{font-size:.85rem;color:var(--mute)}
+.photo-tools{display:grid;gap:10px}
+.photo-side{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:9px;background:#f7f5ee}
+.photo-side strong{font-size:.82rem;color:var(--ink)}
+.photo-preview{width:100%;height:130px;object-fit:contain;background:#eef0e9;border:1px solid var(--line);border-radius:7px}
+.photo-preview[hidden]{display:none}
+.photo-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.photo-actions input{width:100%;max-width:100%;min-width:0;font-size:.78rem}
+.photo-remove{border:1px solid var(--line);background:none;border-radius:7px;padding:7px 9px;white-space:nowrap}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:600px){.wrap{padding:0 14px}.top{padding-top:20px}.bar{align-items:flex-start}.brand p{max-width:34ch}.photo-filter{margin-left:0}}
 
 .histbtn{grid-column:1/-1;padding:10px;border-radius:8px;border:1px solid var(--line);background:none}
-body{margin:0}
+body{margin:0;overflow-x:clip}
+html{overflow-x:clip}
 .cc{font-size:.8rem;color:var(--ink);line-height:1.25}.rng{font-size:.72rem;color:var(--mute);line-height:1.3}.plate.hist .rng{color:#7d6a43}
 #credit{max-width:1100px;margin:0 auto;padding:0 14px 76px;font:400 .75rem system-ui,sans-serif;color:#66767b;text-align:center}#credit a{color:inherit}
 body[data-skin=classic]{background:#f4f6f9}body[data-skin=album]{background:var(--linen)}
+body[data-skin=album]{background:linear-gradient(180deg,#eee9dd 0,#e7e1d3 360px,var(--linen) 100%)}
+body[data-skin=album] #skin-album{min-height:100vh}
 body[data-skin=classic] #skin-album,body[data-skin=album] #skin-classic{display:none}
 #skinbar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:50;display:flex;background:#19262bf2;border-radius:99px;padding:3px;box-shadow:0 4px 14px #0005}
 #skinbar button{border:0;background:none;color:#cfd8d6;padding:8px 15px;border-radius:99px;font:500 .85rem system-ui,sans-serif;cursor:pointer}
@@ -232,7 +259,7 @@ body[data-skin=classic] #skin-album,body[data-skin=album] #skin-classic{display:
 </style>
 </head>
 <body>
-<script>document.body.dataset.skin=localStorage.getItem('numismat_skin')==='album'?'album':'classic'</script>
+<script>document.body.dataset.skin='album'</script>
 <div id="skin-classic">
 <div class="container">
     <header><h1>🗺️ Интерактивный Атлас Коллекционера</h1></header>
@@ -293,11 +320,16 @@ body[data-skin=classic] #skin-album,body[data-skin=album] #skin-classic{display:
 </div>
 <div id="skin-album">
 <header class="wrap top">
-  <div class="bar"><h1>Нумизматический альбом</h1><button class="ghost" id="mMenu">Резервная копия</button></div>
+  <div class="bar"><div class="brand"><span class="brand-kicker">Личный каталог коллекционера</span><h1>Нумизматический альбом</h1><p>Монеты и банкноты со всего мира — бережно собранные в одном месте.</p></div><button class="ghost" id="mMenu">Резервная копия</button></div>
   <div class="stats" id="stats"></div>
   <div class="notice" id="notice" hidden><span>Изменения пока только в этом браузере. Скачайте data.json и замените файл в репозитории.</span><button data-exp>Скачать</button></div>
   <div class="tools">
     <input id="q" type="search" placeholder="Страна или валюта" autocomplete="off">
+    <div class="tool-row">
+      <select id="kind" aria-label="Тип экспонатов"><option value="">Монеты и банкноты</option><option value="Монета">Только монеты</option><option value="Купюра">Только банкноты</option></select>
+      <select id="sort" aria-label="Сортировка"><option value="country">По алфавиту</option><option value="progress">Сначала заполненные</option><option value="missing">Сначала незаполненные</option></select>
+      <label class="photo-filter"><input id="photo-only" type="checkbox">С фотографиями</label>
+    </div>
     <div class="chips" id="regions"></div>
     <div class="chips" id="states"></div>
   </div>
@@ -308,12 +340,16 @@ body[data-skin=classic] #skin-album,body[data-skin=album] #skin-classic{display:
 <dialog id="item"><form id="itf">
   <h2 id="it-h"></h2><p id="it-s"></p>
   <label>Цена покупки, ₽<input id="it-cost" type="number" min="0" step="any" inputmode="decimal"></label>
+  <div class="photo-tools">
+    <div class="photo-side"><strong>Лицевая сторона</strong><img id="photo-front-preview" class="photo-preview" alt="Предпросмотр лицевой стороны" hidden><div class="photo-actions"><input id="it-photo-front" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="photo-remove" type="button" data-remove-photo="front">Удалить фото</button></div></div>
+    <div class="photo-side"><strong>Оборотная сторона</strong><img id="photo-back-preview" class="photo-preview" alt="Предпросмотр оборотной стороны" hidden><div class="photo-actions"><input id="it-photo-back" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="photo-remove" type="button" data-remove-photo="back">Удалить фото</button></div></div>
+  </div>
   <label class="chk"><input id="it-hist" type="checkbox">Выведена из обращения</label>
   <div class="acts"><button class="pri" id="it-ok">Положить в альбом</button><button type="button" class="danger" id="it-del">Убрать из альбома</button><button type="button" data-close>Отмена</button></div>
 </form></dialog>
 <dialog id="menu"><div>
   <h2>Резервная копия</h2>
-  <p>Скачайте data.json и замените им файл в репозитории, чтобы коллекция открывалась на любом устройстве.</p>
+  <p>Резервная копия сохраняет коллекцию вместе с фотографиями. Загрузите файл, чтобы восстановить данные в этом браузере.</p>
   <button class="b" data-exp>Скачать data.json</button>
   <button class="b" data-imp>Загрузить файл</button>
   <button class="b" data-close>Закрыть</button>
@@ -322,7 +358,6 @@ body[data-skin=classic] #skin-album,body[data-skin=album] #skin-classic{display:
 
 
 <footer id="credit">Курсы валют: <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates By Exchange Rate API</a>, обновляются раз в сутки.<span id="credit-d"></span></footer>
-<div id="skinbar" role="group" aria-label="Оформление"><button data-skin="classic" aria-pressed="false">Классика</button><button data-skin="album" aria-pressed="false">Альбом</button></div>
 <script>
 function persist(){localStorage.setItem('numismat_db',JSON.stringify(collection));localStorage.setItem('numismat_dirty','1');}
 
@@ -366,7 +401,7 @@ window.FLAG = {
 
 window.WORLD_CATALOG = [
   {"region":"Европа","country":"Албания","currency":"ALL","currency_name":"Албанский лек","coin_name":"","coin_forms":["","",""],"subunit":100,"rate_default":0.92,"coins":[1,5,10,20,50,100],"bills":[200,500,1000,2000,5000]},
-  {"region":"Европа","country":"Беларусь","currency":"BYN","currency_name":"Белорусский рубль","coin_name":"копейка","coin_forms":["копейка","копейки","копеек"],"bill_name":"рубль","bill_forms":["рубль","рубля","рублей"],"subunit":100,"rate_default":28.02,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200,500]},
+  {"region":"Европа","country":"Беларусь","currency":"BYN","currency_name":"Белорусский рубль","coin_name":"копейка","coin_forms":["копейка","копейки","копеек"],"subunit":100,"rate_default":28.02,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200,500]},
   {"region":"Европа","country":"Болгария","currency":"BGN","currency_name":"Болгарский лев","coin_name":"стотинка","coin_forms":["стотинка","стотинки","стотинок"],"subunit":100,"bill_name":"лев","bill_forms":["лев","лева","левов"],"rate_default":47.06,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50,100,200,500]},
   {"region":"Европа","country":"Босния и Герцеговина","currency":"BAM","currency_name":"Конвертируемая марка","coin_name":"фенинг","coin_forms":["фенинг","фенинга","фенингов"],"subunit":100,"bill_name":"марка","bill_forms":["марка","марки","марок"],"rate_default":48.65,"coins":[0.05,0.1,0.2,0.5,1,2,5],"bills":[10,20,50,100,200]},
   {"region":"Европа","country":"Великобритания","currency":"GBP","currency_name":"Фунт стерлингов","coin_name":"пенни","coin_forms":["пенни","пенни","пенни"],"subunit":100,"bill_name":"фунт","bill_forms":["фунт","фунта","фунтов"],"rate_default":112.74,"coins":[0.01,0.02,0.05,0.1,0.2,0.5,1,2],"bills":[5,10,20,50]},
@@ -895,9 +930,13 @@ const WORLD_CATALOG=window.WORLD_CATALOG;
 const FLAG=window.FLAG;
 const K='numismat_db',D='numismat_dirty',REG=['Европа','Азия','Африка','Америка','Австралия и Океания'];
 const ALIAS={'Европа':'Еврозона','Еврозона (Европа)':'Еврозона'};
-let col=[],cat=[],f={q:'',r:'',s:''},open=null,cur=null,flash=null;
+let col=[],cat=[],f={q:'',r:'',s:'',kind:'',photos:false,sort:'country'},open=null,cur=null,flash=null,photoDraft={front:'',back:''},flipped=new Set();
 const $=s=>document.querySelector(s);
 const fmt=n=>(+n).toLocaleString('ru-RU',{maximumFractionDigits:3});
+const moneyStat=n=>{
+  const [whole,fraction]=(+n).toLocaleString('ru-RU',{maximumFractionDigits:2}).split(',');
+  return whole+(fraction?`<span class="money-minor">,${fraction}</span>`:'')+' ₽';
+};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fl=c=>'flags/'+(FLAG[c.currency]||'un')+'.svg';
 const IMG=c=>`<img src="${fl(c)}" alt="" onerror="this.style.visibility='hidden'">`;
@@ -910,24 +949,43 @@ function plural(n,one,few,many){
   return many;
 }
 
-// подпись монеты с числом: "1 стотинка", "50 стотинок"
-function coinLabel(c,n){
-  if(n>=1)return fmt(n);
+function majorForms(c){
+  if(c.bill_forms&&c.bill_name)return c.bill_forms;
+  if(c.currency==='RUB')return['рубль','рубля','рублей'];
+  if(c.currency==='CNY')return['юань','юаня','юаней'];
+  const words=(c.currency_name||'').trim().split(/\s+/);
+  let base=words[words.length-1]||c.currency||'';
+  if(/^[A-ZА-ЯЁ]{2,}$/.test(base)&&words.length>1)base=words[words.length-2];
+  return[base,base,base];
+}
+function quantityLabel(n,forms){
+  return fmt(n)+' '+plural(n,forms[0],forms[1],forms[2]);
+}
+function fractionalUnit(c,n){
   if(c.sub_units){
     for(const u of c.sub_units){
       const v=n*u.size;
       if(Math.abs(v-Math.round(v))<1e-9){
-        const k=Math.round(v);
-        const f=u.forms||[u.name,u.name,u.name];
-        return k+' '+plural(k,f[0],f[1],f[2]);
+        return{value:Math.round(v),forms:u.forms||[u.name,u.name,u.name]};
       }
     }
   }
-  if(!c.coin_name)return fmt(n);
+  return null;
+}
+function fractionalLabel(c,n){
+  const unit=fractionalUnit(c,n);
+  return unit?quantityLabel(unit.value,unit.forms):'';
+}
+
+function coinLabel(c,n){
+  if(n>=1)return quantityLabel(n,majorForms(c));
+  const fractional=fractionalLabel(c,n);
+  if(fractional)return fractional;
+  if(!c.coin_name)return quantityLabel(n*(c.subunit||100),majorForms(c));
   const sub=c.subunit||100;
   const v=Math.round(n*sub);
   const f=c.coin_forms||[c.coin_name,c.coin_name,c.coin_name];
-  return v+' '+plural(v,f[0],f[1],f[2]);
+  return quantityLabel(v,f);
 }
 
 // что писать на «лице» owned-монеты: 0.2 -> "20", 0.01 -> "1", 1 -> "1"
@@ -945,61 +1003,45 @@ function faceValue(c,n){
 
 // что писать под owned-монетой: название единицы, склонённое по числу на «лице»
 function unitName(c,n){
-  if(n>=1){
-    // Ищем базовое название основной единицы
-    let base = (c.bill_forms && c.bill_forms[0]) || (c.coin_forms && c.coin_forms[0]);
-    // Если названия нет (например, Албания, Исландия, Венгрия), берем первое слово из названия валюты
-    if(!base || base === '') {
-      base = (c.currency_name || '').split(' ')[0]; 
-    }
-    return base || c.currency || '';
-  }
-  
-  // Логика для дробных частей остается прежней
-  if(c.sub_units){
-    for(const u of c.sub_units){
-      const v=n*u.size;
-      if(Math.abs(v-Math.round(v))<1e-9){
-        const k=Math.round(v);
-        const f=u.forms||[u.name,u.name,u.name];
-        return plural(k,f[0],f[1],f[2]);
-      }
-    }
-  }
+  if(n>=1)return plural(n,...majorForms(c));
+  const unit=fractionalUnit(c,n);
+  if(unit)return plural(unit.value,...unit.forms);
   if(!c.coin_name)return '';
   const sub=c.subunit||100;
   const k=Math.round(n*sub);
   const f=c.coin_forms||[c.coin_name,c.coin_name,c.coin_name];
-  return plural(k,f[0],f[1],f[2]);
+  return plural(k,...f);
 }
 
-// подпись купюры с числом: "5 левов", "100 долларов"
 function billLabel(c,n){
-  let base = c.bill_name;
-  if(!base) {
-    // Если названия купюры нет, берем первое слово из названия валюты (убираем "ый", "ий" и т.д. не будем, 
-    // просто берем как есть, например "Венгерский форинт" -> "Венгерский", что не очень, 
-    // поэтому лучше брать базовую форму из монеты, если есть, или название купюры)
-    base = (c.coin_forms && c.coin_forms[0]) || (c.currency_name || '').split(' ').pop();
-  }
-  if(!base) return fmt(n);
-  
-  const f=c.bill_forms || [base, base, base];
-  // Простейшая эвристика для множественного числа, если формы не заданы
-  if(!c.bill_forms) {
-     const lastChar = base.slice(-1).toLowerCase();
-     const vowels = ['а','я','ы','и','е','ё','у','ю','о'];
-     if (n % 10 === 1 && n % 100 !== 11) f[1] = base;
-     else if (vowels.includes(lastChar)) f[1] = base.slice(0, -1) + 'и'; // очень грубо, но лучше чем ничего
-     else f[1] = base + 'ов';
-     f[2] = f[1];
-  }
-  return n+' '+plural(n,f[0],f[1],f[2]);
+  if(n<1){const fractional=fractionalLabel(c,n);if(fractional)return fractional}
+  return quantityLabel(n,c.bill_forms||majorForms(c));
 }
+function billUnitName(c,n){
+  if(n<1){const unit=fractionalUnit(c,n);if(unit)return plural(unit.value,...unit.forms)}
+  return plural(n,...(c.bill_forms||majorForms(c)));
+}
+function billFaceValue(c,n){
+  if(n<1){const unit=fractionalUnit(c,n);if(unit)return fmt(unit.value)}
+  return fmt(n);
+}
+const hasPhotos=i=>!!(i.photoFront||i.photoBack||i.photo);
 
-function norm(a){const m=new Map();a.forEach(i=>{i.country=ALIAS[i.country]||i.country;i.nominal=+i.nominal;i.cost=+i.cost||0;
+function norm(a){const m=new Map();a.forEach(raw=>{
+  if(!raw||typeof raw!=='object'||Array.isArray(raw))throw new Error('В файле найдена некорректная запись.');
+  const i={...raw};i.country=ALIAS[i.country]||i.country;i.nominal=Number(i.nominal);i.cost=Number(i.cost||0);
+  if(!i.photoFront&&i.photo)i.photoFront=i.photo;
+  delete i.photo;
+  i.photoFront=i.photoFront||'';i.photoBack=i.photoBack||'';
+  if(typeof i.country!=='string'||!i.country.trim()||i.country.length>160||!Number.isFinite(i.nominal)||i.nominal<0||
+     !Number.isFinite(i.cost)||i.cost<0||!['Монета','Купюра'].includes(i.type)||
+     (i.currency!=null&&(typeof i.currency!=='string'||i.currency.length>12))||
+     ![i.photoFront,i.photoBack].every(photo=>typeof photo==='string'&&photo.length<=850000&&(!photo||/^data:image\/jpeg;base64,[A-Za-z0-9+/]+=*$/.test(photo))))
+    throw new Error('В файле есть запись с недопустимыми полями или фотографией.');
   const k=i.country+'|'+i.nominal+'|'+i.type,o=m.get(k);
-  if(!o||i.cost>o.cost){if(o&&o.is_historical)i.is_historical=true;m.set(k,i)}else if(i.is_historical)o.is_historical=true});
+  if(!o||i.cost>o.cost){if(o){if(o.is_historical)i.is_historical=true;if(!i.photoFront)i.photoFront=o.photoFront;if(!i.photoBack)i.photoBack=o.photoBack}m.set(k,i)}
+  else{if(i.is_historical)o.is_historical=true;if(!o.photoFront&&i.photoFront)o.photoFront=i.photoFront;if(!o.photoBack&&i.photoBack)o.photoBack=i.photoBack}
+  });
   return [...m.values()]}
 
 function build(){
@@ -1021,7 +1063,21 @@ function info(c){
     hist:own.length?own.every(i=>i.is_historical):!!c.is_historical,
     spent:own.reduce((s,i)=>s+i.cost,0),face:own.reduce((s,i)=>s+i.nominal,0)}}
 
-function save(){localStorage.setItem(K,JSON.stringify(col));localStorage.setItem(D,'1');draw()}
+function save(){
+  const previous=localStorage.getItem(K);
+  try{localStorage.setItem(K,JSON.stringify(col));localStorage.setItem(D,'1');draw();return true}
+  catch(error){
+    try{
+      if(previous===null)localStorage.removeItem(K);else localStorage.setItem(K,previous);
+      col=norm(JSON.parse(previous||'[]'));build();draw();
+    }catch(restoreError){
+      alert('Не удалось сохранить коллекцию или восстановить прежние данные: '+restoreError.message);
+      throw restoreError;
+    }
+    alert('Изменения не сохранены. Освободите место в хранилище браузера или скачайте резервную копию. Подробности: '+error.message);
+    return false;
+  }
+}
 
 function draw(){
   const I=cat.map(c=>[c,info(c)]);let started=0,done=0;
@@ -1031,30 +1087,41 @@ function draw(){
   const valAll=col.reduce((s,i)=>s+(+i.nominal||0)*rateOf(i),0);
   const valHist=col.reduce((s,i)=>i.is_historical?s+(+i.nominal||0)*rateOf(i):s,0);
   const valAct=valAll-valHist;
+  const valCatalog=cat.reduce((sum,c)=>sum+[...c.coins,...c.bills].reduce((value,n)=>value+n*(c.rate_default||0),0),0);
   $('#stats').innerHTML=[
-    [fmt(spent)+' ₽','потрачено'],
-    [fmt(valAll)+' ₽','ценность всего'],
-    [fmt(valAct)+' ₽','действующие'],
-    [fmt(valHist)+' ₽','исторические'],
+    [moneyStat(spent),'потрачено'],
+    [moneyStat(valAll),'ценность собранного'],
+    [moneyStat(valAct),'действующие'],
+    [moneyStat(valHist),'исторические'],
+    [moneyStat(valCatalog),'ценность полного альбома','Сумма номиналов всех монет и банкнот каталога в рублях, не рыночная оценка.'],
     [col.length,'предметов'],
+    [col.filter(hasPhotos).length,'с фото'],
     [started+' из '+cat.length,'стран начато'],
     [done,'закрыто']
-  ].map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
+  ].map(([v,l,tip])=>`<div${tip?` title="${esc(tip)}"`:''}><b>${v}</b><span>${l}</span></div>`).join('');
   $('#notice').hidden=!localStorage.getItem(D);
   const regs=['',...REG,...new Set(cat.map(c=>c.region).filter(r=>!REG.includes(r)))];
   $('#regions').innerHTML=regs.map(r=>`<button data-r="${r}" aria-pressed="${f.r===r}">${r||'Весь мир'}</button>`).join('');
   $('#states').innerHTML=[['','Все'],['p','В процессе'],['n','Не начаты'],['d','Закрыты']].map(([v,l])=>`<button data-s="${v}" aria-pressed="${f.s===v}">${l}</button>`).join('');
+  $('#kind').value=f.kind;$('#sort').value=f.sort;$('#photo-only').checked=f.photos;
   const q=f.q.toLowerCase();
   const ok=([c,x])=>(!f.r||c.region===f.r)&&(!q||[c.country,c.currency,c.currency_name||''].some(s=>s.toLowerCase().includes(q)))&&
-    (!f.s||(f.s==='p'&&x.got>0&&!x.done)||(f.s==='n'&&!x.got)||(f.s==='d'&&x.done));
-/*  const list=I.filter(ok);let h='';
-  regs.slice(1).forEach(r=>{const L=list.filter(([c])=>c.region===r);if(!L.length)return;
-    h+=`<section><h2 class="rg">${r}<small>${L.filter(([,x])=>x.got).length} из ${L.length}</small></h2><div class="grid">`+
-    L.map(([c,x])=>`<button class="plate ${x.done?'done':''} ${x.hist?'hist':''} ${x.got?'':'empty'}" data-c="${esc(c.country)}">${IMG(c)}<span class="nm">${esc(c.country)}</span><span class="cc">${esc(c.currency_name||c.currency)}${c.coin_name?' / '+esc(c.coin_name):''}</span><span class="rng">${esc(c.currency)}: ${rng(c)}${x.hist?', историческая':''}</span><span class="foot"><span class="dots">${x.items.map(y=>`<i class="${y.t==='Купюра'?'n':''} 
-    ${y.it?'on':''}"></i>`).join('')}</span><span class="ct">${x.got}/${x.tot}</span></span></button>`).join('')+'</div></section>'}); 
-    $('#main').innerHTML=h||'<p class="none">Ничего не найдено. Измените запрос или фильтр.</p>';*/
+    (!f.s||(f.s==='p'&&x.got>0&&!x.done)||(f.s==='n'&&!x.got)||(f.s==='d'&&x.done))&&
+    (!f.kind||x.items.some(y=>y.t===f.kind))&&(!f.photos||x.own.some(hasPhotos));
 
-  const list=I.filter(ok);let h='';
+  const list=I.filter(ok);
+  list.sort((a,b)=>{
+    if(f.sort==='progress'){
+      const progress=x=>x.tot?x.got/x.tot:0;
+      return progress(b[1])-progress(a[1])||a[0].country.localeCompare(b[0].country,'ru');
+    }
+    if(f.sort==='missing'){
+      const progress=x=>x.tot?x.got/x.tot:0;
+      return progress(a[1])-progress(b[1])||a[0].country.localeCompare(b[0].country,'ru');
+    }
+    return a[0].country.localeCompare(b[0].country,'ru');
+  });
+  let h='';
   regs.slice(1).forEach(r=>{
     const L=list.filter(([c])=>c.region===r);
     if(!L.length)return;
@@ -1074,7 +1141,7 @@ function draw(){
         </div>
         <div class="foot" title="${tip}">
           <span class="dots">${x.items.map(y=>`<i class="${y.t==='Купюра'?'n':''} ${y.it?'on':''}"></i>`).join('')}</span>
-          <span class="ct">${x.got} / ${x.tot}</span>
+          <span class="ct">${x.own.some(hasPhotos)?'Фото · ':''}${x.got} / ${x.tot}</span>
         </div>
       </button>`;
     }).join('')+'</div></section>';
@@ -1097,15 +1164,23 @@ function sheet(){
         if(y.it){ face=faceValue(c,y.n); em=unitName(c,y.n); }
         else    { face='';      em=coinLabel(c,y.n); }
       }else{
-        if(y.it){ face=fmt(y.n); em=billLabel(c,y.n); }
+        if(y.it){ face=billFaceValue(c,y.n); em=billUnitName(c,y.n); }
         else    { face='';      em=billLabel(c,y.n); }
       }
       const aria = coin?`${t} ${coinLabel(c,y.n)} ${esc(c.currency)}`:`${t} ${billLabel(c,y.n)} ${esc(c.currency)}`;
             let sub = em;
       if (y.it && y.it.cost > 0) {
-        sub += ` <span style="font-weight:400; opacity:0.6;">(${fmt(y.it.cost)} ₽)</span>`;
+              sub += `<span class="purchase-price">(${fmt(y.it.cost)} ₽)</span>`;
       }
-      return`<button class="${cls}" style="${sz}" data-t="${t}" data-n="${y.n}" aria-label="${aria}, ${y.it?'в альбоме':'не хватает'}"><span class="face">${face}</span><em>${sub}</em></button>`}).join('')+'</div>'};
+            const key=`${open}|${t}|${y.n}`,hasBoth=!!(y.it&&y.it.photoFront&&y.it.photoBack),showBack=hasBoth&&flipped.has(key);
+            const faceData=y.it&&(showBack?y.it.photoBack:y.it.photoFront||y.it.photoBack);
+            const faceSide=showBack?'Оборотная сторона':y.it&&!y.it.photoFront&&y.it.photoBack?'Оборотная сторона':'Лицевая сторона';
+            const facePhoto=faceData?`<img class="face-photo" src="${faceData}" alt="${faceSide}">`:`<span class="face">${face}</span>`;
+            const viewLabel=hasBoth?`${aria}, ${faceSide}; нажмите, чтобы перевернуть`:faceData?`${aria}, ${faceSide}`:`${aria}, ${y.it?'в альбоме':'не хватает'}`;
+            return`<div class="${cls}" style="${sz}">
+              <button class="slot-view" data-t="${t}" data-n="${y.n}" data-flip="${hasBoth}" aria-label="${viewLabel}">${facePhoto}<em>${sub}</em></button>
+              ${faceData?`<button class="slot-edit" data-t="${t}" data-n="${y.n}" title="Изменить фотографии" aria-label="Изменить фотографии: ${aria}">✎</button>`:''}
+            </div>`}).join('')+'</div>'};
   $('#sheet').innerHTML=`<div class="sh-top">${IMG(c)}<div><h2>${esc(c.country)}${x.hist?'<span class="tag">историческая</span>':''}</h2><p>${esc(c.currency_name||'')}${c.coin_name?' / '+esc(c.coin_name):''} ${esc(c.currency)}</p></div><button class="x" data-close aria-label="Закрыть">✕</button></div>
   <div class="felt ${x.hist?'hist':''}">${grp('Монета')}${grp('Купюра')}</div>
   <div class="sh-foot"><div><span>Сумма номиналов</span><b>${fmt(x.face)} ${esc(c.currency)} ≈ ${fmt(x.face*(c.rate_default||0))} ₽</b></div><div><span>Потрачено</span><b>${fmt(x.spent)} ₽</b></div><button class="histbtn" data-hist>${x.hist?'Вернуть в действующие':'Отметить валюту исторической'}</button></div>`;
@@ -1113,28 +1188,72 @@ function sheet(){
 
 function openItem(t,n){
   const c=cat.find(z=>z.country===open),x=info(c),it=col.find(i=>i.country===open&&i.type===t&&i.nominal===n);cur={t,n};
+  photoDraft={front:it&&(it.photoFront||it.photo)||'',back:it&&it.photoBack||''};
   const lbl=t==='Монета'?coinLabel(c,n):billLabel(c,n);
   $('#it-h').textContent=lbl+' '+c.currency+(t==='Монета'?', монета':', купюра');
   $('#it-s').textContent=c.country+(it?', в альбоме':', не хватает');
   $('#it-cost').value=it?it.cost:0;$('#it-hist').checked=it?!!it.is_historical:x.hist;
+  $('#it-photo-front').value='';$('#it-photo-back').value='';renderPhotoPreview();
   $('#it-ok').textContent=it?'Сохранить':'Положить в альбом';$('#it-del').hidden=!it;
   $('#item').showModal();$('#it-cost').select()}
 
 $('#itf').onsubmit=e=>{e.preventDefault();
   const c=cat.find(z=>z.country===open),cost=Math.max(0,parseFloat($('#it-cost').value)||0),h=$('#it-hist').checked;
   const it=col.find(i=>i.country===open&&i.type===cur.t&&i.nominal===cur.n);
-  if(it){it.cost=cost;it.is_historical=h}
-  else col.push({id:Date.now(),country:open,currency:c.currency,nominal:cur.n,type:cur.t,rate:c.rate_default,cost,...(h?{is_historical:true}:{})});
+  if(it){it.cost=cost;it.is_historical=h;it.photoFront=photoDraft.front;it.photoBack=photoDraft.back;delete it.photo}
+  else col.push({id:Date.now(),country:open,currency:c.currency,nominal:cur.n,type:cur.t,rate:c.rate_default,cost,...(h?{is_historical:true}:{}),...(photoDraft.front?{photoFront:photoDraft.front}:{}),...(photoDraft.back?{photoBack:photoDraft.back}:{})});
   flash=open+cur.t+cur.n;$('#item').close();save()};
 $('#it-del').onclick=()=>{if(!confirm('Убрать этот предмет из альбома?'))return;
   col=col.filter(i=>!(i.country===open&&i.type===cur.t&&i.nominal===cur.n));$('#item').close();save()};
 
 function exp(){if(!col.length)return alert('Коллекция пуста.');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(col,null,2)],{type:'application/json'}));
-  a.download='data.json';document.body.appendChild(a);a.click();a.remove();localStorage.removeItem(D);draw()}
+  a.download='data.json';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);localStorage.removeItem(D);draw()}
 $('#file').onchange=e=>{const fl=e.target.files[0];if(!fl)return;const r=new FileReader();
-  r.onload=()=>{try{const j=JSON.parse(r.result);if(!Array.isArray(j))throw 0;col=norm(j);build();save();$('#menu').close();alert('Коллекция восстановлена.')}catch(x){alert('Не удалось прочитать файл.')}};
-  r.readAsText(fl);e.target.value=''};
+  r.onload=()=>{try{
+    const j=JSON.parse(r.result);if(!Array.isArray(j))throw new Error('В файле ожидался список предметов.');
+    const restored=norm(j);col=restored;build();save();$('#menu').close();alert('Коллекция восстановлена.');
+  }catch(x){alert('Не удалось восстановить коллекцию: '+x.message)}
+  finally{e.target.value=''}};
+  r.onerror=()=>{alert('Не удалось прочитать файл резервной копии.');e.target.value=''};
+  r.readAsText(fl)};
+
+function renderPhotoPreview(){
+  for(const side of ['front','back']){
+    const preview=$('#photo-'+side+'-preview'),photo=photoDraft[side];
+    preview.hidden=!photo;
+    if(photo)preview.src=photo;
+    document.querySelector(`[data-remove-photo="${side}"]`).hidden=!photo;
+  }
+}
+async function imageAsDataUrl(file){
+  if(!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type))throw new Error('Выберите JPG, PNG, WebP или GIF.');
+  if(file.size>8*1024*1024)throw new Error('Размер исходного фото не должен превышать 8 МБ.');
+  const url=URL.createObjectURL(file);
+  try{
+    const image=new Image();
+    await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=()=>reject(new Error('Не удалось открыть изображение.'));image.src=url});
+    const scale=Math.min(1,1280/Math.max(image.naturalWidth,image.naturalHeight));
+    const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(image.naturalWidth*scale));canvas.height=Math.max(1,Math.round(image.naturalHeight*scale));
+    canvas.getContext('2d').drawImage(image,0,0,canvas.width,canvas.height);
+    let blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.82));
+    if(blob&&blob.size>600*1024)blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.62));
+    if(!blob||blob.size>600*1024)throw new Error('Не удалось сжать фото до 600 КБ.');
+    return await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(new Error('Не удалось обработать фото.'));reader.readAsDataURL(blob)});
+  }finally{URL.revokeObjectURL(url)}
+}
+for(const side of ['front','back']){
+  $('#it-photo-'+side).onchange=async e=>{
+    const file=e.target.files[0];if(!file)return;
+    try{photoDraft[side]=await imageAsDataUrl(file);renderPhotoPreview()}
+    catch(error){alert(error.message);e.target.value=''}
+  };
+}
+document.querySelectorAll('[data-remove-photo]').forEach(button=>button.onclick=()=>{
+  const side=button.dataset.removePhoto;
+  photoDraft[side]='';$('#it-photo-'+side).value='';renderPhotoPreview()
+});
 
 const RK='numismat_rates';
 function ratesDate(){try{const r=JSON.parse(localStorage.getItem(RK));return r?new Date(r.t).toLocaleDateString('ru-RU'):''}catch(e){return''}}
@@ -1150,17 +1269,22 @@ async function loadRates(){let r=null;try{r=JSON.parse(localStorage.getItem(RK))
 function togHist(){const c=cat.find(z=>z.country===open),x=info(c);
   if(!x.own.length)return alert('Сначала положите в альбом хотя бы один номинал: статус хранится в записях коллекции.');
   const h=!x.hist;col.forEach(i=>{if(i.country===open)i.is_historical=h});save()}
-function skin(n){localStorage.setItem('numismat_skin',n);document.body.dataset.skin=n;
-  document.querySelectorAll('#skinbar button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.skin===n));
-  if(n==='album'){try{col=norm(JSON.parse(localStorage.getItem(K))||[])}catch(e){col=[]}build();draw()}
-  else if(window.__classicReload)window.__classicReload()}
+function skin(){document.body.dataset.skin='album';build();draw()}
 document.addEventListener('click',e=>{const t=e.target;let b;
-  if(b=t.closest('#skinbar button')){skin(b.dataset.skin);return}
   if(t.closest('[data-hist]')){togHist();return}
   if(t.tagName==='DIALOG'){t.close();return}
   if(t.closest('[data-close]')){t.closest('dialog').close();return}
   if(b=t.closest('.plate')){open=b.dataset.c;sheet();$('#sheet').showModal();return}
-  if(b=t.closest('#sheet .slot')){openItem(b.dataset.t,+b.dataset.n);return}
+  if(b=t.closest('#sheet .slot-view')){
+    if(b.dataset.flip==='true'){
+      const key=`${open}|${b.dataset.t}|${b.dataset.n}`;
+      if(flipped.has(key))flipped.delete(key);else flipped.add(key);
+      sheet();
+      document.querySelector(`#sheet .slot-view[data-t="${b.dataset.t}"][data-n="${b.dataset.n}"]`).focus();
+    }else openItem(b.dataset.t,+b.dataset.n);
+    return
+  }
+  if(b=t.closest('#sheet .slot-edit')){openItem(b.dataset.t,+b.dataset.n);return}
   if(b=t.closest('[data-r]')){f.r=b.dataset.r;draw();return}
   if(b=t.closest('[data-s]')){f.s=b.dataset.s;draw();return}
   if(t.closest('[data-exp]'))exp();
@@ -1168,11 +1292,16 @@ document.addEventListener('click',e=>{const t=e.target;let b;
   if(t.id==='mMenu')$('#menu').showModal()});
 $('#sheet').addEventListener('close',()=>open=null);
 $('#q').oninput=e=>{f.q=e.target.value.trim();draw()};
+$('#kind').onchange=e=>{f.kind=e.target.value;draw()};
+$('#sort').onchange=e=>{f.sort=e.target.value;draw()};
+$('#photo-only').onchange=e=>{f.photos=e.target.checked;draw()};
 
 (async()=>{try{await window.__ready}catch(e){}
-  try{col=norm(JSON.parse(localStorage.getItem(K))||[])}catch(e){col=[]}
-  localStorage.setItem(K,JSON.stringify(col));loadRates();build();
-  skin(localStorage.getItem('numismat_skin')==='album'?'album':'classic')})();
+  const saved=localStorage.getItem(K);
+  try{col=norm(saved?JSON.parse(saved):[])}
+  catch(error){col=[];alert('Не удалось прочитать локальную коллекцию: '+error.message+' Резервная копия не перезаписана.')}
+  if(saved===null)localStorage.setItem(K,JSON.stringify(col));
+  loadRates();skin()})();
 
 })();
 </script>
