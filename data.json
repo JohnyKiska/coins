@@ -851,5 +851,38 @@
     "cost": 0,
     "photoFront": "",
     "photoBack": ""
+  },
+  {
+    "id": 1795176726598,
+    "country": "Малави",
+    "currency": "MWK",
+    "nominal": 20,
+    "type": "Купюра",
+    "rate": 0.047128640451831696,
+    "cost": 0,
+    "photoFront": "images/coins/mw/MWK/note-20/front.jpg",
+    "photoBack": "images/coins/mw/MWK/note-20/back.jpg"
+  },
+  {
+    "id": 1795176741233,
+    "country": "Малави",
+    "currency": "MWK",
+    "nominal": 50,
+    "type": "Купюра",
+    "rate": 0.047128640451831696,
+    "cost": 0,
+    "photoFront": "images/coins/mw/MWK/note-50/front.jpg",
+    "photoBack": "images/coins/mw/MWK/note-50/back.jpg"
+  },
+  {
+    "id": 1795176752133,
+    "country": "Малави",
+    "currency": "MWK",
+    "nominal": 100,
+    "type": "Купюра",
+    "rate": 0.047128640451831696,
+    "cost": 0,
+    "photoFront": "images/coins/mw/MWK/note-100/front.jpg",
+    "photoBack": "images/coins/mw/MWK/note-100/back.jpg"
   }
 ]
